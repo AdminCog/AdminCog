@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Calendar</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome -->
+  <link rel="stylesheet" href="css/book-cal.css">
+</head>
+<body>
+  <header>
+    <nav>
+        <div class="logo">
+            <a href="index.html"> <img src="images/image.png" alt="Admincog Corporate Services"> </a>
+        </div>
+        <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li class="dropdown">
+                <a href="#">Services</a>
+                <ul class="dropdown-content">
+                    <li class="dropdown">
+                        <a href="#">Virtual Assistant</a>
+                        <ul class="dropdown-content">
+                            <li><a href="Industries.html">Industries</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li><a href="webd.html">Web Development Services</a></li>
+                    <li><a href="digital.html">Digital Marketing Services</a></li>
+                </ul>
+            </li>
+            <li><a href="why-choose-US.html">Why Choose Us</a></li>
+            <li><a href="#">Plans & Pricing</a></li>
+            <li><a href="#contact-us">Contact Us</a></li>
+            <li><a href="book-online.html">Book Online</a></li>
+        </ul>
+    </nav>
+</header>
+
+  <div class="container mt-5">
+    <a href="#" class="back-link"><i class="fas fa-chevron-left"></i> Back</a>
+    <h1 class="mt-4">Discovery Call</h1>
+    <p>Check out our availability and book the date and time that works for you</p>
+
+    <div class="row">
+      <!-- Calendar Section -->
+      <div class="col-md-8">
+        <div class="calendar-box">
+          <h5>Select a Date and Time</h5>
+          <!-- Dynamic Calendar UI -->
+          <div id="calendar" class="calendar"></div>
+
+          <!-- Time Slots -->
+          <h6 class="mt-4" id="selectedDateText">Please select a date</h6>
+          <div class="time-slots" id="timeSlots">
+            <!-- Time slots will be dynamically generated here -->
+          </div>
+        </div>
+        
+      </div>
+
+      <!-- Booking Details Section -->
+      <div class="col-md-4">
+        <div class="details-box p-4">
+          <h6>Service Details</h6>
+          <p>Discovery Call</p>
+          <p id="serviceDate">Date: Not Selected</p>
+          <p id="serviceTime">Time: Not Selected</p>
+          <p>Online Meeting</p>
+          <p>Staff Member #1</p>
+          <p>30 min</p>
+          <p>Free</p>
+          <button class="btn btn-danger btn-block" id="nextButton" disabled>Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <section class="contact-us" id="contact-us">
+    <h2>Contact Us</h2>
+    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+        <input type="hidden" name="access_key" value="71b29bd8-4b6b-481e-8c66-f9468188d265">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="firstName">First Name*</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name*</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group full-width">
+                <label for="email">Email*</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group full-width">
+                <label for="message">Message*</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+        </div>
+        <div class="form-row">
+            <button type="submit" class="submit-button">Submit</button>
+        </div>
+    </form>
+
+</section>
+  
+  <footer>
+    <div class="footer-container">
+      <div class="footer-info">
+        <p>
+          Tel: +91-9535409798 |
+          <a href="info@admincog.com">info@admincog.com</a>
+          <p>&copy; 2023 Admincog Corporate Services</p>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="cal.js"></script>
+
+</body>
+</html>

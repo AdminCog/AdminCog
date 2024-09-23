@@ -1,0 +1,473 @@
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+header {
+  background-color: white;
+  padding: 15px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Navbar Styling */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.logo img {
+  max-width: 160px;
+}
+
+/* Navbar Menu */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+nav ul li {
+  position: relative;
+}
+
+/* Navbar Links */
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  padding: 10px 15px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+nav ul li a:hover {
+  color: rgb(255, 255, 255);
+  background-color: #1a94d6;
+  text-decoration: none;
+}
+
+/* Dropdown Styling */
+nav ul li .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 200px;
+  top: 100%;
+  left: 0;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+
+nav ul li .dropdown-content li {
+  width: 100%;
+}
+
+nav ul li .dropdown-content li a {
+  padding: 5px 12px;
+  color: #333;
+  text-align: left;
+  display: block;
+  font-weight:600;
+  text-decoration: none;
+}
+
+nav ul li .dropdown-content li a:hover {
+  background-color: #0088f8;
+  color: rgb(0, 0, 0);
+}
+
+/* Nested Dropdown Styling */
+nav ul li .dropdown-content .dropdown {
+  position: relative;
+}
+
+nav ul li .dropdown-content .dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+}
+
+/* Show dropdowns on hover */
+nav ul li:hover .dropdown-content {
+  display: block;
+}
+
+nav ul li .dropdown-content li:hover .dropdown-content {
+  display: block;
+}
+
+.hero-section {
+  padding: 50px;
+  background-color: white;
+}
+
+.hero-image-wrapper {
+  margin-bottom: 10px; /* Add 10px gap */
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image {
+  border-radius: 10px;
+  max-width: 100%;
+  height: auto;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideIn 1s forwards ease-out;
+}
+
+/* Text Content Section */
+.content-section {
+  padding: 50px;
+  background-color: #fff;
+}
+
+h1,
+h2,
+p {
+  text-align: left; /* Align text to the left */
+  font-family: "Kurale", serif;
+}
+
+h1 {
+  font-size: 2.5em;
+  color: #002366;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 1.5em;
+  color: #2a52be;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1em;
+  line-height: 1.6;
+  color: #333;
+  font-family: "Kurale", serif;
+}
+
+/* Social media icon */
+.social-media i {
+  transition: color 0.3s ease;
+}
+
+.social-media i:hover {
+  color: #0072b1; /* LinkedIn's official color */
+}
+.social-media {
+  text-align: left; /* Align LinkedIn icon to the left */
+}
+
+/* Slide-in Animation */
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+.contact-us {
+  padding: 60px;
+  background: linear-gradient(135deg, #04278f 0%, #80D0C7 100%);
+  color: white;
+  text-align: center;
+}
+
+.contact-us h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.contact-form {
+  max-width: 750px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form .form-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.contact-form .form-group {
+  flex: 0 0 48%;
+  margin-bottom: 20px;
+}
+
+.contact-form .form-group.full-width {
+  flex: 0 0 100%;
+}
+
+.contact-form label {
+  display: block;
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+  background-color: #fff;
+}
+
+.contact-form textarea {
+  resize: none;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .contact-form .form-group {
+    flex: 0 0 100%;
+  }
+}
+
+
+
+footer {
+  background-color: #222;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.footer-info {
+  margin-bottom: 10px;
+}
+
+.footer-info p {
+  margin: 5px 0;
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.footer-info p a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-info p a:hover {
+  text-decoration: underline;
+}
+
+.footer-copyright {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+
+
+.founder-image img {
+  border-radius: 10px;
+}
+
+.certificate-image img {
+  border-radius: 5px;
+}
+
+h1 {
+  font-size: 2.5em;
+  color: #002366;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7;
+  color: #333;
+}
+
+/* Spacing between images and text */
+.founder-section .row > div {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.mission-container {
+  display: flex;
+  height: 35vh;
+  width: 100%;
+}
+
+.mission-left {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  padding: 20px;
+}
+
+.mission-left h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #d3d3d3;
+}
+
+.mission-right {
+  background-color: #ffffff;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 20px;
+}
+
+.mission-right p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 600px;
+  text-align: justify;
+}
+
+.services-section {
+  background-color: #f8f9fa;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #4a4a4a;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: #6c757d;
+}
+
+.service-card {
+  background-color: #fff;
+  border: none;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+}
+
+.service-number {
+  font-size: 2.5rem;
+  color: #dc3545;
+  font-weight: bold;
+}
+
+.service-title {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  color: #333;
+}
+
+.service-description {
+  color: #6c757d;
+}
+
+.btn-dark {
+  background-color: #333;
+  border: none;
+  padding: 8px 20px; /* Reduced padding */
+  font-size: 1rem; /* Reduced font size */
+  transition: background-color 0.3s ease;
+}
+
+.btn-dark:hover {
+  background-color: #555;
+}
+.our-commitment-section {
+  background-color: #f8f9fa;
+  padding: 50px 0;
+}
+
+.our-commitment-section .section-title {
+  color: #1e1e84;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.our-commitment-section .section-description {
+  color: #555;
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: auto;
+  line-height: 1.6;
+}
+
+.our-commitment-section a {
+  color: #1e1e84;
+  text-decoration: underline;
+}
+
+.our-commitment-section a:hover {
+  color: #343a40;
+}
+
+

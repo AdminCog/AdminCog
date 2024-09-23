@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Development Services</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/webd.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+          <div class="logo">
+            <a href="index.html"> <img src="images/image.png" alt="Admincog Corporate Services"> </a>
+          </div>
+          <ul>
+              <li><a href="about.html">About Us</a></li>
+              <li class="dropdown">
+                  <a href="#">Services</a>
+                  <ul class="dropdown-content">
+                      <li class="dropdown">
+                          <a href="#">Virtual Assistant</a>
+                          <ul class="dropdown-content">
+                              <li><a href="Industries.html">Industries</a></li>
+                              
+                          </ul>
+                      </li>
+                      <li><a href="webd.html">Web Development Services</a></li>
+                      <li><a href="digital.html">Digital Marketing Services</a></li>
+                  </ul>
+              </li>
+              <li><a href="why-choose-US.html">Why Choose Us</a></li>
+              <li><a href="#">Plans & Pricing</a></li>
+              <li><a href="#contact-us">Contact Us</a></li>
+              <li><a href="book-online.html">Book Online</a></li>
+          </ul>
+      </nav>
+  </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <h1>Web Development Services</h1>
+        <p>
+          We offer comprehensive digital solutions including web designing
+          services to create visually captivating and user-friendly websites,
+          web development services for robust and scalable online platforms, and
+          app development services crafting custom mobile applications for iOS
+          and Android platforms.
+        </p>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+      <div class="container">
+        <div class="row">
+          <!-- Service Card 1 -->
+          <div class="col-md-4 mb-4">
+            <div class="service-card">
+              <img src="images/web1.png" alt="Web Design" />
+              <h3>Web Designing</h3>
+              <p>
+                Our web designing services are tailored to create stunning and
+                user-friendly websites that captivate your audience...
+              </p>
+              <span class="read-more" onclick="showModal('modal1')"
+                >Read More</span
+              >
+            </div>
+          </div>
+
+          <!-- Service Card 2 -->
+          <div class="col-md-4 mb-4">
+            <div class="service-card">
+              <img src="images/web2.png" alt="Web Development" />
+              <h3>Web Development</h3>
+              <p>
+                Our web development services are focused on turning your vision
+                into a fully functional and interactive website that meets your
+                business objectives...
+              </p>
+              <span class="read-more" onclick="showModal('modal2')"
+                >Read More</span
+              >
+            </div>
+          </div>
+
+          <!-- Service Card 3 -->
+          <div class="col-md-4 mb-4">
+            <div class="service-card">
+              <img src="images/web3.png" alt="App Development" />
+              <h3>App Development</h3>
+              <p>
+                Our app development services are designed to bring your mobile
+                app ideas to life and deliver seamless digital experiences...
+              </p>
+              <span class="read-more" onclick="showModal('modal3')"
+                >Read More</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote Form Section -->
+    <section class="quote-form-section">
+      <div class="container">
+        <div class="quote-form">
+          <h2>Get a Quote</h2>
+          <fieldset>
+            <form class="form-inline">
+              <div class="form-group mb-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="First Name"
+                  required
+                />
+              </div>
+              <div class="form-group mb-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="last name"
+                  required
+                />
+              </div>
+              <div class="form-group mb-2">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Your Email"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary mb-2">Send</button>
+            </form>
+          </fieldset>
+        </div>
+      </div>
+    </section>
+
+    <!-- Full Text Modals -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Web Designing</h3>
+          <span class="modal-close" onclick="closeModal('modal1')"
+            >&times;</span
+          >
+        </div>
+        <p>
+          Our web designing services are tailored to create stunning and
+          user-friendly websites that captivate your audience and elevate your
+          online presence. We believe that a well-designed website is the
+          cornerstone of a successful online strategy. Our team of experienced
+          designers combines creativity, functionality, and usability to craft
+          visually appealing and responsive websites that not only look great
+          but also deliver an exceptional user experience across devices.
+        </p>
+      </div>
+    </div>
+
+    <div id="modal2" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Web Development</h3>
+          <span class="modal-close" onclick="closeModal('modal2')"
+            >&times;</span
+          >
+        </div>
+        <p>
+          Our web development services are focused on turning your vision into a
+          fully functional and interactive website that meets your business
+          objectives. We specialize in developing robust and scalable websites
+          using the latest technologies and coding standards. From front-end
+          development to back-end programming, our developers are proficient in
+          creating dynamic and feature-rich websites that engage users and drive
+          conversions.
+        </p>
+      </div>
+    </div>
+
+    <div id="modal3" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>App Development</h3>
+          <span class="modal-close" onclick="closeModal('modal3')"
+            >&times;</span
+          >
+        </div>
+        <p>
+          Our app development services are designed to bring your mobile app
+          ideas to life and deliver seamless digital experiences to your users.
+          We specialize in developing custom mobile applications for iOS and
+          Android platforms, catering to diverse industry verticals and business
+          needs.
+        </p>
+      </div>
+    </div>
+
+
+    <section class="contact-us" id="contact-us">
+      <h2>Contact Us</h2>
+      <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+          <input type="hidden" name="access_key" value="71b29bd8-4b6b-481e-8c66-f9468188d265">
+          <div class="form-row">
+              <div class="form-group">
+                  <label for="firstName">First Name*</label>
+                  <input type="text" id="firstName" name="firstName" required>
+              </div>
+              <div class="form-group">
+                  <label for="lastName">Last Name*</label>
+                  <input type="text" id="lastName" name="lastName" required>
+              </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group full-width">
+                  <label for="email">Email*</label>
+                  <input type="email" id="email" name="email" required>
+              </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group full-width">
+                  <label for="message">Message*</label>
+                  <textarea id="message" name="message" rows="5" required></textarea>
+              </div>
+          </div>
+          <div class="form-row">
+              <button type="submit" class="submit-button">Submit</button>
+          </div>
+      </form>
+
+  </section>
+      
+      <footer>
+        <div class="footer-container">
+          <div class="footer-info">
+            <p>
+              Tel: +91-9535409798 |
+              <a href="info@admincog.com">info@admincog.com</a>
+              <p>&copy; 2023 Admincog Corporate Services</p>
+            </p>
+          </div>
+        </div>
+      </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
