@@ -1,5 +1,3 @@
-
-
 * {
   margin: 0;
   padding: 0;
@@ -10,7 +8,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+
+
 /* Header Styling */
+/* General Header Styling */
 header {
     background-color: white;
     padding: 15px 0;
@@ -18,49 +19,49 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-  }
-  
-  /* Navbar Styling */
-  nav {
+}
+
+/* Navbar Styling */
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 40px;
-  }
-  
-  .logo img {
+}
+
+.logo img {
     max-width: 160px;
-  }
-  
-  /* Navbar Menu */
-  nav ul {
+}
+
+/* Navbar Menu */
+nav ul {
     list-style: none;
     display: flex;
     gap: 30px;
-  }
-  
-  nav ul li {
+}
+
+nav ul li {
     position: relative;
-  }
-  
-  /* Navbar Links */
-  nav ul li a {
+}
+
+/* Navbar Links */
+nav ul li a {
     text-decoration: none;
     color: #333;
     font-weight: 600;
     padding: 10px 15px;
     transition: color 0.3s ease, background-color 0.3s ease;
     border-radius: 5px;
-  }
-  
-  nav ul li a:hover {
+}
+
+nav ul li a:hover {
     color: rgb(255, 255, 255);
     background-color: #1a94d6;
     text-decoration: none;
-  }
-  
-  /* Dropdown Styling */
-  nav ul li .dropdown-content {
+}
+
+/* Dropdown Styling */
+nav ul li .dropdown-content {
     display: none;
     position: absolute;
     background-color: #fff;
@@ -70,32 +71,32 @@ header {
     border-radius: 8px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     z-index: 999;
-  }
-  
-  nav ul li .dropdown-content li {
+}
+
+nav ul li .dropdown-content li {
     width: 100%;
-  }
-  
-  nav ul li .dropdown-content li a {
+}
+
+nav ul li .dropdown-content li a {
     padding: 5px 12px;
     color: #333;
     text-align: left;
     display: block;
-    font-weight:600;
+    font-weight: 600;
     text-decoration: none;
-  }
-  
-  nav ul li .dropdown-content li a:hover {
+}
+
+nav ul li .dropdown-content li a:hover {
     background-color: #0088f8;
     color: rgb(0, 0, 0);
-  }
-  
-  /* Nested Dropdown Styling */
-  nav ul li .dropdown-content .dropdown {
+}
+
+/* Nested Dropdown Styling */
+nav ul li .dropdown-content .dropdown {
     position: relative;
-  }
-  
-  nav ul li .dropdown-content .dropdown .dropdown-content {
+}
+
+nav ul li .dropdown-content .dropdown .dropdown-content {
     display: none;
     position: absolute;
     top: 0;
@@ -104,19 +105,92 @@ header {
     border-radius: 8px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     min-width: 200px;
-  }
-  
-  /* Show dropdowns on hover */
-  nav ul li:hover .dropdown-content {
+}
+
+/* Show dropdowns on hover */
+nav ul li:hover .dropdown-content {
     display: block;
-  }
-  
-  nav ul li .dropdown-content li:hover .dropdown-content {
+}
+
+nav ul li .dropdown-content li:hover .dropdown-content {
     display: block;
-  }
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    right: 40px; /* Adjusted to move hamburger to the right */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger span {
+    height: 3px;
+    width: 100%;
+    background-color: #333;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    nav ul {
+        position: fixed;
+        left: 0; /* Now positioned on the left */
+        top: 0;
+        height: 100vh;
+        width: 250px;
+        background-color: #003366;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transform: translateX(-100%); /* Hidden off-screen to the left */
+        transition: transform 0.3s ease-in-out;
+        z-index: 999;
+    }
+
+    nav ul li {
+        margin: 20px 0;
+    }
+
+    nav ul li a {
+        color: white;
+        font-size: 20px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    /* Menu active state: slide in from left */
+    .nav-active {
+        transform: translateX(0); /* Slides the menu in from the left */
+    }
+
+    /* Change the hamburger icon to an "X" when active */
+    .hamburger.toggle span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger.toggle span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.toggle span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+}
+
+/* Main Hero Section */
 .hero {
     position: relative;
-    text-align: left;
+    text-align: center; /* Changed to center-align text for smaller screens */
     color: white;
 }
 
@@ -125,6 +199,7 @@ header {
     height: auto;
 }
 
+/* Hero Text Box Styling */
 .hero-text {
     position: absolute;
     top: 40%;
@@ -139,8 +214,7 @@ header {
     opacity: 0;
 }
 
-
-
+/* Text and Button Styling */
 .hero-text h1 {
     font-size: 26px;
     margin-bottom: 10px;
@@ -151,10 +225,6 @@ header {
     margin-bottom: 20px;
 }
 
-.content-box {
-    margin-bottom: 15px;
-}
-
 .cta-button {
     display: inline-block;
     background-color: red;
@@ -162,12 +232,14 @@ header {
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .cta-button:hover {
     background-color: rgb(12, 1, 94);
 }
 
+/* Slide-In Animation */
 @keyframes slideIn {
     0% {
         transform: translateX(100%);
@@ -179,17 +251,40 @@ header {
     }
 }
 
-/* Media query for smaller screens */
+/* Media query for screens smaller than 768px */
 @media (max-width: 768px) {
+    .hero-description {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Show only 3 lines of text */
+        -webkit-box-orient: vertical;
+        cursor: pointer;
+    }
     .hero-text {
-        width: 90%;
+        width: 90%; /* Ensures content fits better on small screens */
         right: 5%;
         left: 5%;
         top: 10%;
+        padding: 15px;
+    }
+
+    .hero-text h1 {
+        font-size: 22px; /* Reduced font size for better readability */
+    }
+
+    .hero-text p {
+        font-size: 18px;
+    }
+
+    .cta-button {
+        font-size: 16px; /* Adjusted button font size for smaller screens */
     }
 }
 
 
+
+/* Main VA Services Section */
 .va-services {
     background-color: #003366; /* Dark blue background */
     color: white;
@@ -198,14 +293,15 @@ header {
     margin-top: 250px; /* Gap between Hero and VA Services */
 }
 
+/* Heading Styling */
 .va-services h2 {
     font-size: 28px;
     margin-bottom: 20px;
     text-align: left;
     margin-left: 150px;
-
 }
 
+/* Paragraph Styling */
 .va-services p {
     font-size: 18px;
     line-height: 1.6;
@@ -213,6 +309,28 @@ header {
     margin: 0 auto;
     text-align: left;
 }
+
+/* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
+    .va-services {
+        margin-top: 100px; /* Reduce gap between Hero and VA Services */
+        padding: 30px 15px; /* Adjust padding for smaller screens */
+    }
+
+    .va-services h2 {
+        font-size: 24px; /* Reduce heading size for readability */
+        margin-left: 20px; /* Reduce left margin to fit content better */
+        text-align: center; /* Center the heading for better balance */
+    }
+
+    .va-services p {
+        font-size: 16px; /* Reduce font size slightly for readability */
+        text-align: center; /* Center text for better visual presentation */
+        max-width: 90%; /* Make paragraph width more flexible */
+        margin: 0 auto; /* Ensure centered content */
+    }
+}
+
 
 
 .services {
@@ -398,6 +516,34 @@ header {
     background-color: #717171;
 }
 
+/* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
+    .text-box {
+        width: 90%; /* More flexible width for small screens */
+        padding: 15px;
+    }
+
+    .text-box h2 {
+        font-size: 9px; /* Reduced font size for smaller screens */
+    }
+
+    .text-box p {
+        font-size: 9px; /* Reduced font size for better readability */
+    }
+
+    /* Reduce the size of the navigation buttons */
+    .prev, .next {
+        font-size: 14px; /* Smaller button size */
+        padding: 10px;
+    }
+
+    .dot {
+        height: 10px; /* Smaller dots */
+        width: 10px;
+    }
+}
+
+
 
 /* Contact Us Section */
 /* Contact Section */
@@ -511,6 +657,3 @@ footer {
     font-size: 0.9rem;
     color: #bbb;
 }
-
-
-
