@@ -154,6 +154,51 @@ nav ul li .dropdown-content li:hover .dropdown-content {
         transition: transform 0.3s ease-in-out;
         z-index: 999;
     }
+    nav ul li .dropdown-content {
+        display: none; /* Initially hidden */
+        position: absolute; /* Position it absolutely */
+        top: 100%; /* Position it directly below the parent */
+        left: 50%; /* Center it horizontally */
+        transform: translateX(-50%); /* Adjust to center */
+        background-color: #fff; /* Background color */
+        border-radius: 8px; /* Round corners */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        z-index: 999; /* Ensure visibility above other elements */
+        padding: 0; /* Remove any extra padding */
+        margin: 0; /* Remove any extra margin */
+        width: 220px; /* Set a specific width for uniformity */
+    }
+
+    /* Show dropdowns on hover */
+    nav ul li:hover .dropdown-content {
+        display: block; /* Show the dropdown */
+        transform: translateY(0); /* Reset vertical transform for positioning */
+        opacity: 1; /* Ensure it is fully visible */
+        transition: opacity 0.3s ease; /* Optional smooth transition */
+    }
+
+    /* Dropdown Items Styling */
+    nav ul li .dropdown-content li {
+        width: 100%; /* Full width for each dropdown item */
+        padding: 8px 10px; /* Small padding for tighter spacing */
+        margin: 0; /* Remove margin for compactness */
+    }
+
+    /* Style for links in dropdown */
+    nav ul li .dropdown-content li a {
+        color: #333; /* Text color */
+        text-align: left; /* Align text to the left */
+        display: block; /* Full block display */
+        font-weight: 600; /* Font weight */
+        text-decoration: none; /* No underline */
+        transition: background-color 0.3s; /* Transition for hover effect */
+    }
+
+    /* Hover effect for links */
+    nav ul li .dropdown-content li a:hover {
+        background-color: #0088f8; /* Background color on hover */
+        color: rgb(0, 0, 0); /* Text color on hover */
+    }
 
     nav ul li {
         margin: 20px 0;
