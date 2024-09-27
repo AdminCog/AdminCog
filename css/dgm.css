@@ -169,19 +169,137 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   display: block;
 }
 
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  position: absolute;
+  right: 40px; /* Adjusted to move hamburger to the right */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hamburger span {
+  height: 3px;
+  width: 100%;
+  background-color: #333;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  nav ul {
+      position: fixed;
+      left: 0; /* Now positioned on the left */
+      top: 0;
+      height: 100vh;
+      width: 250px;
+      background-color: #003366;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transform: translateX(-100%); /* Hidden off-screen to the left */
+      transition: transform 0.3s ease-in-out;
+      z-index: 999;
+  }
+  nav ul li .dropdown-content {
+      display: none; /* Initially hidden */
+      position: absolute; /* Position it absolutely */
+      top: 100%; /* Position it directly below the parent */
+      left: 50%; /* Center it horizontally */
+      transform: translateX(-50%); /* Adjust to center */
+      background-color: #fff; /* Background color */
+      border-radius: 8px; /* Round corners */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      z-index: 999; /* Ensure visibility above other elements */
+      padding: 0; /* Remove any extra padding */
+      margin: 0; /* Remove any extra margin */
+      width: 220px; /* Set a specific width for uniformity */
+  }
+
+  /* Show dropdowns on hover */
+  nav ul li:hover .dropdown-content {
+      display: block; /* Show the dropdown */
+      transform: translateY(0); /* Reset vertical transform for positioning */
+      opacity: 1; /* Ensure it is fully visible */
+      transition: opacity 0.3s ease; /* Optional smooth transition */
+  }
+
+  /* Dropdown Items Styling */
+  nav ul li .dropdown-content li {
+      width: 100%; /* Full width for each dropdown item */
+      padding: 8px 10px; /* Small padding for tighter spacing */
+      margin: 0; /* Remove margin for compactness */
+  }
+
+  /* Style for links in dropdown */
+  nav ul li .dropdown-content li a {
+      color: #333; /* Text color */
+      text-align: left; /* Align text to the left */
+      display: block; /* Full block display */
+      font-weight: 600; /* Font weight */
+      text-decoration: none; /* No underline */
+      transition: background-color 0.3s; /* Transition for hover effect */
+  }
+
+  /* Hover effect for links */
+  nav ul li .dropdown-content li a:hover {
+      background-color: #0088f8; /* Background color on hover */
+      color: rgb(0, 0, 0); /* Text color on hover */
+  }
+
+  nav ul li {
+      margin: 20px 0;
+  }
+
+  nav ul li a {
+      color: white;
+      font-size: 20px;
+  }
+
+  .hamburger {
+      display: flex;
+  }
+
+  /* Menu active state: slide in from left */
+  .nav-active {
+      transform: translateX(0); /* Slides the menu in from the left */
+  }
+
+  /* Change the hamburger icon to an "X" when active */
+  .hamburger.toggle span:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+  }
+
+  .hamburger.toggle span:nth-child(2) {
+      opacity: 0;
+  }
+
+  .hamburger.toggle span:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+  }
+}
+
+/* General Styles */
 #get-in-touch {
   padding: 40px;
-  background-color: #f2f4f7; /* Light background color */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  margin: 20px auto; /* Centering the section */
-  max-width: 800px; /* Maximum width */
+  background-color: #f2f4f7;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 800px;
 }
 
 .container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start; /* Aligns text at the top */
 }
 
 .text-left {
@@ -189,63 +307,63 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 }
 
 .text-right {
-  flex: 2;
-  text-align: right;
+  flex: 1;
+  text-align: left; /* Left-align for a clean look */
 }
 
 h2 {
   margin-bottom: 20px;
-  font-size: 2rem; /* Larger font size */
-  color: #333; /* Dark text color */
-  font-family: "Arial", sans-serif; /* Clean font */
+  font-size: 2rem;
+  color: #333;
+  font-family: "Arial", sans-serif;
 }
 
 p {
   font-size: 1rem;
   line-height: 1.6;
-  color: #555; /* Slightly lighter text color */
-  font-family: "Arial", sans-serif; /* Clean font */
+  color: #555;
+  font-family: "Arial", sans-serif;
 }
 
 a {
-  color: #007bff; /* Primary blue color */
+  color: #007bff;
   text-decoration: none;
-  font-weight: bold; /* Emphasize the email link */
+  font-weight: bold;
 }
 
 a:hover {
   text-decoration: underline;
 }
 
+/* Contact Us Section */
 .contact-us {
-  padding: 60px;
+  padding: 60px 20px; /* More flexible padding */
   background: linear-gradient(135deg, #04278f 0%, #80d0c7 100%);
   color: white;
   text-align: center;
 }
 
 .contact-us h2 {
-  font-size: 2.5rem;
-  margin-bottom: 30px;
+  font-size: 2rem; /* Reduced size for better balance */
+  margin-bottom: 20px;
   color: #fff;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
 }
 
 .contact-form {
   max-width: 750px;
   margin: 0 auto;
   background-color: #fff;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .contact-form .form-row {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 20px;
 }
 
 .contact-form .form-group {
@@ -258,7 +376,6 @@ a:hover {
 }
 
 .contact-form label {
-  display: block;
   font-size: 0.9rem;
   color: #333;
   margin-bottom: 8px;
@@ -267,23 +384,22 @@ a:hover {
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-  padding: 12px;
-  border-radius: 8px;
+  padding: 10px;
+  border-radius: 6px;
   border: 1px solid #ddd;
   background-color: #f9f9f9;
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition: border 0.3s ease;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
   border-color: #007bff;
   outline: none;
-  background-color: #fff;
 }
 
 .contact-form textarea {
-  resize: none;
+  resize: vertical;
 }
 
 .submit-button {
@@ -295,18 +411,14 @@ a:hover {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 100%; /* Full width for better accessibility */
 }
 
 .submit-button:hover {
   background-color: #0056b3;
 }
 
-@media (max-width: 768px) {
-  .contact-form .form-group {
-    flex: 0 0 100%;
-  }
-}
-
+/* Footer */
 footer {
   background-color: #222;
   color: #fff;
@@ -317,7 +429,6 @@ footer {
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
 }
 
 .footer-info {
@@ -343,4 +454,74 @@ footer {
   margin-top: 10px;
   font-size: 0.9rem;
   color: #ffffff;
+}
+
+/* Responsive Styles */
+
+/* For tablets and devices with max-width of 768px */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center; /* Center text on smaller screens */
+  }
+
+  .text-right {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .contact-form .form-group {
+    flex: 0 0 100%; /* Full width form groups */
+  }
+
+  .contact-us h2 {
+    font-size: 1.8rem;
+  }
+}
+
+/* For mobile devices with max-width of 375px */
+@media (max-width: 375px) {
+  #get-in-touch {
+    padding: 20px;
+    max-width: 100%; /* Full width on small devices */
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  .contact-us {
+    padding: 40px 15px;
+  }
+
+  .contact-form {
+    padding: 20px;
+  }
+
+  .submit-button {
+    padding: 10px 16px;
+  }
+}
+
+/* For very small devices (320px width) */
+@media (max-width: 320px) {
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  .contact-form {
+    padding: 15px;
+  }
+
+  .submit-button {
+    padding: 8px 12px;
+  }
+
+  .contact-us {
+    padding: 30px 10px;
+  }
 }
