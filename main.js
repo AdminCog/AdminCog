@@ -1,10 +1,10 @@
-function showModal(modalId) {
-    document.getElementById(modalId).style.display = 'block';
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach((card) => {
+        card.classList.add('fade-in');
+    });
+});
 
-function closeModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
-}
 const hamburger = document.querySelector('.hamburger');
 const nav = document.querySelector('nav ul');
 

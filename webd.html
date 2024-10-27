@@ -48,167 +48,87 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
-      <div class="container">
-        <h1>Web Development Services</h1>
-        <p>
-          We offer comprehensive digital solutions including web designing
-          services to create visually captivating and user-friendly websites,
-          web development services for robust and scalable online platforms, and
-          app development services crafting custom mobile applications for iOS
-          and Android platforms.
-        </p>
+      <div class="hero-container">
+          <div class="hero-image">
+              <img src="images/webd.jpg" alt="Web Development" />
+          </div>
+          <div class="hero-content-box">
+              <div class="container">
+                  <h1>Web Development Services</h1>
+                  <p>
+                      We offer comprehensive digital solutions including web designing
+                      services to create visually captivating and user-friendly websites,
+                      web development services for robust and scalable online platforms, and
+                      app development services crafting custom mobile applications for iOS
+                      and Android platforms.
+                  </p>
+              </div>
+          </div>
       </div>
-    </section>
+  </section>
+  
 
     <!-- Services Section -->
     <section class="services-section">
       <div class="container">
-        <div class="row">
-          <!-- Service Card 1 -->
-          <div class="col-md-4 mb-4">
-            <div class="service-card">
-              <img src="images/web1.png" alt="Web Design" />
-              <h3>Web Designing</h3>
-              <p>
-                Our web designing services are tailored to create stunning and
-                user-friendly websites that captivate your audience...
-              </p>
-              <span class="read-more" onclick="showModal('modal1')"
-                >Read More</span
-              >
-            </div>
-          </div>
-
-          <!-- Service Card 2 -->
-          <div class="col-md-4 mb-4">
-            <div class="service-card">
-              <img src="images/web2.png" alt="Web Development" />
-              <h3>Web Development</h3>
-              <p>
-                Our web development services are focused on turning your vision
-                into a fully functional and interactive website that meets your
-                business objectives...
-              </p>
-              <span class="read-more" onclick="showModal('modal2')"
-                >Read More</span
-              >
-            </div>
-          </div>
-
-          <!-- Service Card 3 -->
-          <div class="col-md-4 mb-4">
-            <div class="service-card">
-              <img src="images/web3.png" alt="App Development" />
-              <h3>App Development</h3>
-              <p>
-                Our app development services are designed to bring your mobile
-                app ideas to life and deliver seamless digital experiences...
-              </p>
-              <span class="read-more" onclick="showModal('modal3')"
-                >Read More</span
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Quote Form Section -->
-    <section class="quote-form-section">
-      <div class="container">
-        <div class="quote-form">
-          <h2>Get a Quote</h2>
-          <fieldset>
-            <form class="form-inline">
-              <div class="form-group mb-2">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="First Name"
-                  required
-                />
+          <div class="row">
+              <!-- Service Card 1 -->
+              <div class="col-md-4 mb-4">
+                  <div class="service-card">
+                      <img src="images/web1.png" alt="Web Design" />
+                      <h3>Web Designing</h3>
+                      <div class="service-content">
+                          <p>
+                              Our web designing services are tailored to create stunning and
+                              user-friendly websites that captivate your audience and elevate your
+                              online presence. We believe that a well-designed website is the
+                              cornerstone of a successful online strategy. Our team of experienced
+                              designers combines creativity, functionality, and usability to craft
+                              visually appealing and responsive websites that deliver an exceptional
+                              user experience across devices.
+                          </p>
+                      </div>
+                  </div>
               </div>
-              <div class="form-group mb-2">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="last name"
-                  required
-                />
+  
+              <!-- Service Card 2 -->
+              <div class="col-md-4 mb-4">
+                  <div class="service-card">
+                      <img src="images/web2.png" alt="Web Development" />
+                      <h3>Web Development</h3>
+                      <div class="service-content">
+                          <p>
+                              Our web development services are focused on turning your vision into a
+                              fully functional and interactive website that meets your business
+                              objectives. We specialize in developing robust and scalable websites
+                              using the latest technologies and coding standards. Our developers
+                              are proficient in creating dynamic and feature-rich websites that
+                              engage users and drive conversions.
+                          </p>
+                      </div>
+                  </div>
               </div>
-              <div class="form-group mb-2">
-                <input
-                  type="email"
-                  class="form-control"
-                  placeholder="Your Email"
-                  required
-                />
+  
+              <!-- Service Card 3 -->
+              <div class="col-md-4 mb-4">
+                  <div class="service-card">
+                      <img src="images/web3.png" alt="App Development" />
+                      <h3>App Development</h3>
+                      <div class="service-content">
+                          <p>
+                              Our app development services are designed to bring your mobile app
+                              ideas to life and deliver seamless digital experiences to your users.
+                              We specialize in developing custom mobile applications for iOS and
+                              Android platforms, catering to diverse industry verticals and business
+                              needs.
+                          </p>
+                      </div>
+                  </div>
               </div>
-              <button type="submit" class="btn btn-primary mb-2">Send</button>
-            </form>
-          </fieldset>
-        </div>
+          </div>
       </div>
-    </section>
-
-    <!-- Full Text Modals -->
-    <div id="modal1" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3>Web Designing</h3>
-          <span class="modal-close" onclick="closeModal('modal1')"
-            >&times;</span
-          >
-        </div>
-        <p>
-          Our web designing services are tailored to create stunning and
-          user-friendly websites that captivate your audience and elevate your
-          online presence. We believe that a well-designed website is the
-          cornerstone of a successful online strategy. Our team of experienced
-          designers combines creativity, functionality, and usability to craft
-          visually appealing and responsive websites that not only look great
-          but also deliver an exceptional user experience across devices.
-        </p>
-      </div>
-    </div>
-
-    <div id="modal2" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3>Web Development</h3>
-          <span class="modal-close" onclick="closeModal('modal2')"
-            >&times;</span
-          >
-        </div>
-        <p>
-          Our web development services are focused on turning your vision into a
-          fully functional and interactive website that meets your business
-          objectives. We specialize in developing robust and scalable websites
-          using the latest technologies and coding standards. From front-end
-          development to back-end programming, our developers are proficient in
-          creating dynamic and feature-rich websites that engage users and drive
-          conversions.
-        </p>
-      </div>
-    </div>
-
-    <div id="modal3" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3>App Development</h3>
-          <span class="modal-close" onclick="closeModal('modal3')"
-            >&times;</span
-          >
-        </div>
-        <p>
-          Our app development services are designed to bring your mobile app
-          ideas to life and deliver seamless digital experiences to your users.
-          We specialize in developing custom mobile applications for iOS and
-          Android platforms, catering to diverse industry verticals and business
-          needs.
-        </p>
-      </div>
-    </div>
+  </section>
+  
 
 
     <section class="contact-us" id="contact-us">
