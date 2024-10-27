@@ -46,7 +46,7 @@ nav ul li {
 /* Navbar Links */
 nav ul li a {
   text-decoration: none;
-  color: #333;
+  color: #00028a;
   font-weight: 600;
   padding: 10px 15px;
   transition: color 0.3s ease, background-color 0.3s ease;
@@ -78,7 +78,7 @@ nav ul li .dropdown-content li {
 
 nav ul li .dropdown-content li a {
   padding: 5px 12px;
-  color: #333;
+  color: #0d0082;
   text-align: left;
   display: block;
   font-weight: 600;
@@ -305,7 +305,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 .contact-us {
   padding: 60px;
-  background: linear-gradient(135deg, #04278f 0%, #80d0c7 100%);
+  background-color: #003366;
   color: white;
   text-align: center;
 }
@@ -321,7 +321,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .contact-form {
   max-width: 750px;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: #003366;
   padding: 40px;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -346,7 +346,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .contact-form label {
   display: block;
   font-size: 0.9rem;
-  color: #333;
+  color: white;
   margin-bottom: 8px;
 }
 

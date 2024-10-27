@@ -100,7 +100,7 @@ nav ul li {
 /* Navbar Links */
 nav ul li a {
   text-decoration: none;
-  color: #333;
+  color: #00027a;
   font-weight: 600;
   padding: 10px 15px;
   transition: color 0.3s ease, background-color 0.3s ease;
@@ -338,7 +338,7 @@ a:hover {
 /* Contact Us Section */
 .contact-us {
   padding: 60px 20px; /* More flexible padding */
-  background: linear-gradient(135deg, #04278f 0%, #80d0c7 100%);
+  background-color: #003366;
   color: white;
   text-align: center;
 }
@@ -354,10 +354,10 @@ a:hover {
 .contact-form {
   max-width: 750px;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: #003366;
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(235, 51, 51, 0.1);
 }
 
 .contact-form .form-row {
@@ -377,7 +377,7 @@ a:hover {
 
 .contact-form label {
   font-size: 0.9rem;
-  color: #333;
+  color: white;
   margin-bottom: 8px;
 }
 
