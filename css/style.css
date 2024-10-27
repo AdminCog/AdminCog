@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Spinnaker&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +7,7 @@
 }
 
 body {
-  font-family: "Spinnaker", sans-serif;
+  font-family: "Spinnaker", serif;
 }
 
 
@@ -264,8 +266,12 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .hero-text h1 {
     font-size: 26px;
     margin-bottom: 10px;
-    font-family: "Spinnaker", sans-serif;
     text-align: left;
+    font-family: "Oswald", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    color: #0619a7;
     
 }
 
@@ -273,6 +279,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     font-size: 18px;
     margin-bottom: 20px;
     text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .cta-button {
@@ -321,10 +328,16 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
     .hero-text h1 {
         font-size: 22px; /* Reduced font size for better readability */
+        font-family: "Oswald", serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+        color: #0619a7;
     }
 
     .hero-text p {
         font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
     }
 
     .cta-button {
@@ -336,7 +349,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 /* Main VA Services Section */
 .va-services {
-    background-color: #003366; /* Dark blue background */
+    background-color: #f7f7f7; /* Dark blue background */
     color: white;
     padding: 40px 20px;
     text-align: left;
@@ -349,6 +362,11 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     margin-bottom: 20px;
     text-align: left;
     margin-left: 150px;
+    font-family: "Oswald", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    color: #0619a7;
 }
 
 /* Paragraph Styling */
@@ -358,6 +376,8 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     max-width: 800px;
     margin: 0 auto;
     text-align: left;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Media query for screens smaller than 768px */
@@ -371,6 +391,11 @@ nav ul li .dropdown-content li:hover .dropdown-content {
         font-size: 24px; /* Reduce heading size for readability */
         margin-left: 20px; /* Reduce left margin to fit content better */
         text-align: center; /* Center the heading for better balance */
+        font-family: "Oswald", serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+        color:#0619a7;
     }
 
     .va-services p {
@@ -378,6 +403,8 @@ nav ul li .dropdown-content li:hover .dropdown-content {
         text-align: center; /* Center text for better visual presentation */
         max-width: 90%; /* Make paragraph width more flexible */
         margin: 0 auto; /* Ensure centered content */
+        font-family: Arial, Helvetica, sans-serif;
+        color: black;
     }
 }
 
@@ -404,15 +431,20 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 }
 
 .service-card h3 {
-    color: #003366;
+    color:#0619a7;
     font-size: 20px;
     margin-bottom: 15px;
+    font-family: "Oswald", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
 }
 
 .service-card p {
     font-size: 16px;
     margin-bottom: 15px;
-    color: #333;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .service-card a.learn-more {
@@ -454,6 +486,10 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     margin-bottom: 20px;
     color: #003366;
     text-align: left; /* Align text to the left */
+    font-family: "Oswald", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
 }
 
 .cta-box p {
@@ -461,6 +497,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     margin-bottom: 60px; /* Add margin to create space above the button */
     color: #333;
     text-align: left; /* Align text to the left */
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .cta-box .cta-button {
@@ -484,7 +521,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .image-slideshow {
     position: relative;
     width: 100%;
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -518,10 +555,17 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .text-box h3 {
     font-size: 15px;
     margin-bottom: 10px;
+    font-family: "Oswald", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    color: #0619a7;
 }
 
 .text-box p {
     font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
 }
 
 /* Next and previous buttons */

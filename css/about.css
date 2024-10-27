@@ -1,5 +1,5 @@
 
-
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Spinnaker&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -254,32 +254,47 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .content-section {
   padding: 50px;
   background-color: #fff;
+  font-family: "Oswald", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
 h1,
 h2,
 p {
   text-align: left; /* Align text to the left */
-  font-family: "Kurale", serif;
+  
 }
 
 h1 {
   font-size: 2.5em;
   color: #002366;
   margin-bottom: 10px;
+  font-family: "Oswald", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  color: #00007c;
 }
 
 h2 {
   font-size: 1.5em;
   color: #2a52be;
   margin-bottom: 20px;
+  font-family: "Oswald", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  color:#00007c;
 }
 
 p {
   font-size: 1em;
   line-height: 1.6;
   color: #333;
-  font-family: "Kurale", serif;
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
 }
 
 /* Social media icon */
@@ -317,19 +332,35 @@ p {
 
   .content-section {
     padding: 20px;
+    font-family: "Oswald", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
   }
 
   h1 {
     font-size: 2rem; /* Reduce font size */
+    font-family: "Oswald", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    color: #00007c;
   }
 
   h2 {
     font-size: 1.3rem;
+    font-family: "Oswald", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    color: #00007c;
   }
 
   p {
     font-size: 0.9rem; /* Reduce paragraph size */
     line-height: 1.5;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
   }
 
   .social-media {
@@ -349,18 +380,34 @@ p {
 
   .content-section {
     padding: 15px;
+    font-family: "Oswald", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
   }
 
   h1 {
     font-size: 1.8rem; /* Further reduce font size for smaller screens */
+    font-family: "Oswald", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    color: #1e1e84;
   }
 
   h2 {
     font-size: 1.2rem;
+    font-family: "Oswald", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    color: #1e1e84;
   }
 
   p {
     font-size: 0.85rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
   }
 
   .social-media {
@@ -587,12 +634,17 @@ h1 {
   font-size: 2.5em;
   color: #002366;
   margin-bottom: 20px;
+  font-family: "Oswald", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
 p {
   font-size: 1.1em;
   line-height: 1.7;
   color: #333;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Spacing between images and text */
@@ -621,6 +673,10 @@ p {
   font-size: 3rem;
   font-weight: bold;
   color: #d3d3d3;
+  font-family: "Oswald", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
 .mission-right {
@@ -638,6 +694,8 @@ p {
   line-height: 1.6;
   max-width: 600px;
   text-align: justify;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 300;
 }
 
 @media (max-width: 768px) {
@@ -669,11 +727,16 @@ p {
 
   .mission-left h1 {
     font-size: 2.5rem;
+    font-family: "Oswald", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
   }
 
   .mission-right p {
     font-size: 1.1rem;
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
   }
 }
 
@@ -681,10 +744,15 @@ p {
 @media (max-width: 425px) {
   h1 {
     font-size: 1.8rem;
+    font-family: "Oswald", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
   }
 
   p {
     font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
   }
 
   .founder-image img,
@@ -711,11 +779,19 @@ p {
   font-size: 2.5rem;
   font-weight: bold;
   color: #4a4a4a;
+  font-family: "Oswald", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
 .section-subtitle {
   font-size: 1.2rem;
   color: #6c757d;
+  font-family: "Oswald", serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
 }
 
 .section-image {
@@ -745,11 +821,16 @@ p {
   color: #333;
   font-weight: bold;
   margin-bottom: 10px;
+  font-family: "Oswald", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
 .service-description {
   font-size: 1rem;
   color: #6c757d;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Button Styling */
@@ -784,6 +865,10 @@ p {
   color: #1e1e84;
   font-size: 2rem;
   font-weight: bold;
+  font-family: "Oswald", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
 .our-commitment-section .section-description {
@@ -792,6 +877,7 @@ p {
   max-width: 800px;
   margin: auto;
   line-height: 1.6;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .our-commitment-section a {
@@ -804,44 +890,105 @@ p {
 }
 
 
+/* Keyframes for animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes textReveal {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Section animation */
 .founder-section {
   background-color: #f9f9f9;
   padding: 40px 0;
   display: flex;
   justify-content: center;
+  animation: fadeIn 1s ease-in-out;
 }
 
+/* Founder box animation */
 .founder-box {
   background-color: #ffffff;
   border: 1px solid #ffffff;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  animation: slideIn 1s ease-out;
+  animation-delay: 0.3s;
+  opacity: 1;
 }
 
+/* Image animation */
 .founder-image img {
-  width: 60%; /* Adjust size as per preference */
+  width: 70%; /* Adjust size as per preference */
   border-radius: 8px;
+  animation: slideIn 1s ease-out;
+  animation-delay: 0.5s;
+  opacity: 1;
 }
 
+/* Certificate image */
 .certificate-image img {
   width: 200%; /* Increase to 110% for a slightly larger certificate */
   border-radius: 8px;
+  animation: fadeIn 1s ease-in-out;
+  animation-delay: 0.7s;
+  opacity: 1;
 }
 
+/* Content animation */
 .founder-content {
-  padding: 20px;
+  padding: 10px;
+  animation: textReveal 1s ease-out;
+  animation-delay: 0.9s;
+  opacity: 1;
 }
 
 .founder-content h1 {
   color: #23345d; /* Adjust color if needed */
   margin-bottom: 20px;
   font-size: 2rem;
+  font-family: "Oswald", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  animation: textReveal 1s ease-in-out;
+  animation-delay: 1.2s;
+  opacity: 1;
 }
 
 .founder-content p {
   margin-top: 15px;
   line-height: 1.6;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  animation: textReveal 1s ease-in-out;
+  animation-delay: 1.4s;
+  opacity: 1;
 }
-
 
