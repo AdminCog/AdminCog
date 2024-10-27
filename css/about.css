@@ -373,7 +373,7 @@ p {
 
 .contact-us {
   padding: 60px;
-  background: linear-gradient(135deg, #04278f 0%, #80D0C7 100%);
+  background-color: #003366;
   color: white;
   text-align: center;
 }
@@ -389,7 +389,7 @@ p {
 .contact-form {
   max-width: 750px;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: #003366;
   padding: 40px;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -414,7 +414,7 @@ p {
 .contact-form label {
   display: block;
   font-size: 0.9rem;
-  color: #333;
+  color: white;
   margin-bottom: 8px;
 }
 
@@ -718,44 +718,63 @@ p {
   color: #6c757d;
 }
 
-.service-card {
-  background-color: #fff;
-  border: none;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+.section-image {
+  max-width: 100%;
+  border-radius: 8px;
 }
 
-.service-card:hover {
-  transform: translateY(-10px);
+.service-item {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .service-number {
-  font-size: 2.5rem;
-  color: #dc3545;
+  font-size: 1.5rem;
   font-weight: bold;
+  color: #dc3545;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 .service-title {
   font-size: 1.5rem;
-  margin-top: 10px;
   color: #333;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .service-description {
+  font-size: 1rem;
   color: #6c757d;
+}
+
+/* Button Styling */
+.view-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }
 
 .btn-dark {
   background-color: #333;
   border: none;
-  padding: 8px 20px; /* Reduced padding */
-  font-size: 1rem; /* Reduced font size */
+  padding: 15px 30px; /* Increase padding for a larger button */
+  font-size: 1.2rem; /* Adjust font size */
+  border-radius: 8px; /* Rounded corners */
+  width: auto; /* Set width to auto so it doesn't stretch */
   transition: background-color 0.3s ease;
+  text-transform: uppercase; /* Optional: make the text uppercase */
 }
 
 .btn-dark:hover {
   background-color: #555;
 }
+
+
 .our-commitment-section {
   background-color: #f8f9fa;
   padding: 50px 0;
@@ -782,6 +801,47 @@ p {
 
 .our-commitment-section a:hover {
   color: #343a40;
+}
+
+
+.founder-section {
+  background-color: #f9f9f9;
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.founder-box {
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.founder-image img {
+  width: 60%; /* Adjust size as per preference */
+  border-radius: 8px;
+}
+
+.certificate-image img {
+  width: 200%; /* Increase to 110% for a slightly larger certificate */
+  border-radius: 8px;
+}
+
+.founder-content {
+  padding: 20px;
+}
+
+.founder-content h1 {
+  color: #23345d; /* Adjust color if needed */
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.founder-content p {
+  margin-top: 15px;
+  line-height: 1.6;
 }
 
 

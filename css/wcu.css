@@ -242,45 +242,49 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   text-align: left;
 }
 
-/* Left-aligned image */
+/* Full-width image with blue overlay */
 .hero::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  width: 80%; /* Adjust the width as needed */
-  height: 80%;
-  background-image: url("../images/wcu.png"); /* Update with your image */
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/wcu.png"); /* Update with your image path */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  filter: brightness(0.5) grayscale(20%) contrast(1.2); /* Blue overlay effect */
 }
 
-/* Text Box on the right side */
+/* Text box on the right corner */
 .hero-content {
   position: relative;
   z-index: 1; /* Ensures the text box stays above the image */
-  max-width: 40%; /* Adjust the width of the text box */
-  background: rgba(1, 20, 88, 1); /* Semi-transparent background */
+  max-width: 70%; /* Increased width of the text box */
+  background: rgba(255, 255, 255, 0.9); /* White semi-transparent background */
   padding: 20px;
   border-radius: 8px;
   margin-right: 50px; /* Space from the right edge */
-  color: rgb(255, 255, 255);
+  color: #012f74; /* Dark blue color for text */
+  margin-top: 150px;
 }
 
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   margin-bottom: 15px;
+  margin-right: 40px;
 }
 
 .hero p {
-  font-size: 1.2rem;
+  font-size: 2.2rem;
   margin-bottom: 20px;
+  margin-right: 40px;
 }
 
 .cta-button {
   padding: 10px 20px;
-  background-color: #313943;
+  background-color: #012f74;
   color: white;
   text-decoration: none;
   border-radius: 5px;
@@ -318,59 +322,116 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 }
 
 /* Services Section */
+/* Services Section */
 .services-section {
   text-align: left;
-  padding: 40px 0;
+  padding: 40px 20px;
+  background-color: #ffffff;
   margin: 20px;
 }
 
 .services-section h2 {
-  font-size: 20px;
-  margin-bottom: 40px;
-  color: #2b3db7; /* Dark blue for heading */
+  font-size: 25px;
+  margin-bottom: 30px;
+  color: #000000; /* Dark blue for heading */
+  text-align: center; /* Center-align the heading */
+  font-weight: 600;
+  letter-spacing: 1px; /* Add some spacing between letters */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05); /* Extremely subtle shadow */
+  opacity: 0; /* Start invisible for the animation */
+  animation: fadeInSlideUp 1.2s ease forwards; /* Animation properties */
 }
 
-/* Card Container */
-.cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 0 10%;
+/* Keyframes for fade-in and slide-up animation */
+@keyframes fadeInSlideUp {
+  0% {
+      opacity: 0;
+      transform: translateY(20px); /* Start slightly lower */
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0); /* Slide up to original position */
+  }
 }
 
-.card {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+/* Very Light Text Shadow */
+.services-section h2 {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05); /* Extremely subtle shadow */
 }
 
-.card:hover {
-  transform: translateY(-10px); /* Lift effect on hover */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+/* List Styling */
+.services-list {
+  list-style: none; /* Removes default bullet points */
+  padding: 0;
+  margin: 0;
 }
 
-.card h3 {
-  font-size: 1.8rem;
-  margin-bottom: 10px;
-  color: #2b3db7; /* Dark blue for card titles */
+.services-list li {
+  padding: 15px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s forwards; /* Animation effect */
+  animation-delay: calc(var(--delay) * 0.1s);
 }
 
-.card p {
+.services-list li:nth-child(1) {
+  --delay: 1;
+}
+
+.services-list li:nth-child(2) {
+  --delay: 2;
+}
+
+.services-list li:nth-child(3) {
+  --delay: 3;
+}
+
+.services-list li:nth-child(4) {
+  --delay: 4;
+}
+
+.services-list li:nth-child(5) {
+  --delay: 5;
+}
+
+.services-list li:nth-child(6) {
+  --delay: 6;
+}
+
+.services-list h3 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+  color: #2b3db7; /* Dark blue for list item titles */
+}
+
+.services-list p {
   font-size: 1rem;
   color: #5a5a5a; /* Subtle gray for text */
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
-/* Responsive */
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .services-section h2 {
-    font-size: 2rem;
+      font-size: 1.5rem;
   }
 
-  .card h3 {
-    font-size: 1.5rem;
+  .services-list h3 {
+      font-size: 1.3rem;
   }
 }
 
@@ -427,7 +488,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 .contact-us {
   padding: 60px;
-  background: linear-gradient(135deg, #04278f 0%, #80d0c7 100%);
+  background-color: #003366;
   color: white;
   text-align: center;
 }
@@ -443,7 +504,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .contact-form {
   max-width: 750px;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: #003366;
   padding: 40px;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -468,7 +529,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .contact-form label {
   display: block;
   font-size: 0.9rem;
-  color: #333;
+  color: white;
   margin-bottom: 8px;
 }
 

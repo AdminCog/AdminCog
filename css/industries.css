@@ -313,59 +313,70 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   }
 }
 
-/* Service Cards */
-.service-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+/* Service List */
+.service-list {
   padding: 40px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.card {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-10px);
-}
-
-.card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
+.section-title {
+  font-size: 2rem;
+  font-weight: bold;
   color: #333;
+  text-align: center;
 }
 
-.card ul {
+.service-categories {
+  list-style: none;
+  padding: 0;
+}
+
+.service-categories > li {
+  margin-bottom: 30px;
+}
+
+.service-categories h3 {
+  font-size: 1.5rem;
+  color: #002366;
+  margin-bottom: 10px;
+}
+
+.service-categories ul {
   list-style-type: disc;
   margin-left: 20px;
+  padding-left: 20px;
 }
 
-.card ul li {
-  margin-bottom: 10px;
+.service-categories ul li {
+  margin-bottom: 8px;
   font-size: 1rem;
   color: #555;
 }
 
 @media (max-width: 768px) {
-  .service-cards {
+  .service-list {
     padding: 20px;
   }
 
-  .card {
-    padding: 15px;
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .service-categories h3 {
+    font-size: 1.3rem;
+  }
+
+  .service-categories ul li {
+    font-size: 0.95rem;
   }
 }
+
 
 /* Contact Us Section */
 .contact-us {
   padding: 60px;
-  background: linear-gradient(135deg, #04278f 0%, #80d0c7 100%);
+  background-color: #003366;
   color: white;
   text-align: center;
 }
@@ -380,7 +391,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .contact-form {
   max-width: 750px;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: #003366;
   padding: 40px;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -405,7 +416,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .contact-form label {
   display: block;
   font-size: 0.9rem;
-  color: #333;
+  color: white;
   margin-bottom: 8px;
 }
 

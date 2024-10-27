@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Spinnaker", sans-serif;
 }
 
 
@@ -31,6 +31,7 @@ nav {
 
 .logo img {
     max-width: 160px;
+    height: 67px;
 }
 
 /* Navbar Menu */
@@ -241,14 +242,14 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 .hero img {
     width: 100%;
-    height: auto;
+    height: 900%;
 }
 
 /* Hero Text Box Styling */
 .hero-text {
     position: absolute;
     top: 40%;
-    right: 14%;
+    right: 7%;
     width: 60%;
     max-width: 600px;
     background-color: rgba(255, 255, 255, 0.9);
@@ -263,11 +264,15 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .hero-text h1 {
     font-size: 26px;
     margin-bottom: 10px;
+    font-family: "Spinnaker", sans-serif;
+    text-align: left;
+    
 }
 
 .hero-text p {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 20px;
+    text-align: left;
 }
 
 .cta-button {
@@ -479,7 +484,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .image-slideshow {
     position: relative;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1280px;
     margin: 0 auto;
 }
 
@@ -502,16 +507,16 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-    color: white;
+    background-color: rgba(255, 255, 255, 1); /* Semi-transparent background */
+    color: rgb(0, 0, 0);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    width: 80%; /* Adjust the width as needed */
+    width: 40%; /* Adjust the width as needed */
 }
 
-.text-box h2 {
-    font-size: 24px;
+.text-box h3 {
+    font-size: 15px;
     margin-bottom: 10px;
 }
 
@@ -527,9 +532,9 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     width: auto;
     padding: 16px;
     margin-top: -22px;
-    color: white;
+    color: rgb(0, 0, 0);
     font-weight: bold;
-    font-size: 18px;
+    font-size: 35px;
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
     user-select: none;
@@ -542,7 +547,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 /* On hover, add a grey background color */
 .prev:hover, .next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    
 }
 
 /* The dots/circles */
@@ -702,3 +707,5 @@ footer {
     font-size: 0.9rem;
     color: #bbb;
 }
+
+

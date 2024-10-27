@@ -232,139 +232,164 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(135deg,rgb(196, 173, 173) 30%, #0066cc 0%, #00ccff 100%);
-    color: #000000;
-    padding: 100px 0;
-    text-align: left;
-    animation: fadeIn 1.5s ease-in-out;
-    border-bottom-left-radius: 50px;
-    border-bottom-right-radius: 50px;
+  padding: 100px 0;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.hero-container {
+  display: flex;
+  max-width: 1200px;
+  width: 100%;
+  gap: 30px;
+  align-items: stretch; /* Make items stretch to the same height */
 }
 
-.hero-section h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
+.hero-image {
+  flex: 1; /* Make the image take up half the container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hero-section p {
-    font-size: 1.25rem;
-    margin-bottom: 30px;
+.hero-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover; /* Maintain aspect ratio */
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  height: 100%;
+  width: 100%;
 }
+
+.hero-content-box {
+  flex: 1; /* Make the content box take up the other half of the container */
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-content-box h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.hero-content-box p {
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .hero-container {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .hero-image, .hero-content-box {
+      max-width: 100%;
+  }
+}
+
 
 /* Services Section */
+/* Services Section Styling */
 .services-section {
-    padding: 60px 0;
+  background: linear-gradient(135deg, #ffffff 30%, #ffffff 100%);
+  padding: 80px 0;
 }
 
+/* Flexbox for Row */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* Service Card Styling */
 .service-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 450px;
-    border: 1px solid #e0e0e0;
-    padding: 20px;
-    border-radius: 10px;
-    transition: box-shadow 0.3s ease;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s ease-in-out forwards;
+  flex: 1 1 calc(33.333% - 30px); /* Ensure three cards per row with spacing */
+  max-width: 350px;
+  margin: 15px;
+  min-height: 500px; /* Use min-height for better adaptability */
 }
 
+/* Maintain consistent height for the service-card */
+.service-card .service-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Service Card Hover Effect */
 .service-card:hover {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-10px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
 }
 
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Service Image Styling */
 .service-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
 }
 
+/* Service Title Styling */
 .service-card h3 {
-    margin-top: 15px;
-    font-size: 1.5rem;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #333;
 }
 
-.service-card p {
-    max-height: 120px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+/* Service Content Styling */
+.service-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+  flex-grow: 0; /* Adjust flex-grow for better control */
 }
 
-.read-more {
-    color: #0066cc;
-    cursor: pointer;
-    text-decoration: underline;
-    margin-top: 10px;
-    font-weight: bold;
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .service-card {
+      flex: 1 1 100%;
+      max-width: 100%;
+      min-height: auto; /* Allow height to adjust on smaller screens */
+  }
 }
-
-/* Quote Form Section */
-.quote-form-section {
-    background-color: #ffffff;
-    padding: 40px 0;
-    color: #000000;
-}
-
-.quote-form .form-inline input {
-    width: 250px;
-    margin-right: 20px;
-}
-
-.quote-form .form-inline .btn {
-    background-color: rgb(1, 39, 255);
-    color: #ffffff;
-    font-weight: bold;
-}
-
-/* Modal Styling */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1050;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-    background-color: #fff;
-    margin: 10% auto;
-    padding: 20px;
-    width: 60%;
-    border-radius: 10px;
-    text-align: left;
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.modal-close {
-    cursor: pointer;
-    font-size: 20px;
-    color: #333;
-}
-
-
 
 .contact-us {
     padding: 60px;
-    background: linear-gradient(135deg, #04278f 0%, #80d0c7 100%);
+    background-color: #003366;
     color: white;
     text-align: center;
   }
@@ -380,7 +405,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   .contact-form {
     max-width: 750px;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: #003366;
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -405,7 +430,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   .contact-form label {
     display: block;
     font-size: 0.9rem;
-    color: #333;
+    color: white;
     margin-bottom: 8px;
   }
   
