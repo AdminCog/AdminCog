@@ -235,12 +235,16 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   background-color: white;
 }
 
+/* Hero Image Wrapper */
 .hero-image-wrapper {
-  margin-bottom: 10px; /* Add 10px gap */
+  margin: 0 auto 10px; /* Center-align and add bottom margin */
+  max-width: 800px; /* Limit width for a centered look */
+  padding: 0 20px; /* Add padding on the sides for spacing */
   display: flex;
   justify-content: center;
 }
 
+/* Hero Image */
 .hero-image {
   border-radius: 10px;
   max-width: 100%;
@@ -250,9 +254,12 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   animation: slideIn 1s forwards ease-out;
 }
 
+
 /* Text Content Section */
 .content-section {
-  padding: 50px;
+  padding: 50px 20px; /* Adjusted padding for top/bottom and sides */
+  max-width: 800px; /* Constrain the width for a centered look */
+  margin: 0 auto; /* Center align the section */
   background-color: #fff;
   font-family: "Oswald", serif;
   font-optical-sizing: auto;
@@ -279,7 +286,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1.5em;
+  font-size: 20px;
   color: #2a52be;
   margin-bottom: 20px;
   font-family: "Oswald", serif;
@@ -290,7 +297,7 @@ h2 {
 }
 
 p {
-  font-size: 1em;
+  font-size: 15px;
   line-height: 1.6;
   color: #333;
   font-family: Arial, Helvetica, sans-serif;
@@ -622,13 +629,7 @@ footer {
 
 
 
-.founder-image img {
-  border-radius: 10px;
-}
 
-.certificate-image img {
-  border-radius: 5px;
-}
 
 h1 {
   font-size: 2.5em;
@@ -648,10 +649,6 @@ p {
 }
 
 /* Spacing between images and text */
-.founder-section .row > div {
-  padding-left: 10px;
-  padding-right: 10px;
-}
 
 .mission-container {
   display: flex;
@@ -771,27 +768,26 @@ p {
   }
 }
 
+/* Services Section */
 .services-section {
   background-color: #f8f9fa;
+  padding: 60px 20px;
 }
 
 .section-title {
   font-size: 2.5rem;
-  font-weight: bold;
   color: #4a4a4a;
   font-family: "Oswald", serif;
-  font-optical-sizing: auto;
   font-weight: 500;
-  font-style: normal;
+  margin-bottom: 10px;
 }
 
 .section-subtitle {
   font-size: 1.2rem;
   color: #6c757d;
   font-family: "Oswald", serif;
-  font-optical-sizing: auto;
   font-weight: 300;
-  font-style: normal;
+  margin-bottom: 30px;
 }
 
 .section-image {
@@ -799,17 +795,23 @@ p {
   border-radius: 8px;
 }
 
+/* Service Item */
 .service-item {
-  background-color: #fff;
+  background-color: #ffffff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 .service-number {
   font-size: 1.5rem;
-  font-weight: bold;
   color: #dc3545;
   position: absolute;
   top: 10px;
@@ -819,20 +821,19 @@ p {
 .service-title {
   font-size: 1.5rem;
   color: #333;
-  font-weight: bold;
-  margin-bottom: 10px;
   font-family: "Oswald", serif;
-  font-optical-sizing: auto;
   font-weight: 500;
-  font-style: normal;
+  margin-bottom: 10px;
 }
 
 .service-description {
   font-size: 1rem;
   color: #6c757d;
   font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
 }
 
+/* Button Styling */
 /* Button Styling */
 .view-more-container {
   display: flex;
@@ -841,20 +842,21 @@ p {
 }
 
 .btn-dark {
-  background-color: #333;
-  border: none;
-  padding: 15px 30px; /* Increase padding for a larger button */
-  font-size: 1.2rem; /* Adjust font size */
-  border-radius: 8px; /* Rounded corners */
-  width: auto; /* Set width to auto so it doesn't stretch */
-  transition: background-color 0.3s ease;
-  text-transform: uppercase; /* Optional: make the text uppercase */
+  background-color: #333333;
+  color: #ffffff;
+  padding: 10px 10px; /* Reduced padding for a smaller button */
+  font-size: 1rem; /* Reduced font size */
+  border-radius: 6px; /* Slightly rounded corners */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-transform: uppercase;
+  font-family: "Oswald", serif;
+  width: 120px;
 }
 
 .btn-dark:hover {
-  background-color: #555;
+  background-color: #555555;
+  transform: scale(1.05);
 }
-
 
 .our-commitment-section {
   background-color: #f8f9fa;
@@ -923,6 +925,7 @@ p {
 }
 
 /* Section animation */
+/* Founder Section */
 .founder-section {
   background-color: #f9f9f9;
   padding: 40px 0;
@@ -931,55 +934,53 @@ p {
   animation: fadeIn 1s ease-in-out;
 }
 
-/* Founder box animation */
+/* Founder Box */
 .founder-box {
   background-color: #ffffff;
-  border: 1px solid #ffffff;
   border-radius: 8px;
   padding: 20px;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr; /* Adjust layout for founder image, content, and certificate */
+  align-items: center;
+  gap: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   animation: slideIn 1s ease-out;
-  animation-delay: 0.3s;
-  opacity: 1;
 }
 
-/* Image animation */
+/* Founder Image */
 .founder-image img {
-  width: 70%; /* Adjust size as per preference */
+  width: 100%;
+  max-width: 200px;  /* Limit max width */
+  height: auto;       /* Responsive height */
   border-radius: 8px;
+  object-fit: cover;
   animation: slideIn 1s ease-out;
   animation-delay: 0.5s;
-  opacity: 1;
 }
 
-/* Certificate image */
+/* Certificate Image */
 .certificate-image img {
-  width: 200%; /* Increase to 110% for a slightly larger certificate */
+  width: 100%;
+  max-width: 400px;   /* Larger max width for certificate */
+  height: auto;       /* Responsive height */
   border-radius: 8px;
   animation: fadeIn 1s ease-in-out;
   animation-delay: 0.7s;
-  opacity: 1;
 }
 
-/* Content animation */
+/* Content */
 .founder-content {
-  padding: 10px;
+  padding: 0 20px;
   animation: textReveal 1s ease-out;
   animation-delay: 0.9s;
-  opacity: 1;
 }
 
 .founder-content h1 {
-  color: #23345d; /* Adjust color if needed */
+  color: #23345d;
   margin-bottom: 20px;
   font-size: 2rem;
   font-family: "Oswald", serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-  animation: textReveal 1s ease-in-out;
-  animation-delay: 1.2s;
-  opacity: 1;
 }
 
 .founder-content p {
@@ -987,8 +988,19 @@ p {
   line-height: 1.6;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 300;
-  animation: textReveal 1s ease-in-out;
-  animation-delay: 1.4s;
-  opacity: 1;
+  color: #333;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .founder-box {
+    grid-template-columns: 1fr; /* Stack items vertically on smaller screens */
+    text-align: center;
+  }
+
+  .founder-image img, 
+  .certificate-image img {
+    max-width: 100%; /* Full-width on smaller screens */
+  }
 }
 
