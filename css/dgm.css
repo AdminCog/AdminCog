@@ -83,7 +83,8 @@ nav {
 }
 
 .logo img {
-  max-width: 160px;
+  max-width: 200px;
+  height: 84px;
 }
 
 /* Navbar Menu */
