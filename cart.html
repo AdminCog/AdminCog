@@ -9,7 +9,7 @@
         font-family: Arial, sans-serif;
         margin: 0;
         background: #f9f9f9;
-        padding: 8px;
+        padding: 12px;
       }
 
       .container {
@@ -19,7 +19,7 @@
       .form-section,
       .summary-section {
         background: white;
-        padding: 20px;
+        padding: 40px;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
@@ -476,21 +476,22 @@
 
       // Clear form and summary
       function clearDetails() {
-        document.getElementById("planType").value = "";
-        document.getElementById("duration").value = "";
-        document.getElementById("price").value = "";
-        document.getElementById("firstName").value = "";
-        document.getElementById("lastName").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("message").value = "";
-
-        document.getElementById("summaryPlan").textContent = "";
-        document.getElementById("summaryDuration").textContent = "";
-        document.getElementById("summaryPrice").textContent = "";
-        document.getElementById("summaryFirstName").textContent = "";
-        document.getElementById("summaryLastName").textContent = "";
-        document.getElementById("summaryEmail").textContent = "";
-        document.getElementById("summaryMessage").textContent = "";
+        // Leave planType unchanged
+        document.getElementById('duration').value = '';
+        //document.getElementById('price').value = '';
+        document.getElementById('firstName').value = '';
+        document.getElementById('lastName').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('message').value = '';
+      
+        // Clear summary details
+        document.getElementById('summaryPlan').textContent = document.getElementById('planType').value; // Keep plan type in summary
+        document.getElementById('summaryDuration').textContent = '';
+        document.getElementById('summaryPrice').textContent = '';
+        document.getElementById('summaryFirstName').textContent = '';
+        document.getElementById('summaryLastName').textContent = '';
+        document.getElementById('summaryEmail').textContent = '';
+        document.getElementById('summaryMessage').textContent = '';
       }
 
       // Redirect to Plans Page
