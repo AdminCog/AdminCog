@@ -9,6 +9,7 @@
         font-family: Arial, sans-serif;
         margin: 0;
         background: #f9f9f9;
+        padding: 8px;
       }
 
       .container {
@@ -433,32 +434,40 @@
 
     <script>
       // Populate form with data from URL
-      // Populate form with data from URL
       function populateCart() {
         const params = new URLSearchParams(window.location.search);
         const planType = params.get("planType");
-        const price = params.get("price");
+        const price = params.get("price"); // Assume price is passed as a number
         const period = params.get("period");
 
         if (planType && price && period) {
           document.getElementById("planType").value = planType;
-          document.getElementById("price").value = `$${price} (${period})`;
+          document.getElementById("price").value = price; // Store the base price
         }
       }
 
       // Confirm details and update summary
       function confirmDetails() {
         const planType = document.getElementById("planType").value;
-        const duration = document.getElementById("duration").value; // Updated: Only duration input
-        const price = document.getElementById("price").value;
+        const duration = parseFloat(document.getElementById("duration").value); // Get duration as a number
+        const price = parseFloat(document.getElementById("price").value); // Get base price as a number
         const firstName = document.getElementById("firstName").value;
         const lastName = document.getElementById("lastName").value;
         const email = document.getElementById("email").value;
         const message = document.getElementById("message").value;
 
+        // Calculate total price
+        const totalPrice =
+          isNaN(duration) || isNaN(price) ? 0 : duration * price;
+
+        // Update the summary
         document.getElementById("summaryPlan").textContent = planType;
-        document.getElementById("summaryDuration").textContent = duration; // Updated: Direct duration value
-        document.getElementById("summaryPrice").textContent = price;
+        document.getElementById(
+          "summaryDuration"
+        ).textContent = `${duration}`; // Show duration
+        document.getElementById(
+          "summaryPrice"
+        ).textContent = `$${totalPrice.toFixed(2)}`; // Display total price
         document.getElementById("summaryFirstName").textContent = firstName;
         document.getElementById("summaryLastName").textContent = lastName;
         document.getElementById("summaryEmail").textContent = email;
@@ -468,7 +477,7 @@
       // Clear form and summary
       function clearDetails() {
         document.getElementById("planType").value = "";
-        document.getElementById("duration").value = ""; // Updated: Only duration input
+        document.getElementById("duration").value = "";
         document.getElementById("price").value = "";
         document.getElementById("firstName").value = "";
         document.getElementById("lastName").value = "";
@@ -476,7 +485,7 @@
         document.getElementById("message").value = "";
 
         document.getElementById("summaryPlan").textContent = "";
-        document.getElementById("summaryDuration").textContent = ""; // Updated: Only duration value
+        document.getElementById("summaryDuration").textContent = "";
         document.getElementById("summaryPrice").textContent = "";
         document.getElementById("summaryFirstName").textContent = "";
         document.getElementById("summaryLastName").textContent = "";
