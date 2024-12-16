@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plans</title>
+    <style>
+      /* General Body Styling */
+      body {
+        font-family: Arial, sans-serif;
+        background: #f9f9f9;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Header Styling */
+      header {
+        background-color: white;
+        padding: 15px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 40px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .logo img {
+        max-width: 200px;
+        height: 84px;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 5px;
+      }
+
+      nav ul li {
+        position: relative;
+      }
+
+      /* Navbar Links */
+      nav ul li a {
+        text-decoration: none;
+        color: #0619a7;
+        font-weight: 600;
+        padding: 10px 10px;
+        transition: color 0.3s ease, background-color 0.3s ease;
+        border-radius: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      nav ul li a:hover {
+        color: rgb(255, 255, 255);
+        background-color: #1a94d6;
+        text-decoration: none;
+      }
+
+      /* Dropdown Styling */
+      nav ul li .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        min-width: 200px;
+        top: 100%;
+        left: 0;
+        border-radius: 8px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+      }
+
+      nav ul li .dropdown-content li {
+        width: 100%;
+      }
+
+      nav ul li .dropdown-content li a {
+        padding: 5px 12px;
+        color: #333;
+        text-align: left;
+        display: block;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      nav ul li .dropdown-content li a:hover {
+        background-color: #0088f8;
+        color: rgb(0, 0, 0);
+      }
+
+      /* Nested Dropdown Styling */
+      nav ul li .dropdown-content .dropdown {
+        position: relative;
+      }
+
+      nav ul li .dropdown-content .dropdown .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 100%;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        min-width: 200px;
+      }
+
+      /* Show dropdowns on hover */
+      nav ul li:hover .dropdown-content {
+        display: block;
+      }
+
+      nav ul li .dropdown-content li:hover .dropdown-content {
+        display: block;
+      }
+
+      /* Hamburger Menu */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        position: absolute;
+        right: 40px; /* Adjusted to move hamburger to the right */
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .hamburger span {
+        height: 3px;
+        width: 100%;
+        background-color: #333;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        nav ul {
+          position: fixed;
+          left: 0; /* Now positioned on the left */
+          top: 0;
+          height: 100vh;
+          width: 250px;
+          background-color: #003366;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          transform: translateX(-100%); /* Hidden off-screen to the left */
+          transition: transform 0.3s ease-in-out;
+          z-index: 999;
+        }
+        nav ul li .dropdown-content {
+          display: none; /* Initially hidden */
+          position: absolute; /* Position it absolutely */
+          top: 100%; /* Position it directly below the parent */
+          left: 50%; /* Center it horizontally */
+          transform: translateX(-50%); /* Adjust to center */
+          background-color: #fff; /* Background color */
+          border-radius: 8px; /* Round corners */
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+          z-index: 999; /* Ensure visibility above other elements */
+          padding: 0; /* Remove any extra padding */
+          margin: 0; /* Remove any extra margin */
+          width: 220px; /* Set a specific width for uniformity */
+        }
+
+        /* Show dropdowns on hover */
+        nav ul li:hover .dropdown-content {
+          display: block; /* Show the dropdown */
+          transform: translateY(
+            0
+          ); /* Reset vertical transform for positioning */
+          opacity: 1; /* Ensure it is fully visible */
+          transition: opacity 0.3s ease; /* Optional smooth transition */
+        }
+
+        /* Dropdown Items Styling */
+        nav ul li .dropdown-content li {
+          width: 100%; /* Full width for each dropdown item */
+          padding: 8px 10px; /* Small padding for tighter spacing */
+          margin: 0; /* Remove margin for compactness */
+        }
+
+        /* Style for links in dropdown */
+        nav ul li .dropdown-content li a {
+          color: #333; /* Text color */
+          text-align: left; /* Align text to the left */
+          display: block; /* Full block display */
+          font-weight: 600; /* Font weight */
+          text-decoration: none; /* No underline */
+          transition: background-color 0.3s; /* Transition for hover effect */
+        }
+
+        /* Hover effect for links */
+        nav ul li .dropdown-content li a:hover {
+          background-color: #0088f8; /* Background color on hover */
+          color: rgb(0, 0, 0); /* Text color on hover */
+        }
+
+        nav ul li {
+          margin: 20px 0;
+        }
+
+        nav ul li a {
+          color: white;
+          font-size: 20px;
+        }
+
+        .hamburger {
+          display: flex;
+        }
+
+        /* Menu active state: slide in from left */
+        .nav-active {
+          transform: translateX(0); /* Slides the menu in from the left */
+        }
+
+        /* Change the hamburger icon to an "X" when active */
+        .hamburger.toggle span:nth-child(1) {
+          transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.toggle span:nth-child(2) {
+          opacity: 0;
+        }
+
+        .hamburger.toggle span:nth-child(3) {
+          transform: rotate(45deg) translate(-5px, -6px);
+        }
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        margin: 20px 0;
+      }
+
+      /* Toggle Switch */
+      .toggle-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .toggle-label {
+        font-size: 16px;
+        margin-right: 10px;
+      }
+
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 30px;
+      }
+
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        border-radius: 30px;
+        transition: 0.4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 24px;
+        width: 24px;
+        left: 4px;
+        bottom: 3px;
+        background-color: white;
+        border-radius: 50%;
+        transition: 0.4s;
+      }
+
+      input:checked + .slider {
+        background-color: red;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+
+      .plans-container {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin: 20px;
+        flex-wrap: wrap;
+      }
+
+      .plan-card {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        text-align: center;
+        width: 320px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+
+      .plan-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .plan-header {
+        padding: 15px 0;
+        background-color: #fff;
+        color: #333;
+      }
+
+      .plan-price {
+        font-size: 48px;
+        font-weight: bold;
+        color: #333;
+        margin: 10px 0;
+      }
+
+      .plan-duration {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 15px;
+      }
+
+      .select-btn {
+        display: inline-block;
+        width: 100%;
+        padding: 10px 0;
+        background-color: red;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .select-btn:hover {
+        background-color: darkred;
+      }
+
+      .plan-details {
+        padding: 20px;
+        font-size: 16px;
+        color: #444;
+      }
+
+      .plan-details p {
+        margin: 5px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="index.html">
+            <img src="images/image.png" alt="Admincog Corporate Services" />
+          </a>
+        </div>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li class="dropdown">
+            <a href="#">Services</a>
+            <ul class="dropdown-content">
+              <li class="dropdown">
+                <a href="#va-services">Virtual Assistant</a>
+                <ul class="dropdown-content">
+                  <li><a href="Industries.html">Industries</a></li>
+                </ul>
+              </li>
+              <li><a href="webd.html">Web Development Services</a></li>
+              <li><a href="digital.html">Digital Marketing Services</a></li>
+            </ul>
+          </li>
+          <li><a href="why-choose-US.html">Why Choose Us</a></li>
+          <li><a href="plans.html">Plans & Pricing</a></li>
+          <li><a href="#contact-us">Contact Us</a></li>
+          <li><a href="book-online.html">Book Online</a></li>
+        </ul>
+        <div class="toggle-container">
+            <span class="toggle-label">Show Prices in INR</span>
+            <label class="toggle-switch">
+              <input
+                type="checkbox"
+                id="currencyToggle"
+                onchange="toggleCurrency()"
+              />
+              <span class="slider"></span>
+            </label>
+          </div>
+      </nav>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+
+    
+
+    <!-- Plans Container -->
+    <div class="plans-container">
+      <!-- Full Time Plan -->
+      <div class="plan-card" data-plan="fulltime">
+        <div class="plan-header">
+          <h2>Full Time</h2>
+          <div class="plan-price" id="fulltime-price">$2,500</div>
+          <div class="plan-duration">Every month</div>
+        </div>
+        <button class="select-btn" onclick="selectPlan('Full Time')">
+          Select
+        </button>
+        <div class="plan-details">
+          <p>8 hours of support each day</p>
+          <p>Senior Resource</p>
+          <p>Dedicated Account Manager</p>
+          <p>Support days: Monday to Friday</p>
+          <p>$14/hour</p>
+        </div>
+      </div>
+
+      <!-- Half Time Plan -->
+      <div class="plan-card" data-plan="halftime">
+        <div class="plan-header">
+          <h2>Half Time</h2>
+          <div class="plan-price" id="halftime-price">$1,408</div>
+          <div class="plan-duration">Every month</div>
+        </div>
+        <button class="select-btn" onclick="selectPlan('Half Time')">
+          Select
+        </button>
+        <div class="plan-details">
+          <p>4 hours of support each day</p>
+          <p>Senior Resource</p>
+          <p>Dedicated Account Manager</p>
+          <p>Support days: Monday to Friday</p>
+          <p>$16/hour</p>
+        </div>
+      </div>
+
+      <!-- Hourly Plan -->
+      <div class="plan-card" data-plan="hourly">
+        <div class="plan-header">
+          <h2>Hourly</h2>
+          <div class="plan-price" id="hourly-price">$500</div>
+          <div class="plan-duration">Every 7 days</div>
+        </div>
+        <button class="select-btn" onclick="selectPlan('Hourly')">
+          Select
+        </button>
+        <div class="plan-details">
+          <p>Hourly Support as Required</p>
+          <p>Available Resource</p>
+          <p>Account Supervisor</p>
+          <p>Support days: Monday to Friday</p>
+          <p>$18 * 28 hours/week</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Price Mapping for USD and INR
+      const prices = {
+        fulltime: { usd: 2500, inr: 200000 },
+        halftime: { usd: 1408, inr: 115000 },
+        hourly: { usd: 500, inr: 42000 },
+      };
+
+      function toggleCurrency() {
+        const toggle = document.getElementById("currencyToggle");
+        const currency = toggle.checked ? "inr" : "usd";
+
+        // Update prices dynamically
+        document.getElementById("fulltime-price").innerText =
+          currency === "inr"
+            ? `₹${prices.fulltime.inr}`
+            : `$${prices.fulltime.usd}`;
+        document.getElementById("halftime-price").innerText =
+          currency === "inr"
+            ? `₹${prices.halftime.inr}`
+            : `$${prices.halftime.usd}`;
+        document.getElementById("hourly-price").innerText =
+          currency === "inr"
+            ? `₹${prices.hourly.inr}`
+            : `$${prices.hourly.usd}`;
+      }
+
+      function selectPlan(planName) {
+        const isINR = document.getElementById("currencyToggle").checked; // Check toggle state
+        const currency = isINR ? "INR" : "USD"; // Determine currency
+
+        // Fetch the correct price dynamically
+        let price;
+        switch (planName.toLowerCase()) {
+          case "full time":
+            price = isINR ? prices.fulltime.inr : prices.fulltime.usd;
+            break;
+          case "half time":
+            price = isINR ? prices.halftime.inr : prices.halftime.usd;
+            break;
+          case "hourly":
+            price = isINR ? prices.hourly.inr : prices.hourly.usd;
+            break;
+          default:
+            console.error("Invalid plan selected");
+            return;
+        }
+
+        // Store selected plan details in localStorage
+        localStorage.setItem("selectedPlanName", planName);
+        localStorage.setItem("selectedPlanPrice", price);
+        localStorage.setItem("currency", currency);
+
+        // Redirect to carts page
+        window.location.href = "carts.html";
+      }
+    </script>
+  </body>
+</html>
