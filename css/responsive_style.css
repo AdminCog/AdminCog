@@ -1,0 +1,874 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Spinnaker&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Spinnaker", serif;
+}
+
+
+
+/* Header Styling */
+/* General Header Styling */
+header {
+    background-color: white;
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Navbar Styling */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.logo img {
+    max-width: 160px;
+    height: 67px;
+}
+
+/* Navbar Menu */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li {
+    position: relative;
+}
+
+/* Navbar Links */
+nav ul li a {
+    text-decoration: none;
+    color: #0619a7;
+    font-weight: 600;
+    padding: 10px 15px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+nav ul li a:hover {
+    color: rgb(255, 255, 255);
+    background-color: #1a94d6;
+    text-decoration: none;
+}
+
+/* Dropdown Styling */
+nav ul li .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 200px;
+    top: 100%;
+    left: 0;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+nav ul li .dropdown-content li {
+    width: 100%;
+}
+
+nav ul li .dropdown-content li a {
+    padding: 5px 12px;
+    color: #333;
+    text-align: left;
+    display: block;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+nav ul li .dropdown-content li a:hover {
+    background-color: #0088f8;
+    color: rgb(0, 0, 0);
+}
+
+/* Nested Dropdown Styling */
+nav ul li .dropdown-content .dropdown {
+    position: relative;
+}
+
+nav ul li .dropdown-content .dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+}
+
+/* Show dropdowns on hover */
+nav ul li:hover .dropdown-content {
+    display: block;
+}
+
+nav ul li .dropdown-content li:hover .dropdown-content {
+    display: block;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    right: 40px; /* Adjusted to move hamburger to the right */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger span {
+    height: 3px;
+    width: 100%;
+    background-color: #333;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    nav ul {
+        position: fixed;
+        left: 0; /* Now positioned on the left */
+        top: 0;
+        height: 100vh;
+        width: 250px;
+        background-color: #003366;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transform: translateX(-100%); /* Hidden off-screen to the left */
+        transition: transform 0.3s ease-in-out;
+        z-index: 999;
+    }
+    nav ul li .dropdown-content {
+        display: none; /* Initially hidden */
+        position: absolute; /* Position it absolutely */
+        top: 100%; /* Position it directly below the parent */
+        left: 50%; /* Center it horizontally */
+        transform: translateX(-50%); /* Adjust to center */
+        background-color: #fff; /* Background color */
+        border-radius: 8px; /* Round corners */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        z-index: 999; /* Ensure visibility above other elements */
+        padding: 0; /* Remove any extra padding */
+        margin: 0; /* Remove any extra margin */
+        width: 220px; /* Set a specific width for uniformity */
+    }
+
+    /* Show dropdowns on hover */
+    nav ul li:hover .dropdown-content {
+        display: block; /* Show the dropdown */
+        transform: translateY(0); /* Reset vertical transform for positioning */
+        opacity: 1; /* Ensure it is fully visible */
+        transition: opacity 0.3s ease; /* Optional smooth transition */
+    }
+
+    /* Dropdown Items Styling */
+    nav ul li .dropdown-content li {
+        width: 100%; /* Full width for each dropdown item */
+        padding: 8px 10px; /* Small padding for tighter spacing */
+        margin: 0; /* Remove margin for compactness */
+    }
+
+    /* Style for links in dropdown */
+    nav ul li .dropdown-content li a {
+        color: #333; /* Text color */
+        text-align: left; /* Align text to the left */
+        display: block; /* Full block display */
+        font-weight: 600; /* Font weight */
+        text-decoration: none; /* No underline */
+        transition: background-color 0.3s; /* Transition for hover effect */
+    }
+
+    /* Hover effect for links */
+    nav ul li .dropdown-content li a:hover {
+        background-color: #0088f8; /* Background color on hover */
+        color: rgb(0, 0, 0); /* Text color on hover */
+    }
+
+    nav ul li {
+        margin: 20px 0;
+    }
+
+    nav ul li a {
+        color: white;
+        font-size: 20px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    /* Menu active state: slide in from left */
+    .nav-active {
+        transform: translateX(0); /* Slides the menu in from the left */
+    }
+
+    /* Change the hamburger icon to an "X" when active */
+    .hamburger.toggle span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger.toggle span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.toggle span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+}
+
+/* Main Hero Section */
+.hero {
+    position: relative;
+    text-align: center; /* Changed to center-align text for smaller screens */
+    color: white;
+}
+
+.hero img {
+    width: 100%;
+    height: 900%;
+}
+
+/* Hero Text Box Styling */
+.hero-text {
+    position: absolute;
+    top: 60%;
+    right: 10%;
+    width: 60%;
+    height: 310px;
+    max-width: 700px;
+    background-color: rgba(229, 226, 226, 0.9);
+    color: #333;
+    padding: 20px;
+    border-radius: 5px;
+    animation: slideIn 1s ease-out forwards;
+    opacity: 0;
+}
+
+/* Text and Button Styling */
+.hero-text h1 {
+    font-size: 26px;
+    margin-bottom: 10px;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    color: #0619a7;
+
+    
+}
+
+.hero-text p {
+    font-size: 18px;
+    margin-bottom: 28px;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.cta-button:hover {
+    background-color: rgb(12, 1, 94);
+}
+
+/* Slide-In Animation */
+@keyframes slideIn {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
+    .hero-description {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Show only 3 lines of text */
+        -webkit-box-orient: vertical;
+        cursor: pointer;
+    }
+    .hero-text {
+        width: 90%; /* Ensures content fits better on small screens */
+        right: 5%;
+        left: 5%;
+        top: 10%;
+        padding: 15px;
+    }
+
+    .hero-text h1 {
+        font-size: 22px; /* Reduced font size for better readability */
+        font-family: "Oswald", serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+        color: #0619a7;
+    }
+
+    .hero-text p {
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .cta-button {
+        font-size: 16px; /* Adjusted button font size for smaller screens */
+    }
+}
+.paragraph-container {
+    display: flex;
+    align-items: center;
+}
+
+.line {
+    width: 90px;
+    height: 4px; /* Adjust height as needed */
+    background-color: #0619a7; /* Blue color for the line */
+    margin-right: 15px; /* Space between the line and the text */
+}
+
+.hero-description {
+    flex: 1;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+}
+
+
+
+
+/* Main VA Services Section */
+.va-services {
+    background-color: #1a2b6d;
+    color: white;
+    padding: 40px; /* Uniform padding around the VA services section */
+    text-align: left;
+    margin-top: 450px;
+    
+}
+
+/* Heading Styling */
+.va-services h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+    text-align: left;
+    font-family: "Oswald", serif;
+    font-weight: 500;
+    font-style: normal;
+    color: #ffffff;
+}
+
+/* Paragraph Styling */
+.va-services p {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 25px;
+    text-align: left;
+    color: rgb(255, 255, 255);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Service Cards Container */
+.services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 50px; /* Equal padding on both sides */
+    background-color: rgb(255, 255, 255);
+}
+
+/* Service Card Styling */
+.service-card {
+    background-color: #ffffff;
+    padding: 20px; /* Uniform padding inside each card */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(33.333% - 40px);
+    max-width: calc(33.333% - 40px);
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+    margin: 0 auto; /* Center the cards in the container */
+}
+
+.service-card h3 {
+    color: #0619a7;
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-family: "Oswald", serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.service-card p {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.service-card a.learn-more {
+    color: red;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .services {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+    .service-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin: 10px 0;
+    }
+
+    .va-services {
+        padding: 30px 20px; /* Adjust padding for smaller screens */
+        margin-top: 100px;
+    }
+
+    .va-services h2 {
+        font-size: 24px;
+        margin-left: 20px;
+        text-align: center;
+        color: #0619a7;
+    }
+
+    .va-services p {
+        font-size: 16px;
+        text-align: center;
+        max-width: 90%;
+        margin: 0 auto;
+        color: black;
+    }
+}
+
+
+
+.contact-cta {
+    background-color: #f5f5f5; /* Light grey background */
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.cta-box {
+    background-color: white;
+    padding: 40px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 650px;
+    margin: 0 auto;
+    position: relative; /* For absolute positioning inside */
+}
+
+.cta-box h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #003366;
+    text-align: left; /* Align text to the left */
+    font-family: "Oswald", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.cta-box p {
+    font-size: 18px;
+    margin-bottom: 60px; /* Add margin to create space above the button */
+    color: #333;
+    text-align: left; /* Align text to the left */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cta-box .cta-button {
+    position: absolute; /* Absolute position to bottom right */
+    bottom: 20px;
+    right: 20px;
+    background-color: #FF3B30; /* Dark blue background */
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-box .cta-button:hover {
+    background-color: #002244; /* Slightly darker blue */
+}
+
+
+.image-slideshow {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.slideshow-container {
+    position: relative;
+}
+
+.slides {
+    display: none;
+    position: relative;
+}
+
+.slides img {
+    width: 100%;
+    height: auto;
+}
+
+.text-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 1); /* Semi-transparent background */
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 40%; /* Adjust the width as needed */
+}
+
+.text-box h3 {
+    font-size: 15px;
+    margin-bottom: 10px;
+    font-family: "Oswald", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    color: #0619a7;
+}
+
+.text-box p {
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+}
+
+/* Next and previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 35px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a grey background color */
+.prev:hover, .next:hover {
+    
+}
+
+/* The dots/circles */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
+    .text-box {
+        width: 90%; /* More flexible width for small screens */
+        padding: 15px;
+    }
+
+    .text-box h2 {
+        font-size: 9px; /* Reduced font size for smaller screens */
+    }
+
+    .text-box p {
+        font-size: 9px; /* Reduced font size for better readability */
+    }
+
+    /* Reduce the size of the navigation buttons */
+    .prev, .next {
+        font-size: 14px; /* Smaller button size */
+        padding: 10px;
+    }
+
+    .dot {
+        height: 10px; /* Smaller dots */
+        width: 10px;
+    }
+}
+
+
+
+/* Contact Us Section */
+/* Contact Section */
+.contact-us {
+    padding: 40px;
+    background-color: #003366;
+    color: white;
+    text-align: center;
+}
+
+.contact-us h2 {
+    margin-bottom: 20px;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #004080;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.contact-form .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.contact-form .form-group {
+    flex: 0 0 48%;
+}
+
+.contact-form .form-group.full-width {
+    flex: 0 0 100%;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    margin-bottom: 10px;
+}
+
+.contact-form textarea {
+    resize: none;
+}
+
+.submit-button {
+    background-color: #ff6f61;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #ff4a3d;
+}
+
+.submit-button {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+
+/* Footer */
+footer {
+    background-color: #222;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.footer-info {
+    margin-bottom: 10px;
+}
+
+.footer-info p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.footer-info p a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-info p a:hover {
+    text-decoration: underline;
+}
+
+.footer-copyright {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #bbb;
+}
+
+
+
+
+/* Responsive Design Adjustments */
+
+/* Mobile Screens (Up to 576px) */
+@media (max-width: 576px) {
+    body {
+        font-size: 14px;
+    }
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+    .element {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Small Screens (Up to 768px) */
+@media (max-width: 768px) {
+    body {
+        font-size: 15px;
+    }
+    .container {
+        width: 100%;
+        padding: 15px;
+    }
+    .element {
+        padding: 15px;
+        font-size: 1rem;
+    }
+}
+
+/* Medium Screens (Up to 992px) */
+@media (max-width: 992px) {
+    body {
+        font-size: 16px;
+    }
+    .container {
+        width: 95%;
+        padding: 20px;
+    }
+    .element {
+        padding: 20px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Large Screens (Up to 1200px) */
+@media (max-width: 1200px) {
+    body {
+        font-size: 17px;
+    }
+    .container {
+        width: 90%;
+        padding: 25px;
+    }
+    .element {
+        padding: 25px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Extra Large Screens (Above 1200px) */
+@media (min-width: 1201px) {
+    body {
+        font-size: 18px;
+    }
+    .container {
+        width: 85%;
+        padding: 30px;
+    }
+    .element {
+        padding: 30px;
+        font-size: 1.3rem;
+    }
+}
+
+/* 4K Screens */
+@media (min-width: 2560px) {
+    body {
+        font-size: 20px;
+    }
+    .container {
+        width: 80%;
+        padding: 40px;
+    }
+    .element {
+        padding: 35px;
+        font-size: 1.4rem;
+    }
+}
