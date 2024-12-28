@@ -54,8 +54,8 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  color: rgb(255, 255, 255);
-  background-color: #1a94d6;
+  color: rgb(252, 0, 0);
+  background-color: #ffffff;
   text-decoration: none;
 }
 

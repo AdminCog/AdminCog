@@ -54,8 +54,8 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  color: rgb(255, 255, 255);
-  background-color: #1a94d6;
+  color: rgb(252, 0, 0);
+  background-color: #ffffff;
   text-decoration: none;
 }
 
@@ -86,8 +86,8 @@ nav ul li .dropdown-content li a {
 }
 
 nav ul li .dropdown-content li a:hover {
-  background-color: #0088f8;
-  color: rgb(0, 0, 0);
+  background-color: #ffffff;
+  color: rgb(255, 0, 0);
 }
 
 /* Nested Dropdown Styling */
@@ -478,6 +478,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-left: 40%;
   }
   
   .submit-button:hover {
