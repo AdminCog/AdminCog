@@ -382,6 +382,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-left: 40%;
 }
 
 .submit-button:hover {
