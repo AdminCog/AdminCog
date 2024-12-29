@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Cart Page</title>
+    <title>Checkout</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,19 +11,28 @@
             padding: 0;
             background-color: #f8f8f8;
         }
+        h1 {
+            text-align: center;
+            color: #004080;
+            margin-top: 20px;
+        }
         .container {
             display: flex;
             justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
             margin: 20px auto;
             width: 90%;
             max-width: 1200px;
+        }
+        .box {
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-        }
-        .form-section, .summary-section {
             padding: 20px;
-            width: 48%;
+            margin: 10px;
+            flex: 1;
+            min-width: 280px;
         }
         .form-section h2, .summary-section h2 {
             color: #004080;
@@ -31,7 +40,7 @@
         input, textarea, select {
             width: 100%;
             margin-bottom: 15px;
-            padding: 10px;
+            padding: 5px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
@@ -53,10 +62,10 @@
     </style>
 </head>
 <body>
-    <h1 style="text-align: center; color: #004080;">CART</h1>
+    <h1>CART</h1>
     <div class="container">
         <!-- Left: Form Section -->
-        <div class="form-section">
+        <div class="box form-section">
             <h2>Plan Details</h2>
             <form id="cartForm">
                 <label for="planType">Plan Type:</label>
@@ -79,7 +88,7 @@
         </div>
 
         <!-- Right: Summary Section -->
-        <div class="summary-section">
+        <div class="box summary-section">
             <h2>Summary</h2>
             <p>Plan: <span id="summaryPlan">N/A</span></p>
             <p>Duration: <span id="summaryDuration">N/A</span></p>
