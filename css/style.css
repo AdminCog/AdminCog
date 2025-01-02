@@ -270,9 +270,8 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     font-size: 26px;
     margin-bottom: 10px;
     text-align: left;
-    font-family: Arial, Helvetica, sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
+    font-family: 'Spinnaker';
+    font-weight: 700;
     font-style: normal;
     color: #000080;
 
@@ -283,7 +282,8 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     font-size: 18px;
     margin-bottom: 28px;
     text-align: left;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-weight: 200;
 
 }
 
@@ -329,6 +329,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
     .hero-text h1 {
         font-size: 22px; /* Proportionally smaller heading */
+        font-family: 'Spinnaker';
     }
 
     .hero-text p {
@@ -400,7 +401,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .va-services h1 {
     font-size: 40px;
     margin-bottom: 15px;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: 'Spinnaker';
     font-weight: 500;
     color: #ffffff;
     max-width: 800px;
@@ -448,7 +449,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     color: #000080;
     font-size: 25px;
     margin-bottom: 10px;
-    font-family: "Oswald", serif;
+    font-family: 'Spinnaker';
     font-weight: 500;
 }
 
@@ -534,7 +535,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     margin-bottom: 20px;
     color: #000080;
     text-align: left; /* Align text to the left */
-    font-family: "Oswald", serif;
+    font-family: 'Spinnaker';
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -608,7 +609,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .text-box p {
     font-size: 20px; /* Increased font size for better visibility */
     margin-bottom: 10px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Spinnaker';
     color: #0619a7;
 }
 
