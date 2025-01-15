@@ -271,10 +271,10 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     font-size: 26px;
     margin-bottom: 10px;
     text-align: left;
-    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+    font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     font-weight: 700;
     font-style: normal;
-    color: #000080;
+    color: #003366;
 
     
 }
@@ -330,7 +330,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
     .hero-text h1 {
         font-size: 22px; /* Proportionally smaller heading */
-        font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+        font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     }
 
     .hero-text p {
@@ -388,7 +388,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 /* VA Services Section Styling */
 
 .va-services {
-    background-color: #000080;
+    background-color: #003366;
     color: white;
     flex: 1;
     padding: 40px 20px;
@@ -403,7 +403,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .va-services h1 {
     font-size: 40px;
     margin-bottom: 15px;
-    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+    font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     font-weight: 500;
     color: #ffffff;
     max-width: 800px;
@@ -427,7 +427,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .services {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 2 or 3 cards per row depending on screen size */
-    gap: 50px;
+    gap: 20px;
     flex: 2;
     padding: 0 20px; /* Minimal padding on sides */
     margin: 0 auto; /* Center the grid container */
@@ -448,10 +448,10 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 }
 
 .service-card h3 {
-    color: #000080;
+    color: #003366;
     font-size: 25px;
     margin-bottom: 10px;
-    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+    font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     font-weight: 500;
 }
 
@@ -491,7 +491,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     
     .va-services h1 {
         font-size: 28px; /* Reduced heading size */
-        font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+        font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     }
 
     .va-services p {
@@ -509,7 +509,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     
     .service-card h3 {
         font-size: 18px; /* Reduced heading size in cards */
-        font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+        font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     }
 
     .service-card p {
@@ -541,7 +541,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     margin-bottom: 20px;
     color: #000080;
     text-align: left; /* Align text to the left */
-    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+    font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -615,8 +615,8 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .text-box p {
     font-size: 20px; /* Increased font size for better visibility */
     margin-bottom: 10px;
-    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
-    color: #0619a7;
+    font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
+    color: #003366;
 }
 
 .text-box h3 {
