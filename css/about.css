@@ -1,5 +1,6 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Spinnaker&display=swap');
+@import url('https://fonts.cdnfonts.com/css/helvetica-now-display');
+
 * {
   margin: 0;
   padding: 0;
@@ -7,7 +8,7 @@
 }
 
 body {
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
 }
 
 header {
@@ -272,6 +273,7 @@ h1,
 h2,
 p {
   text-align: left; /* Align text to the left */
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   
 }
 
@@ -279,18 +281,19 @@ h1 {
   font-size: 2.5em;
   color: #002366;
   margin-bottom: 10px;
-  font-family: "Oswald", serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
   color: #00007c;
+
 }
 
 h2 {
   font-size: 20px;
   color: #2a52be;
   margin-bottom: 20px;
-  font-family: "Oswald", serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -301,7 +304,7 @@ p {
   font-size: 15px;
   line-height: 1.6;
   color: #333;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   color: black;
 }
 
@@ -348,7 +351,7 @@ p {
 
   h1 {
     font-size: 2rem; /* Reduce font size */
-    font-family: "Oswald", serif;
+    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -357,7 +360,7 @@ p {
 
   h2 {
     font-size: 1.3rem;
-    font-family: "Oswald", serif;
+    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -367,7 +370,7 @@ p {
   p {
     font-size: 0.9rem; /* Reduce paragraph size */
     line-height: 1.5;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
     color: black;
   }
 
@@ -396,7 +399,7 @@ p {
 
   h1 {
     font-size: 1.8rem; /* Further reduce font size for smaller screens */
-    font-family: "Oswald", serif;
+    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -405,7 +408,7 @@ p {
 
   h2 {
     font-size: 1.2rem;
-    font-family: "Oswald", serif;
+    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -414,7 +417,7 @@ p {
 
   p {
     font-size: 0.85rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
     color: black;
   }
 
@@ -638,7 +641,7 @@ h1 {
   font-size: 2.5em;
   color: #002366;
   margin-bottom: 20px;
-  font-family: "Oswald", serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -648,7 +651,7 @@ p {
   font-size: 1.1em;
   line-height: 1.7;
   color: #333;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
 }
 
 /* Spacing between images and text */
@@ -673,7 +676,7 @@ p {
   font-size: 3rem;
   font-weight: bold;
   color: #d3d3d3;
-  font-family: "Oswald", serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -694,7 +697,7 @@ p {
   line-height: 1.6;
   max-width: 600px;
   text-align: justify;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   font-weight: 300;
 }
 
@@ -727,7 +730,7 @@ p {
 
   .mission-left h1 {
     font-size: 2.5rem;
-    font-family: "Oswald", serif;
+    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -736,7 +739,7 @@ p {
   .mission-right p {
     font-size: 1.1rem;
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   }
 }
 
@@ -744,7 +747,7 @@ p {
 @media (max-width: 425px) {
   h1 {
     font-size: 1.8rem;
-    font-family: "Oswald", serif;
+    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -752,7 +755,7 @@ p {
 
   p {
     font-size: 1rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   }
 
   .founder-image img,
@@ -780,7 +783,7 @@ p {
 .section-title {
   font-size: 2.5rem;
   color: #4a4a4a;
-  font-family: "Oswald", serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   font-weight: 500;
   margin-bottom: 10px;
 }
@@ -788,7 +791,7 @@ p {
 .section-subtitle {
   font-size: 1.2rem;
   color: #6c757d;
-  font-family: "Oswald", serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   font-weight: 300;
   margin-bottom: 30px;
 }
@@ -824,7 +827,7 @@ p {
 .service-title {
   font-size: 1.5rem;
   color: #333;
-  font-family: "Oswald", serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   font-weight: 500;
   margin-bottom: 10px;
 }
@@ -832,7 +835,7 @@ p {
 .service-description {
   font-size: 1rem;
   color: #6c757d;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   line-height: 1.6;
 }
 
@@ -852,7 +855,7 @@ p {
   border-radius: 6px; /* Slightly rounded corners */
   transition: background-color 0.3s ease, transform 0.2s ease;
   text-transform: uppercase;
-  font-family: "Oswald", serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   width: 120px;
 }
 
@@ -879,7 +882,7 @@ p {
   color: #1e1e84;
   font-size: 2rem;
   font-weight: bold;
-  font-family: "Oswald", serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   margin-bottom: 20px; /* Spacing below the title */
   text-align: left; /* Centers the title */
   line-height: 1.4;
@@ -889,7 +892,7 @@ p {
   color: #555;
   font-size: 1.1rem;
   line-height: 1.6;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   text-align: left; /* Centers the text */
 }
 
@@ -982,13 +985,13 @@ p {
   color: #23345d;
   margin-bottom: 20px;
   font-size: 2rem;
-  font-family: "Oswald", serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
 }
 
 .founder-content p {
   margin-top: 15px;
   line-height: 1.6;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   font-weight: 300;
   color: #333;
 }

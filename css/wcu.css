@@ -1,3 +1,4 @@
+@import url('https://fonts.cdnfonts.com/css/helvetica-now-display');
 
 
 * {
@@ -7,7 +8,7 @@
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
 }
 
 /* Header Styling */
@@ -269,14 +270,14 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   margin-right: 50px; /* Space from the right edge */
   color: #012f74; /* Dark blue color for text */
   margin-top: 150px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
 }
 
 .hero h1 {
   font-size: 35px;
   margin-bottom: 15px;
   margin-right: 40px;
-  font-family: "Oswald", serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -286,7 +287,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   font-size: 28px;
   margin-bottom: 20px;
   margin-right: 40px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
 }
 
 .cta-button {
@@ -317,12 +318,12 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   .hero-content {
     max-width: 90%; /* Text box takes up more space on mobile */
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   }
 
   .hero h1 {
     font-size: 2rem;
-    font-family: "Oswald", serif;
+    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -330,7 +331,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
   .hero p {
     font-size: 1rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   }
 }
 
@@ -352,7 +353,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05); /* Extremely subtle shadow */
   opacity: 0; /* Start invisible for the animation */
   animation: fadeInSlideUp 1.2s ease forwards; /* Animation properties */
-  font-family: "Oswald", serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -374,7 +375,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 /* Very Light Text Shadow */
 .services-section h2 {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05); /* Extremely subtle shadow */
-  font-family: "Oswald", serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -424,7 +425,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   font-size: 1.5rem;
   margin-bottom: 5px;
   color: #2b3db7; /* Dark blue for list item titles */
-  font-family: "Oswald", serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -434,7 +435,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   font-size: 1rem;
   color: #5a5a5a; /* Subtle gray for text */
   line-height: 1.6;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
 }
 
 /* Animation Keyframes */
@@ -453,7 +454,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 @media (max-width: 768px) {
   .services-section h2 {
       font-size: 1.5rem;
-      font-family: "Oswald", serif;
+      font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
       font-optical-sizing: auto;
       font-weight: 500;
       font-style: normal;
@@ -461,7 +462,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
   .services-list h3 {
       font-size: 1.3rem;
-      font-family: "Oswald", serif;
+      font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
       font-optical-sizing: auto;
       font-weight: 500;
       font-style: normal;
@@ -478,14 +479,14 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .join-content {
   max-width: 800px;
   margin: 0 auto;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
 }
 
 .join-us h2 {
   font-size: 3rem;
   color: #2b3db7; /* Dark blue color for heading */
   margin-bottom: 20px;
-  font-family: "Oswald", serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -496,7 +497,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   color: #555; /* Darker grey for paragraph text */
   margin-bottom: 20px;
   line-height: 1.6;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
 }
 
 .join-button {
@@ -518,7 +519,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 @media (max-width: 768px) {
   .join-us h2 {
     font-size: 2.5rem;
-    font-family: "Oswald", serif;
+    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -526,7 +527,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
   .join-us p {
     font-size: 1rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   }
 }
 
