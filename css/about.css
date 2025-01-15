@@ -274,7 +274,7 @@ h1,
 h2,
 p {
   text-align: left; /* Align text to the left */
-  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+  font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
   
 }
 
@@ -282,7 +282,7 @@ h1 {
   font-size: 2.5em;
   color: #002366;
   margin-bottom: 10px;
-  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+  font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -294,7 +294,7 @@ h2 {
   font-size: 20px;
   color: #2a52be;
   margin-bottom: 20px;
-  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+  font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -352,7 +352,7 @@ p {
 
   h1 {
     font-size: 2rem; /* Reduce font size */
-    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+    font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -361,7 +361,7 @@ p {
 
   h2 {
     font-size: 1.3rem;
-    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+    font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -400,7 +400,7 @@ p {
 
   h1 {
     font-size: 1.8rem; /* Further reduce font size for smaller screens */
-    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+    font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -409,7 +409,7 @@ p {
 
   h2 {
     font-size: 1.2rem;
-    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+    font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
