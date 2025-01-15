@@ -269,11 +269,11 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 /* Text and Button Styling */
 .hero-text h1 {
-    font-size: 26px;
+    font-size: 36px;
     margin-bottom: 10px;
     text-align: left;
     font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
-    font-weight: 700;
+    font-weight: 500;
     font-style: normal;
     color: #003366;
 
