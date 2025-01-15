@@ -430,11 +430,11 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 2 or 3 cards per row depending on screen size */
     gap: 20px;
     flex: 2;
-    padding: 0 20px; /* Minimal padding on sides */
+    padding: 0 10px; /* Minimal padding on sides */
     margin: 0 auto; /* Center the grid container */
     max-width: 80%; /* Limit max width for better centering */
-    margin-top: 9%;
-    margin-bottom: 9%;
+    margin-top: 30px;
+    margin-bottom: 30px;
     
 }
 
