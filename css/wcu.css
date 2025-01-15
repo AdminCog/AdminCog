@@ -277,14 +277,14 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   font-size: 35px;
   margin-bottom: 15px;
   margin-right: 40px;
-  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+  font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
 }
 
 .hero p {
-  font-size: 28px;
+  font-size: 22px;
   margin-bottom: 20px;
   margin-right: 40px;
   font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
@@ -323,7 +323,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
   .hero h1 {
     font-size: 2rem;
-    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+    font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -353,7 +353,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05); /* Extremely subtle shadow */
   opacity: 0; /* Start invisible for the animation */
   animation: fadeInSlideUp 1.2s ease forwards; /* Animation properties */
-  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+  font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -375,7 +375,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 /* Very Light Text Shadow */
 .services-section h2 {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05); /* Extremely subtle shadow */
-  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+  font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -425,7 +425,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   font-size: 1.5rem;
   margin-bottom: 5px;
   color: #2b3db7; /* Dark blue for list item titles */
-  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+  font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -454,7 +454,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 @media (max-width: 768px) {
   .services-section h2 {
       font-size: 1.5rem;
-      font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+      font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
       font-optical-sizing: auto;
       font-weight: 500;
       font-style: normal;
@@ -462,7 +462,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
   .services-list h3 {
       font-size: 1.3rem;
-      font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+      font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
       font-optical-sizing: auto;
       font-weight: 500;
       font-style: normal;
@@ -486,7 +486,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   font-size: 3rem;
   color: #2b3db7; /* Dark blue color for heading */
   margin-bottom: 20px;
-  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+  font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -519,7 +519,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 @media (max-width: 768px) {
   .join-us h2 {
     font-size: 2.5rem;
-    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+    font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
