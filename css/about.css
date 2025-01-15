@@ -641,7 +641,7 @@ h1 {
   font-size: 2.5em;
   color: #002366;
   margin-bottom: 20px;
-  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+  font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -676,7 +676,7 @@ p {
   font-size: 3rem;
   font-weight: bold;
   color: #d3d3d3;
-  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+  font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -730,7 +730,7 @@ p {
 
   .mission-left h1 {
     font-size: 2.5rem;
-    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+    font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -882,7 +882,7 @@ p {
   color: #1e1e84;
   font-size: 2rem;
   font-weight: bold;
-  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+  font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
   margin-bottom: 20px; /* Spacing below the title */
   text-align: left; /* Centers the title */
   line-height: 1.4;
