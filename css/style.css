@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Spinnaker&display=swap');
 
 body {
-  line-height: 1.6;    /* You can use unitless values (1.6 = 160% of font size) */
+  line-height: 1.4;    /* You can use unitless values (1.6 = 160% of font size) */
   letter-spacing: 0.05em;  /* Can use em, px, or rem units */
 }
 
