@@ -14,10 +14,38 @@
     box-sizing: border-box;
 }
 
-        #image {
-            display: none; /* Hide the image initially */
-            margin-top: 20px;
-            max-width: 100%;
+        /* Style for the popup background */
+        #popup {
+            display: none; /* Hidden initially */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        /* Style for the image inside the popup */
+        #popup img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid white;
+            border-radius: 10px;
+        }
+
+        /* Close button */
+        #popup .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
 
 body {
@@ -524,15 +552,36 @@ input[type="number"]::-webkit-inner-spin-button {
             <p>Email: <span id="summaryEmail">N/A</span></p>
             <button id="payNow">Proceed to Pay</button>
             <button id="showImageButton">Show Image</button>
-            <img id="image" src="https://via.placeholder.com/300" alt="Sample Image">
+
+    <!-- Popup container -->
+    <div id="popup">
+        <button class="close-btn">&times;</button>
+        <img src="https://via.placeholder.com/600" alt="Sample Image">
+    </div>
         </div>
     </div>
 
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
-        document.getElementById('showImageButton').addEventListener('click', function() {
-            const image = document.getElementById('image');
-            image.style.display = 'block'; // Show the image
+        const popup = document.getElementById('popup');
+        const showImageButton = document.getElementById('showImageButton');
+        const closeButton = document.querySelector('#popup .close-btn');
+
+        // Show the popup when the button is clicked
+        showImageButton.addEventListener('click', () => {
+            popup.style.display = 'flex'; // Show the popup as a flexbox
+        });
+
+        // Hide the popup when the close button is clicked
+        closeButton.addEventListener('click', () => {
+            popup.style.display = 'none'; // Hide the popup
+        });
+
+        // Hide the popup when clicking outside the image
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                popup.style.display = 'none';
+            }
         });
         document.addEventListener('DOMContentLoaded', () => {
             const planName = localStorage.getItem('selectedPlanName') || 'N/A';
