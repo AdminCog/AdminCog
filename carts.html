@@ -14,6 +14,12 @@
     box-sizing: border-box;
 }
 
+        #image {
+            display: none; /* Hide the image initially */
+            margin-top: 20px;
+            max-width: 100%;
+        }
+
 body {
     background-color: #f3f4f6;
     color: #1f2937;
@@ -517,12 +523,17 @@ input[type="number"]::-webkit-inner-spin-button {
             <p>Last Name: <span id="summaryLName">N/A</span></p>
             <p>Email: <span id="summaryEmail">N/A</span></p>
             <button id="payNow">Proceed to Pay</button>
-            <button id="payNow">Show QR Code</button>
+            <button id="showImageButton">Show Image</button>
+            <img id="image" src="https://via.placeholder.com/300" alt="Sample Image">
         </div>
     </div>
 
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
+        document.getElementById('showImageButton').addEventListener('click', function() {
+            const image = document.getElementById('image');
+            image.style.display = 'block'; // Show the image
+        });
         document.addEventListener('DOMContentLoaded', () => {
             const planName = localStorage.getItem('selectedPlanName') || 'N/A';
             const planPrice = parseInt(localStorage.getItem('selectedPlanPrice')) || 0;
