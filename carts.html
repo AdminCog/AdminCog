@@ -584,75 +584,95 @@ input[type="number"]::-webkit-inner-spin-button {
             }
         });
         document.addEventListener('DOMContentLoaded', () => {
-            const planName = localStorage.getItem('selectedPlanName') || 'N/A';
-            const planPrice = parseInt(localStorage.getItem('selectedPlanPrice')) || 0;
+    const planName = localStorage.getItem('selectedPlanName') || 'N/A';
+    const planPrice = parseInt(localStorage.getItem('selectedPlanPrice')) || 0;
+    
+    // Function to fetch real-time exchange rate
+    async function fetchExchangeRate() {
+        try {
+            const response = await fetch('https://v6.exchangerate-api.com/v6/YOUR_API_KEY/latest/USD');
+            const data = await response.json();
+            return data.conversion_rates.INR;
+        } catch (error) {
+            console.error('Error fetching exchange rate:', error);
+            // Fallback to a recent rate if API fails
+            return 83.50;
+        }
+    }
 
-            // Initialize form and summary values
-            document.getElementById('planType').value = planName;
-            document.getElementById('summaryPlan').innerText = planName;
-            document.getElementById('summaryPricePerMonth').innerText = planPrice;
+    // Initialize form and summary values
+    document.getElementById('planType').value = planName;
+    document.getElementById('summaryPlan').innerText = planName;
+    document.getElementById('summaryPricePerMonth').innerText = planPrice;
 
-            const form = document.getElementById('cartForm');
-            const durationInput = document.getElementById('durationNumber');
+    const form = document.getElementById('cartForm');
+    const durationInput = document.getElementById('durationNumber');
 
-            // Confirm button logic
-            document.getElementById('confirm').addEventListener('click', () => {
-                const duration = parseInt(durationInput.value) || 1;
-                const totalPrice = duration * planPrice;
+    // Confirm button logic
+    document.getElementById('confirm').addEventListener('click', async () => {
+        const duration = parseInt(durationInput.value) || 1;
+        const totalPriceUSD = duration * planPrice;
+        
+        // Fetch current exchange rate
+        const exchangeRate = await fetchExchangeRate();
+        const totalPriceINR = Math.round(totalPriceUSD * exchangeRate);
 
-                // Validate inputs
-                const fName = document.getElementById('fName').value.trim();
-                const lName = document.getElementById('lName').value.trim();
-                const email = document.getElementById('email').value.trim();
+        // Validate inputs
+        const fName = document.getElementById('fName').value.trim();
+        const lName = document.getElementById('lName').value.trim();
+        const email = document.getElementById('email').value.trim();
 
-                if (!fName || !lName || !email || !durationInput.value) {
-                    alert("Please fill all fields correctly.");
-                    return;
-                }
+        if (!fName || !lName || !email || !durationInput.value) {
+            alert("Please fill all fields correctly.");
+            return;
+        }
 
-                // Update summary section
-                document.getElementById('summaryDuration').innerText = `${duration} Month(s)`;
-                document.getElementById('summaryTotalPrice').innerText = totalPrice;
-                document.getElementById('summaryFName').innerText = fName;
-                document.getElementById('summaryLName').innerText = lName;
-                document.getElementById('summaryEmail').innerText = email;
-            });
+        // Update summary section
+        document.getElementById('summaryDuration').innerText = `${duration} Month(s)`;
+        document.getElementById('summaryTotalPrice').innerText = `$${totalPriceUSD} (₹${totalPriceINR})`;
+    });
 
-            // Payment button logic
-            document.getElementById('payNow').addEventListener('click', () => {
-                const totalPrice = parseInt(document.getElementById('summaryTotalPrice').innerText) || 0;
+    // Payment button logic
+    document.getElementById('payNow').addEventListener('click', async () => {
+        // Extract USD price from the text
+        const summaryPriceText = document.getElementById('summaryTotalPrice').innerText;
+        const totalPriceUSD = parseFloat(summaryPriceText.match(/\$(\d+(\.\d+)?)/)[1]) || 0;
+        
+        // Fetch current exchange rate
+        const exchangeRate = await fetchExchangeRate();
+        const totalPriceINR = Math.round(totalPriceUSD * exchangeRate);
 
-                if (totalPrice <= 0) {
-                    alert("Please confirm details first.");
-                    return;
-                }
+        if (totalPriceUSD <= 0) {
+            alert("Please confirm details first.");
+            return;
+        }
 
-                const options = {
-                    key: "rzp_test_4J8BcVyfdZbPcT", // Your Razorpay Key
-                    amount: totalPrice * 100, // Razorpay expects amount in paisa
-                    currency: "INR",
-                    name: planName,
-                    description: "Purchase of plan",
-                    handler: function (response) {
-                        alert(`Payment Successful!\nPayment ID: ${response.razorpay_payment_id}`);
-                    },
-                    prefill: {
-                        name: document.getElementById('summaryFName').innerText + " " + document.getElementById('summaryLName').innerText,
-                        email: document.getElementById('summaryEmail').innerText,
-                    },
-                    theme: {
-                        color: "#004080",
-                    },
-                };
+        const options = {
+            key: "rzp_test_4J8BcVyfdZbPcT", // Your Razorpay Key
+            amount: totalPriceINR * 100, // Razorpay expects amount in paisa
+            currency: "INR",
+            name: planName,
+            description: "Purchase of plan",
+            handler: function (response) {
+                alert(`Payment Successful!\nPayment ID: ${response.razorpay_payment_id}`);
+            },
+            prefill: {
+                name: document.getElementById('summaryFName').innerText + " " + document.getElementById('summaryLName').innerText,
+                email: document.getElementById('summaryEmail').innerText,
+            },
+            theme: {
+                color: "#004080",
+            },
+        };
 
-                const rzp = new Razorpay(options);
-                rzp.open();
+        const rzp = new Razorpay(options);
+        rzp.open();
 
-                rzp.on('payment.failed', function (response) {
-                    alert(`Payment Failed!\nReason: ${response.error.description}`);
-                });
-            });
+        rzp.on('payment.failed', function (response) {
+            alert(`Payment Failed!\nReason: ${response.error.description}`);
         });
+    });
+});
     </script>
 </body>
 </html>
