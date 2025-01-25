@@ -674,47 +674,17 @@ footer {
     </footer>
 
     <script>
-      // Price Mapping for USD and INR
-      const prices = {
-        fulltime: { usd: 2500, inr: 200000 },
-        halftime: { usd: 1408, inr: 115000 },
-        hourly: { usd: 500, inr: 42000 },
-      };
-
-      function toggleCurrency() {
-        const toggle = document.getElementById("currencyToggle");
-        const currency = toggle.checked ? "inr" : "usd";
-
-        // Update prices dynamically
-        document.getElementById("fulltime-price").innerText =
-          currency === "inr"
-            ? `₹${prices.fulltime.inr}`
-            : `$${prices.fulltime.usd}`;
-        document.getElementById("halftime-price").innerText =
-          currency === "inr"
-            ? `₹${prices.halftime.inr}`
-            : `$${prices.halftime.usd}`;
-        document.getElementById("hourly-price").innerText =
-          currency === "inr"
-            ? `₹${prices.hourly.inr}`
-            : `$${prices.hourly.usd}`;
-      }
-
       function selectPlan(planName) {
-        const isINR = document.getElementById("currencyToggle").checked; // Check toggle state
-        const currency = isINR ? "INR" : "USD"; // Determine currency
-
-        // Fetch the correct price dynamically
         let price;
         switch (planName.toLowerCase()) {
           case "full time":
-            price = isINR ? prices.fulltime.inr : prices.fulltime.usd;
+            price = 2500;
             break;
           case "half time":
-            price = isINR ? prices.halftime.inr : prices.halftime.usd;
+            price = 1408;
             break;
           case "hourly":
-            price = isINR ? prices.hourly.inr : prices.hourly.usd;
+            price = 500;
             break;
           default:
             console.error("Invalid plan selected");
@@ -724,7 +694,7 @@ footer {
         // Store selected plan details in localStorage
         localStorage.setItem("selectedPlanName", planName);
         localStorage.setItem("selectedPlanPrice", price);
-        localStorage.setItem("currency", currency);
+        localStorage.setItem("currency", "USD");
 
         // Redirect to carts page
         window.location.href = "carts.html";
