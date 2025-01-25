@@ -587,6 +587,16 @@ input[type="number"]::-webkit-inner-spin-button {
     const planName = localStorage.getItem('selectedPlanName') || 'N/A';
     const planPrice = parseInt(localStorage.getItem('selectedPlanPrice')) || 0;
     
+    // Utility function to format numbers with commas
+    function formatCurrency(value, currency = 'USD') {
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: currency,
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }).format(value);
+    }
+    
     // Function to fetch real-time exchange rate
     async function fetchExchangeRate() {
         try {
@@ -595,15 +605,14 @@ input[type="number"]::-webkit-inner-spin-button {
             return data.data.INR;
         } catch (error) {
             console.error('Error fetching exchange rate:', error);
-            // Fallback to a recent rate if API fails
-            return 83.50;
+            return 86.00;
         }
     }
 
     // Initialize form and summary values
     document.getElementById('planType').value = planName;
     document.getElementById('summaryPlan').innerText = planName;
-    document.getElementById('summaryPricePerMonth').innerText = planPrice;
+    document.getElementById('summaryPricePerMonth').innerText = formatCurrency(planPrice);
 
     const form = document.getElementById('cartForm');
     const durationInput = document.getElementById('durationNumber');
@@ -629,14 +638,14 @@ input[type="number"]::-webkit-inner-spin-button {
 
         // Update summary section
         document.getElementById('summaryDuration').innerText = `${duration} Month(s)`;
-        document.getElementById('summaryTotalPrice').innerText = `$${totalPriceUSD} (₹${totalPriceINR})`;
+        document.getElementById('summaryTotalPrice').innerText = `${formatCurrency(totalPriceUSD)} (${formatCurrency(totalPriceINR, 'INR')})`;
     });
 
     // Payment button logic
     document.getElementById('payNow').addEventListener('click', async () => {
         // Extract USD price from the text
         const summaryPriceText = document.getElementById('summaryTotalPrice').innerText;
-        const totalPriceUSD = parseFloat(summaryPriceText.match(/\$(\d+(\.\d+)?)/)[1]) || 0;
+        const totalPriceUSD = parseFloat(summaryPriceText.match(/\$([0-9,]+(\.\d+)?)/)[1].replace(/,/g, '')) || 0;
         
         // Fetch current exchange rate
         const exchangeRate = await fetchExchangeRate();
