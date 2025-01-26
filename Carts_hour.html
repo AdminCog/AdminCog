@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Spinnaker&display=swap');
+
+/* Modern Form Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+        /* Style for the popup background */
+        #popup {
+            display: none; /* Hidden initially */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        /* Style for the image inside the popup */
+        #popup img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid white;
+            border-radius: 10px;
+        }
+
+        /* Close button */
+        #popup .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+body {
+    background-color: #f3f4f6;
+    color: #1f2937;
+    line-height: 1.5;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Page Title Styling */
+h1 {
+    font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
+    text-align: center;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 2.5rem 0;
+    letter-spacing: -0.025em;
+}
+
+/* Main Container Layout */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2rem;
+}
+
+/* Form Section Styling */
+.box {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding: 2rem;
+}
+
+.form-section {
+    position: relative;
+}
+
+.form-section h2 {
+    font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f3f4f6;
+}
+
+/* Form Group Styling */
+.form-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* Label Styling */
+label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4b5563;
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.025em;
+}
+
+/* Input Field Styling */
+input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background-color: #f9fafb;
+}
+
+input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+input:read-only {
+    background-color: #f3f4f6;
+    border-color: #e5e7eb;
+    cursor: not-allowed;
+}
+
+/* Summary Section Styling */
+.summary-section {
+    background: white;
+    height: fit-content;
+}
+
+.summary-section h2 {
+    font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f3f4f6;
+}
+
+.summary-section p {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f3f4f6;
+    color: #4b5563;
+}
+
+.summary-section p span {
+    font-weight: 500;
+    color: #1f2937;
+}
+
+/* Button Styling */
+button {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    margin-top: 1rem;
+}
+
+#confirm {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+}
+
+#confirm:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+#payNow {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    margin-top: 2rem;
+}
+
+#payNow:hover {
+    background-color: #b91c1c;
+    transform: translateY(-1px);
+}
+
+/* Error State Styling */
+input:invalid {
+    border-color: #ef4444;
+}
+
+input:invalid:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* Loading State */
+button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 1.875rem;
+        margin: 2rem 0;
+    }
+
+    .box {
+        padding: 1.5rem;
+    }
+}
+
+/* Custom Duration Input Styling */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Summary Section Highlights */
+.summary-section p:last-child {
+    margin-bottom: 1rem;
+}
+
+#summaryTotalPrice {
+    font-size: 1.25rem;
+    color: #dc2626;
+    font-weight: 600;
+}
+
+        header {
+            background-color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        /* Navbar Styling */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        .logo img {
+            max-width: 200px;
+            height: 84px;
+        }
+        
+        /* Navbar Menu */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+        
+        nav ul li {
+            position: relative;
+        }
+        
+        /* Navbar Links */
+        nav ul li a {
+            text-decoration: none;
+            color: #000080;
+            font-weight: 600;
+            padding: 10px 15px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            border-radius: 5px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        nav ul li a:hover {
+            color: rgb(252, 0, 0);
+            background-color: #ffffff;
+            text-decoration: none;
+        }
+        
+        /* Dropdown Styling */
+        nav ul li .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 200px;
+            top: 100%;
+            left: 0;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+        
+        nav ul li .dropdown-content li {
+            width: 100%;
+        }
+        
+        nav ul li .dropdown-content li a {
+            padding: 5px 12px;
+            color: #333;
+            text-align: left;
+            display: block;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        nav ul li .dropdown-content li a:hover {
+            background-color: #ffffff;
+            color: rgb(255, 0, 0);
+        }
+        
+        /* Nested Dropdown Styling */
+        nav ul li .dropdown-content .dropdown {
+            position: relative;
+        }
+        
+        nav ul li .dropdown-content .dropdown .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+        }
+        
+        /* Show dropdowns on hover */
+        nav ul li:hover .dropdown-content {
+            display: block;
+        }
+        
+        nav ul li .dropdown-content li:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+            position: absolute;
+            right: 40px; /* Adjusted to move hamburger to the right */
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .hamburger span {
+            height: 3px;
+            width: 100%;
+            background-color: #333;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            nav ul {
+                position: fixed;
+                left: 0; /* Now positioned on the left */
+                top: 0;
+                height: 100vh;
+                width: 250px;
+                background-color: #003366;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transform: translateX(-100%); /* Hidden off-screen to the left */
+                transition: transform 0.3s ease-in-out;
+                z-index: 999;
+            }
+            nav ul li .dropdown-content {
+                display: none; /* Initially hidden */
+                position: absolute; /* Position it absolutely */
+                top: 100%; /* Position it directly below the parent */
+                left: 50%; /* Center it horizontally */
+                transform: translateX(-50%); /* Adjust to center */
+                background-color: #fff; /* Background color */
+                border-radius: 8px; /* Round corners */
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+                z-index: 999; /* Ensure visibility above other elements */
+                padding: 0; /* Remove any extra padding */
+                margin: 0; /* Remove any extra margin */
+                width: 220px; /* Set a specific width for uniformity */
+            }
+        
+            /* Show dropdowns on hover */
+            nav ul li:hover .dropdown-content {
+                display: block; /* Show the dropdown */
+                transform: translateY(0); /* Reset vertical transform for positioning */
+                opacity: 1; /* Ensure it is fully visible */
+                transition: opacity 0.3s ease; /* Optional smooth transition */
+            }
+        
+            /* Dropdown Items Styling */
+            nav ul li .dropdown-content li {
+                width: 100%; /* Full width for each dropdown item */
+                padding: 8px 10px; /* Small padding for tighter spacing */
+                margin: 0; /* Remove margin for compactness */
+            }
+        
+            /* Style for links in dropdown */
+            nav ul li .dropdown-content li a {
+                color: #333; /* Text color */
+                text-align: left; /* Align text to the left */
+                display: block; /* Full block display */
+                font-weight: 600; /* Font weight */
+                text-decoration: none; /* No underline */
+                transition: background-color 0.3s; /* Transition for hover effect */
+            }
+        
+            /* Hover effect for links */
+            nav ul li .dropdown-content li a:hover {
+                background-color: #ffffff; /* Background color on hover */
+                color: rgb(255, 0, 0); /* Text color on hover */
+            }
+        
+            nav ul li {
+                margin: 20px 0;
+            }
+        
+            nav ul li a {
+                color: white;
+                font-size: 20px;
+            }
+        
+            .hamburger {
+                display: flex;
+            }
+        
+            /* Menu active state: slide in from left */
+            .nav-active {
+                transform: translateX(0); /* Slides the menu in from the left */
+            }
+        
+            /* Change the hamburger icon to an "X" when active */
+            .hamburger.toggle span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+        
+            .hamburger.toggle span:nth-child(2) {
+                opacity: 0;
+            }
+        
+            .hamburger.toggle span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+        }
+        
+        select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background-color: #f9fafb;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+          <div class="logo">
+            <a href="index.html">
+              <img src="images/image.png" alt="Admincog Corporate Services" />
+            </a>
+          </div>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li class="dropdown">
+              <a href="#">Services</a>
+              <ul class="dropdown-content">
+                <li class="dropdown">
+                  <a href="#va-services">Virtual Assistant</a>
+                  <ul class="dropdown-content">
+                    <li><a href="Industries.html">Industries</a></li>
+                  </ul>
+                </li>
+                <li><a href="webd.html">Web Development Services</a></li>
+                <li><a href="digital.html">Digital Marketing Services</a></li>
+              </ul>
+            </li>
+            <li><a href="why-choose-US.html">Why Choose Us</a></li>
+            <li><a href="PLAN.HTML">Plans & Pricing</a></li>
+            <li><a href="#contact-us">Contact Us</a></li>
+            <li><a href="book-online.html">Book Online</a></li>
+          </ul>
+        </nav>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </header>
+    <h1>CART</h1>
+    <div class="container">
+        <!-- Left: Form Section -->
+        <div class="box form-section">
+            <h2>Plan Details</h2>
+            <form id="cartForm">
+                <label for="planType">Plan Type:</label>
+                <input type="text" id="planType" readonly />
+
+                <label for="duration">Duration (Hours):</label>
+                <select id="duration" required>
+                    <option value="5">5 Hours</option>
+                    <option value="10">10 Hours</option>
+                    <option value="15">15 Hours</option>
+                    <option value="20">20 Hours</option>
+                    <option value="25">25 Hours</option>
+                    <option value="30">30 Hours</option>
+                    <option value="35">35 Hours</option>
+                    <option value="40">40 Hours</option>
+                    <option value="45">45 Hours</option>
+                    <option value="50">50 Hours</option>
+                </select>
+
+                <label for="fName">First Name:</label>
+                <input type="text" id="fName" placeholder="Enter your first name" required />
+
+                <label for="lName">Last Name:</label>
+                <input type="text" id="lName" placeholder="Enter your last name" required />
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Enter your email" required />
+
+                <button type="button" id="confirm">Confirm</button>
+            </form>
+        </div>
+
+        <!-- Right: Summary Section -->
+        <div class="box summary-section">
+            <h2>Summary</h2>
+            <p>Plan: <span id="summaryPlan">N/A</span></p>
+            <p>Duration: <span id="summaryDuration">N/A</span></p>
+            <p>Price per Hour ($): <span id="summaryPricePerMonth">N/A</span></p>
+            <p>Total Price ($): <span id="summaryTotalPrice">N/A</span></p>
+            <p>First Name: <span id="summaryFName">N/A</span></p>
+            <p>Last Name: <span id="summaryLName">N/A</span></p>
+            <p>Email: <span id="summaryEmail">N/A</span></p>
+            <button id="payNow">Proceed to Pay</button>
+            <button id="showImageButton">Show UPI QR Code</button>
+
+    <!-- Popup container -->
+    <div id="popup">
+        <button class="close-btn">&times;</button>
+        <img src="images/QR-ADMINCOG.jpg" alt="UPI QR Code">
+    </div>
+        </div>
+    </div>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        const popup = document.getElementById('popup');
+        const showImageButton = document.getElementById('showImageButton');
+        const closeButton = document.querySelector('#popup .close-btn');
+
+        // Show the popup when the button is clicked
+        showImageButton.addEventListener('click', () => {
+            popup.style.display = 'flex'; // Show the popup as a flexbox
+        });
+
+        // Hide the popup when the close button is clicked
+        closeButton.addEventListener('click', () => {
+            popup.style.display = 'none'; // Hide the popup
+        });
+
+        // Hide the popup when clicking outside the image
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                popup.style.display = 'none';
+            }
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const planName = localStorage.getItem('selectedPlanName') || 'N/A';
+            const planPrice = 18; // Fixed hourly rate
+            
+            function formatCurrency(value, currency = 'USD') {
+                return new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: currency,
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }).format(value);
+            }
+
+            // Initialize form and summary values
+            document.getElementById('planType').value = planName;
+            document.getElementById('summaryPlan').innerText = planName;
+            document.getElementById('summaryPricePerMonth').innerText = formatCurrency(planPrice) + ' per hour';
+
+            const form = document.getElementById('cartForm');
+            const durationSelect = document.getElementById('duration');
+
+            // Confirm button logic
+            document.getElementById('confirm').addEventListener('click', async () => {
+                const duration = parseInt(durationSelect.value);
+                const totalPriceUSD = duration * planPrice;
+
+                // Validate inputs
+                const fName = document.getElementById('fName').value.trim();
+                const lName = document.getElementById('lName').value.trim();
+                const email = document.getElementById('email').value.trim();
+
+                if (!fName || !lName || !email) {
+                    alert("Please fill all fields correctly.");
+                    return;
+                }
+
+                // Update summary section
+                document.getElementById('summaryDuration').innerText = `${duration} Hours`;
+                document.getElementById('summaryTotalPrice').innerText = formatCurrency(totalPriceUSD);
+
+                // Update other summary fields
+                document.getElementById('summaryFName').innerText = fName;
+                document.getElementById('summaryLName').innerText = lName;
+                document.getElementById('summaryEmail').innerText = email;
+            });
+
+    // Payment button logic
+    document.getElementById('payNow').addEventListener('click', async () => {
+        // Extract USD price from the text
+        const summaryPriceText = document.getElementById('summaryTotalPrice').innerText;
+        const totalPriceUSD = parseFloat(summaryPriceText.match(/\$([0-9,]+(\.\d+)?)/)[1].replace(/,/g, '')) || 0;
+        
+        // Fetch current exchange rate
+        const exchangeRate = await fetchExchangeRate();
+        const totalPriceINR = Math.round(totalPriceUSD * exchangeRate);
+
+        if (totalPriceUSD <= 0) {
+            alert("Please confirm details first.");
+            return;
+        }
+
+        const options = {
+            key: "rzp_test_4J8BcVyfdZbPcT", // Your Razorpay Key
+            amount: totalPriceINR * 100, // Razorpay expects amount in paisa
+            currency: "INR",
+            name: planName,
+            description: "Purchase of plan",
+            handler: function (response) {
+                alert(`Payment Successful!\nPayment ID: ${response.razorpay_payment_id}`);
+            },
+            prefill: {
+                name: document.getElementById('summaryFName').innerText + " " + document.getElementById('summaryLName').innerText,
+                email: document.getElementById('summaryEmail').innerText,
+            },
+            theme: {
+                color: "#004080",
+            },
+        };
+
+        const rzp = new Razorpay(options);
+        rzp.open();
+
+        rzp.on('payment.failed', function (response) {
+            alert(`Payment Failed!\nReason: ${response.error.description}`);
+        });
+    });
+});
+    </script>
+</body>
+</html>
