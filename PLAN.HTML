@@ -672,31 +672,36 @@ footer {
     </footer>
 
     <script>
-      function selectPlan(planName) {
-        let price;
-        switch (planName.toLowerCase()) {
-          case "full time":
+     function selectPlan(planName) {
+    let price;
+    let redirectPage;
+
+    switch (planName.toLowerCase()) {
+        case "full time":
             price = 2500;
+            redirectPage = "carts.html";
             break;
-          case "half time":
+        case "half time":
             price = 1408;
+            redirectPage = "carts.html";
             break;
-          case "hourly":
-            price = 500;
+        case "hourly":
+            price = 18; // Price per hour as discussed earlier
+            redirectPage = "Carts_hour.html";
             break;
-          default:
+        default:
             console.error("Invalid plan selected");
             return;
-        }
+    }
 
-        // Store selected plan details in localStorage
-        localStorage.setItem("selectedPlanName", planName);
-        localStorage.setItem("selectedPlanPrice", price);
-        localStorage.setItem("currency", "USD");
+    // Store selected plan details in localStorage
+    localStorage.setItem("selectedPlanName", planName);
+    localStorage.setItem("selectedPlanPrice", price);
+    localStorage.setItem("currency", "USD");
 
-        // Redirect to carts page
-        window.location.href = "carts.html";
-      }
+    // Redirect to appropriate page
+    window.location.href = redirectPage;
+}
     </script>
   </body>
 </html>
