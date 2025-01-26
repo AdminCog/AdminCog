@@ -70,7 +70,7 @@ nav ul li .dropdown-content {
     display: none;
     position: absolute;
     background-color: #fff;
-    min-width: 300px;
+    min-width: 280px;
     top: 100%;
     left: 0;
     border-radius: 8px;
