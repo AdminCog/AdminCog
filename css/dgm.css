@@ -77,110 +77,101 @@ body {
   font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
 }
 
+/* Header Styling */
+/* General Header Styling */
 header {
-  background-color: white;
-  padding: 15px 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-
+    background-color: white;
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 /* Navbar Styling */
 nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    font-family: Arial, Helvetica, sans-serif;
 }
-
 .logo img {
-  max-width: 200px;
-  height: 84px;
+    max-width: 200px;
+    height: 84px;
 }
-
 /* Navbar Menu */
 nav ul {
-  list-style: none;
-  display: flex;
-  gap: 30px;
+    list-style: none;
+    display: flex;
+    gap: 30px;
 }
-
 nav ul li {
-  position: relative;
+    position: relative;
 }
-
 /* Navbar Links */
 nav ul li a {
-  text-decoration: none;
-  color: #00027a;
-  font-weight: 600;
-  padding: 10px 15px;
-  transition: color 0.3s ease, background-color 0.3s ease;
-  border-radius: 5px;
+    text-decoration: none;
+    color: #000080;
+    font-weight: 600;
+    padding: 10px 15px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    border-radius: 5px;
+    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
 }
-
 nav ul li a:hover {
-  color: rgb(252, 0, 0);
-  background-color: #ffffff;
-  text-decoration: none;
+    color: rgb(252, 0, 0);
+    background-color: #ffffff;
+    text-decoration: none;
 }
-
 /* Dropdown Styling */
 nav ul li .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #fff;
-  min-width: 200px;
-  top: 100%;
-  left: 0;
-  border-radius: 8px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  z-index: 999;
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 280px;
+    top: 100%;
+    left: 0;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    padding: 15px 0; /* Add vertical padding */
 }
-
 nav ul li .dropdown-content li {
-  width: 100%;
+    width: 100%;
 }
-
 nav ul li .dropdown-content li a {
-  padding: 5px 12px;
-  color: #333;
-  text-align: left;
-  display: block;
-  font-weight: 600;
-  text-decoration: none;
+    padding: 5px 12px;
+    color: #333;
+    text-align: left;
+    display: block;
+    font-weight: 600;
+    text-decoration: none;
 }
-
 nav ul li .dropdown-content li a:hover {
-  background-color: #ffffff;
-  color: rgb(255, 0, 0);
+    background-color: #ffffff;
+    color: rgb(255, 0, 0);
 }
-
 /* Nested Dropdown Styling */
 nav ul li .dropdown-content .dropdown {
-  position: relative;
+    position: relative;
 }
-
 nav ul li .dropdown-content .dropdown .dropdown-content {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  min-width: 200px;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
 }
-
 /* Show dropdowns on hover */
 nav ul li:hover .dropdown-content {
-  display: block;
+    display: block;
 }
-
 nav ul li .dropdown-content li:hover .dropdown-content {
-  display: block;
+    display: block;
 }
 
 /* Hamburger Menu */
