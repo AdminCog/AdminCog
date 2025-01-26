@@ -604,18 +604,17 @@ input[type="number"]::-webkit-inner-spin-button {
             }
         });
         document.addEventListener('DOMContentLoaded', () => {
-    const planName = localStorage.getItem('selectedPlanName') || 'N/A';
-    const planPrice = parseInt(localStorage.getItem('selectedPlanPrice')) || 0;
-    
-    // Utility function to format numbers with commas
-    function formatCurrency(value, currency = 'USD') {
-        return new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: currency,
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        }).format(value);
-    }
+            const planName = localStorage.getItem('selectedPlanName') || 'N/A';
+            const planPrice = 18; // Fixed hourly rate
+            
+            function formatCurrency(value, currency = 'USD') {
+                return new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: currency,
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }).format(value);
+            }
     
     // Function to fetch real-time exchange rate
     async function fetchExchangeRate() {
@@ -632,34 +631,37 @@ input[type="number"]::-webkit-inner-spin-button {
     // Initialize form and summary values
     document.getElementById('planType').value = planName;
     document.getElementById('summaryPlan').innerText = planName;
-    document.getElementById('summaryPricePerMonth').innerText = formatCurrency(planPrice);
+    document.getElementById('summaryPricePerMonth').innerText = formatCurrency(planPrice) + ' per hour';
 
     const form = document.getElementById('cartForm');
     const durationInput = document.getElementById('durationNumber');
 
-    // Confirm button logic
     document.getElementById('confirm').addEventListener('click', async () => {
-        const duration = parseInt(durationInput.value) || 1;
-        const totalPriceUSD = duration * planPrice;
-        
-        // Fetch current exchange rate
-        const exchangeRate = await fetchExchangeRate();
-        const totalPriceINR = Math.round(totalPriceUSD * exchangeRate);
+    const duration = parseInt(document.getElementById('duration').value);
+    const totalPriceUSD = duration * planPrice;
 
-        // Validate inputs
-        const fName = document.getElementById('fName').value.trim();
-        const lName = document.getElementById('lName').value.trim();
-        const email = document.getElementById('email').value.trim();
+    // Fetch current exchange rate
+    const exchangeRate = await fetchExchangeRate();
+    const totalPriceINR = Math.round(totalPriceUSD * exchangeRate);
 
-        if (!fName || !lName || !email || !durationInput.value) {
-            alert("Please fill all fields correctly.");
-            return;
-        }
+    // Validate inputs
+    const fName = document.getElementById('fName').value.trim();
+    const lName = document.getElementById('lName').value.trim();
+    const email = document.getElementById('email').value.trim();
 
-        // Update summary section
-        document.getElementById('summaryDuration').innerText = `${duration} Month(s)`;
-        document.getElementById('summaryTotalPrice').innerText = `${formatCurrency(totalPriceUSD)} (${formatCurrency(totalPriceINR, 'INR')})`;
-    });
+    if (!fName || !lName || !email) {
+        alert("Please fill all fields correctly.");
+        return;
+    }
+
+    // Update summary section with form inputs
+    document.getElementById('summaryDuration').innerText = `${duration} Hours`;
+    document.getElementById('summaryTotalPrice').innerText = `${formatCurrency(totalPriceUSD)} (${formatCurrency(totalPriceINR, 'INR')})`;
+    document.getElementById('summaryFName').innerText = fName;
+    document.getElementById('summaryLName').innerText = lName;
+    document.getElementById('summaryEmail').innerText = email;
+});
+
 
     // Payment button logic
     document.getElementById('payNow').addEventListener('click', async () => {
