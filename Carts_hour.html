@@ -476,6 +476,102 @@ input[type="number"]::-webkit-inner-spin-button {
             transition: all 0.2s ease;
             background-color: #f9fafb;
         }
+        /* Footer */
+/* General Footer Styling */
+footer {
+    background-color: #222; /* Dark background for the footer */
+    color: #fff; /* White text color for better contrast */
+    padding: 40px 20px; /* Added more padding for breathing space */
+    text-align: center; /* Center text alignment */
+}
+
+/* Footer Container */
+.footer-container {
+    max-width: 1200px; /* Max width for large screens */
+    margin: 0 auto; /* Center the container */
+    padding: 0 20px; /* Added horizontal padding for better alignment */
+}
+
+/* Footer Info Section */
+.footer-info {
+    margin-bottom: 30px; /* More space between the info and links */
+}
+
+.footer-info p {
+    margin: 8px 0; /* Spacing between lines */
+    font-size: 1rem; /* Adjusted font size */
+    color: #ccc; /* Light gray color for the text */
+    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+}
+
+.footer-info p a {
+    color: #fff; /* White color for links */
+    text-decoration: none; /* No underline */
+    font-weight: 600; /* Slightly bolder text for better visibility */
+}
+
+.footer-info p a:hover {
+    text-decoration: underline; /* Underline effect on hover */
+    color: #f39c12; /* Change color on hover for better interaction */
+}
+
+/* Footer Links */
+.footer-links {
+    margin-bottom: 20px; /* Space between footer links and copyright */
+}
+
+.footer-links ul {
+    list-style: none; /* Remove bullets */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Center links */
+    gap: 30px; /* Space between each link */
+}
+
+.footer-links ul li {
+    display: inline-block; /* Display links inline */
+}
+
+.footer-links ul li a {
+    color: #fff;
+    font-size: 1rem; /* Larger font size for links */
+    text-decoration: none;
+    font-weight: 500; /* Slightly lighter weight for links */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover transition */
+}
+
+.footer-links ul li a:hover {
+    color: #f39c12; /* Change color on hover */
+    transform: translateY(-3px); /* Slight upward movement for hover effect */
+}
+
+/* Footer Copyright Section */
+.footer-copyright {
+    font-size: 0.9rem;
+    color: #bbb; /* Lighter color for copyright text */
+    margin-top: 20px; /* Add space above copyright */
+}
+
+.footer-copyright p {
+    margin: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .footer-links ul {
+        flex-direction: column; /* Stack links vertically on small screens */
+        gap: 15px; /* Reduce the gap between links */
+    }
+
+    .footer-info p {
+        font-size: 0.9rem; /* Smaller text on smaller screens */
+    }
+
+    .footer-copyright {
+        font-size: 0.85rem; /* Slightly smaller copyright text */
+    }
+}
     </style>
 </head>
 <body>
