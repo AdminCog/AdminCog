@@ -394,7 +394,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 /* Heading Styling */
 .va-services h1 {
-    font-size: 40px;
+    font-size: 50px;
     margin-bottom: 15px;
     font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     font-weight: 500;
@@ -406,7 +406,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 /* Paragraph Styling */
 .va-services p {
-    font-size: 20px;
+    font-size: 15px;
     line-height: 1.8;
     max-width: 79%;
     color: #ffffff;
@@ -420,7 +420,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .services {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 2 or 3 cards per row depending on screen size */
-    gap: 20px;
+    gap: 40px;
     flex: 2;
     padding: 0 10px; /* Minimal padding on sides */
     margin: 0 auto; /* Center the grid container */
@@ -432,10 +432,10 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 /* Service Card Styling */
 .service-card {
-    background-color: #ffffff;
+    background-color: #f2f2f2;
     padding: 40px; /* Uniform padding inside each card */
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
     text-align: left; /* Keep text left-aligned within card */
 }
