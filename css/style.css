@@ -249,8 +249,8 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     top: 60%;
     right: 10%;
     width: 60%;
-    height: 450px;
-    max-width: 700px;
+    height: 430px;
+    max-width: 800px;
     background-color: #F2F2F2;
     color: #333;
     padding: 20px;
@@ -261,7 +261,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 /* Text and Button Styling */
 .hero-text h1 {
-    font-size: 36px;
+    font-size: 50px;
     margin-bottom: 10px;
     text-align: left;
     font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
