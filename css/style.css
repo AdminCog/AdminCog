@@ -521,16 +521,16 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 .cta-box {
     background-color: white;
-    padding: 40px 20px;
+    padding: 40px 40px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 650px;
+    max-width: 850px;
     margin: 0 auto;
     position: relative; /* For absolute positioning inside */
 }
 
 .cta-box h2 {
-    font-size: 28px;
+    font-size: 50px;
     margin-bottom: 20px;
     color: #000080;
     text-align: left; /* Align text to the left */
