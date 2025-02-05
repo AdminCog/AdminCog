@@ -648,26 +648,6 @@ footer {
 
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
-        const popup = document.getElementById('popup');
-        const showImageButton = document.getElementById('showImageButton');
-        const closeButton = document.querySelector('#popup .close-btn');
-
-        // Show the popup when the button is clicked
-        showImageButton.addEventListener('click', () => {
-            popup.style.display = 'flex'; // Show the popup as a flexbox
-        });
-
-        // Hide the popup when the close button is clicked
-        closeButton.addEventListener('click', () => {
-            popup.style.display = 'none'; // Hide the popup
-        });
-
-        // Hide the popup when clicking outside the image
-        popup.addEventListener('click', (e) => {
-            if (e.target === popup) {
-                popup.style.display = 'none';
-            }
-        });
         document.addEventListener('DOMContentLoaded', () => {
     const planName = localStorage.getItem('selectedPlanName') || 'N/A';
     const planPrice = parseInt(localStorage.getItem('selectedPlanPrice')) || 0;
@@ -697,75 +677,108 @@ footer {
     // Initialize form and summary values
     document.getElementById('planType').value = planName;
     document.getElementById('summaryPlan').innerText = planName;
-    document.getElementById('summaryPricePerMonth').innerText = formatCurrency(planPrice);
 
     const form = document.getElementById('cartForm');
     const durationInput = document.getElementById('durationNumber');
 
+    // Update summary section
+    const updateSummary = async () => {
+        const exchangeRate = await fetchExchangeRate();
+        const monthlyPriceUSD = planPrice;
+        const monthlyPriceINR = Math.round(monthlyPriceUSD * exchangeRate);
+        
+        // Calculate setup cost (10%)
+        const setupCostUSD = monthlyPriceUSD * 0.10;
+        const setupCostINR = Math.round(setupCostUSD * exchangeRate);
+        
+        // Calculate GST (18%)
+        const monthlyGSTUSD = monthlyPriceUSD * 0.18;
+        const monthlyGSTINR = Math.round(monthlyGSTUSD * exchangeRate);
+        const setupGSTUSD = setupCostUSD * 0.18;
+        const setupGSTINR = Math.round(setupGSTUSD * exchangeRate);
+        
+        // Calculate totals
+        const firstMonthUSD = monthlyPriceUSD + setupCostUSD + monthlyGSTUSD + setupGSTUSD;
+        const firstMonthINR = Math.round(firstMonthUSD * exchangeRate);
+        
+        const recurringMonthlyUSD = monthlyPriceUSD + monthlyGSTUSD;
+        const recurringMonthlyINR = Math.round(recurringMonthlyUSD * exchangeRate);
+
+        // Update summary section HTML
+        const summarySection = document.querySelector('.summary-section');
+        summarySection.innerHTML = `
+            <h2>Summary</h2>
+            <p>Plan: <span id="summaryPlan">${planName}</span></p>
+            <p>Duration: <span id="summaryDuration">${durationInput.value || 'N/A'} Month(s)</span></p>
+            <p>Price per Month: <span>${formatCurrency(monthlyPriceUSD)} (${formatCurrency(monthlyPriceINR, 'INR')})</span></p>
+            <p>Setup Cost @ 10%: <span>${formatCurrency(setupCostUSD)} (${formatCurrency(setupCostINR, 'INR')})</span></p>
+            <p>GST @ 18%: <span>${formatCurrency(monthlyGSTUSD + setupGSTUSD)} (${formatCurrency(monthlyGSTINR + setupGSTINR, 'INR')})</span></p>
+            <p>1st Month Price: <span>${formatCurrency(firstMonthUSD)} (${formatCurrency(firstMonthINR, 'INR')})</span></p>
+            <p>Total Monthly Price: <span>${formatCurrency(recurringMonthlyUSD)} (${formatCurrency(recurringMonthlyINR, 'INR')})</span></p>
+            <p>First Name: <span id="summaryFName">${document.getElementById('fName').value || 'N/A'}</span></p>
+            <p>Last Name: <span id="summaryLName">${document.getElementById('lName').value || 'N/A'}</span></p>
+            <p>Email: <span id="summaryEmail">${document.getElementById('email').value || 'N/A'}</span></p>
+            <button id="payNow">Proceed to Pay</button>
+            <button id="showImageButton">Show UPI QR Code</button>
+        `;
+
+        // Reattach event listeners
+        attachPaymentListeners(firstMonthUSD, exchangeRate);
+    };
+
     // Confirm button logic
     document.getElementById('confirm').addEventListener('click', async () => {
-        const duration = parseInt(durationInput.value) || 1;
-        const totalPriceUSD = duration * planPrice;
-        
-        // Fetch current exchange rate
-        const exchangeRate = await fetchExchangeRate();
-        const totalPriceINR = Math.round(totalPriceUSD * exchangeRate);
-
-        // Validate inputs
-        const fName = document.getElementById('fName').value.trim();
-        const lName = document.getElementById('lName').value.trim();
-        const email = document.getElementById('email').value.trim();
-
-        if (!fName || !lName || !email || !durationInput.value) {
+        if (!validateForm()) {
             alert("Please fill all fields correctly.");
             return;
         }
-
-        // Update summary section
-        document.getElementById('summaryDuration').innerText = `${duration} Month(s)`;
-        document.getElementById('summaryTotalPrice').innerText = `${formatCurrency(totalPriceUSD)} (${formatCurrency(totalPriceINR, 'INR')})`;
+        await updateSummary();
     });
 
-    // Payment button logic
-    document.getElementById('payNow').addEventListener('click', async () => {
-        // Extract USD price from the text
-        const summaryPriceText = document.getElementById('summaryTotalPrice').innerText;
-        const totalPriceUSD = parseFloat(summaryPriceText.match(/\$([0-9,]+(\.\d+)?)/)[1].replace(/,/g, '')) || 0;
-        
-        // Fetch current exchange rate
-        const exchangeRate = await fetchExchangeRate();
-        const totalPriceINR = Math.round(totalPriceUSD * exchangeRate);
+    function validateForm() {
+        const fName = document.getElementById('fName').value.trim();
+        const lName = document.getElementById('lName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        return fName && lName && email && durationInput.value;
+    }
 
-        if (totalPriceUSD <= 0) {
-            alert("Please confirm details first.");
-            return;
-        }
+    function attachPaymentListeners(amount, exchangeRate) {
+        // Payment button logic
+        document.getElementById('payNow').addEventListener('click', () => {
+            const totalPriceINR = Math.round(amount * exchangeRate);
+            
+            const options = {
+                key: "rzp_test_4J8BcVyfdZbPcT",
+                amount: totalPriceINR * 100,
+                currency: "INR",
+                name: planName,
+                description: "Purchase of plan",
+                handler: function(response) {
+                    alert(`Payment Successful!\nPayment ID: ${response.razorpay_payment_id}`);
+                },
+                prefill: {
+                    name: `${document.getElementById('fName').value} ${document.getElementById('lName').value}`,
+                    email: document.getElementById('email').value,
+                },
+                theme: {
+                    color: "#004080",
+                },
+            };
 
-        const options = {
-            key: "rzp_test_4J8BcVyfdZbPcT", // Your Razorpay Key
-            amount: totalPriceINR * 100, // Razorpay expects amount in paisa
-            currency: "INR",
-            name: planName,
-            description: "Purchase of plan",
-            handler: function (response) {
-                alert(`Payment Successful!\nPayment ID: ${response.razorpay_payment_id}`);
-            },
-            prefill: {
-                name: document.getElementById('summaryFName').innerText + " " + document.getElementById('summaryLName').innerText,
-                email: document.getElementById('summaryEmail').innerText,
-            },
-            theme: {
-                color: "#004080",
-            },
-        };
+            const rzp = new Razorpay(options);
+            rzp.open();
 
-        const rzp = new Razorpay(options);
-        rzp.open();
-
-        rzp.on('payment.failed', function (response) {
-            alert(`Payment Failed!\nReason: ${response.error.description}`);
+            rzp.on('payment.failed', function(response) {
+                alert(`Payment Failed!\nReason: ${response.error.description}`);
+            });
         });
-    });
+
+        // Reattach image button listener
+        const showImageButton = document.getElementById('showImageButton');
+        showImageButton.addEventListener('click', () => {
+            document.getElementById('popup').style.display = 'flex';
+        });
+    }
 });
     </script>
 
