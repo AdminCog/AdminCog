@@ -626,17 +626,20 @@ footer {
         </div>
 
         <!-- Right: Summary Section -->
-        <div class="box summary-section">
-            <h2>Summary</h2>
-            <p>Plan: <span id="summaryPlan">N/A</span></p>
-            <p>Duration: <span id="summaryDuration">N/A</span></p>
-            <p>Price per Month ($): <span id="summaryPricePerMonth">N/A</span></p>
-            <p>Total Price ($): <span id="summaryTotalPrice">N/A</span></p>
-            <p>First Name: <span id="summaryFName">N/A</span></p>
-            <p>Last Name: <span id="summaryLName">N/A</span></p>
-            <p>Email: <span id="summaryEmail">N/A</span></p>
-            <button id="payNow">Proceed to Pay</button>
-            <button id="showImageButton">Show UPI QR Code</button>
+       <div class="box summary-section">
+    <h2>Summary</h2>
+    <p>Plan: <span id="summaryPlan">N/A</span></p>
+    <p>Duration: <span id="summaryDuration">N/A</span></p>
+    <p>Price per Month: <span id="summaryPricePerMonth">N/A</span> (<span id="summaryPricePerMonthINR">N/A</span>)</p>
+    <p>Setup Cost @ 10%: <span id="summarySetupCost">N/A</span> (<span id="summarySetupCostINR">N/A</span>)</p>
+    <p>GST @ 18%: <span id="summaryGST">N/A</span> (<span id="summaryGSTINR">N/A</span>)</p>
+    <p>1st Month Price: <span id="firstMonthPrice">N/A</span> (<span id="firstMonthPriceINR">N/A</span>)</p>
+    <p>Monthly Price Thereafter: <span id="monthlyPrice">N/A</span> (<span id="monthlyPriceINR">N/A</span>)</p>
+    <p>First Name: <span id="summaryFName">N/A</span></p>
+    <p>Last Name: <span id="summaryLName">N/A</span></p>
+    <p>Email: <span id="summaryEmail">N/A</span></p>
+    <button id="payNow">Proceed to Pay</button>
+    <button id="showImageButton">Show UPI QR Code</button>
 
     <!-- Popup container -->
     <div id="popup">
@@ -669,104 +672,138 @@ footer {
             }
         });
         document.addEventListener('DOMContentLoaded', () => {
-    const planName = localStorage.getItem('selectedPlanName') || 'N/A';
-    const planPrice = parseInt(localStorage.getItem('selectedPlanPrice')) || 0;
-    
-    // Utility function to format numbers with commas
-    function formatCurrency(value, currency = 'USD') {
-        return new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: currency,
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        }).format(value);
-    }
-    
-    // Function to fetch real-time exchange rate
-    async function fetchExchangeRate() {
-        try {
-            const response = await fetch('https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_z5jA5hIjXCa995n0QW2ThrDKZcQSI1guSKFU0vfA');
-            const data = await response.json();
-            return data.data.INR;
-        } catch (error) {
-            console.error('Error fetching exchange rate:', error);
-            return 86.00;
-        }
-    }
-
-    // Initialize form and summary values
-    document.getElementById('planType').value = planName;
-    document.getElementById('summaryPlan').innerText = planName;
-    document.getElementById('summaryPricePerMonth').innerText = formatCurrency(planPrice);
-
-    const form = document.getElementById('cartForm');
-    const durationInput = document.getElementById('durationNumber');
-
-    // Confirm button logic
-    document.getElementById('confirm').addEventListener('click', async () => {
-        const duration = parseInt(durationInput.value) || 1;
-        const totalPriceUSD = duration * planPrice;
+        const planName = localStorage.getItem('selectedPlanName') || 'N/A';
+        const planPrice = parseInt(localStorage.getItem('selectedPlanPrice')) || 0;
         
-        // Fetch current exchange rate
-        const exchangeRate = await fetchExchangeRate();
-        const totalPriceINR = Math.round(totalPriceUSD * exchangeRate);
-
-        // Validate inputs
-        const fName = document.getElementById('fName').value.trim();
-        const lName = document.getElementById('lName').value.trim();
-        const email = document.getElementById('email').value.trim();
-
-        if (!fName || !lName || !email || !durationInput.value) {
-            alert("Please fill all fields correctly.");
-            return;
+        function formatCurrency(value, currency = 'USD') {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: currency,
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(value);
         }
-
-        // Update summary section
-        document.getElementById('summaryDuration').innerText = `${duration} Month(s)`;
-        document.getElementById('summaryTotalPrice').innerText = `${formatCurrency(totalPriceUSD)} (${formatCurrency(totalPriceINR, 'INR')})`;
-    });
-
-    // Payment button logic
-    document.getElementById('payNow').addEventListener('click', async () => {
-        // Extract USD price from the text
-        const summaryPriceText = document.getElementById('summaryTotalPrice').innerText;
-        const totalPriceUSD = parseFloat(summaryPriceText.match(/\$([0-9,]+(\.\d+)?)/)[1].replace(/,/g, '')) || 0;
         
-        // Fetch current exchange rate
-        const exchangeRate = await fetchExchangeRate();
-        const totalPriceINR = Math.round(totalPriceUSD * exchangeRate);
-
-        if (totalPriceUSD <= 0) {
-            alert("Please confirm details first.");
-            return;
+        async function fetchExchangeRate() {
+            try {
+                const response = await fetch('https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_z5jA5hIjXCa995n0QW2ThrDKZcQSI1guSKFU0vfA');
+                const data = await response.json();
+                return data.data.INR;
+            } catch (error) {
+                console.error('Error fetching exchange rate:', error);
+                return 86.00; // Fallback exchange rate
+            }
         }
 
-        const options = {
-            key: "rzp_test_4J8BcVyfdZbPcT", // Your Razorpay Key
-            amount: totalPriceINR * 100, // Razorpay expects amount in paisa
-            currency: "INR",
-            name: planName,
-            description: "Purchase of plan",
-            handler: function (response) {
-                alert(`Payment Successful!\nPayment ID: ${response.razorpay_payment_id}`);
-            },
-            prefill: {
-                name: document.getElementById('summaryFName').innerText + " " + document.getElementById('summaryLName').innerText,
-                email: document.getElementById('summaryEmail').innerText,
-            },
-            theme: {
-                color: "#004080",
-            },
+        document.getElementById('planType').value = planName;
+        document.getElementById('summaryPlan').innerText = planName;
+
+        const updatePrices = async () => {
+            const exchangeRate = await fetchExchangeRate();
+            
+            // Base monthly price
+            const monthlyPriceUSD = planPrice;
+            const monthlyPriceINR = monthlyPriceUSD * exchangeRate;
+            
+            // Setup cost (10%)
+            const setupCostUSD = monthlyPriceUSD * 0.10;
+            const setupCostINR = setupCostUSD * exchangeRate;
+            
+            // GST (18%)
+            const gstUSD = (monthlyPriceUSD + setupCostUSD) * 0.18;
+            const gstINR = gstUSD * exchangeRate;
+            
+            // First month total (monthly price + setup + GST)
+            const firstMonthUSD = monthlyPriceUSD + setupCostUSD + gstUSD;
+            const firstMonthINR = firstMonthUSD * exchangeRate;
+            
+            // Regular monthly price (monthly price + GST)
+            const regularMonthlyUSD = monthlyPriceUSD + (monthlyPriceUSD * 0.18);
+            const regularMonthlyINR = regularMonthlyUSD * exchangeRate;
+            
+            // Update all display elements
+            document.getElementById('summaryPricePerMonth').innerText = formatCurrency(monthlyPriceUSD);
+            document.getElementById('summaryPricePerMonthINR').innerText = formatCurrency(monthlyPriceINR, 'INR');
+            
+            document.getElementById('summarySetupCost').innerText = formatCurrency(setupCostUSD);
+            document.getElementById('summarySetupCostINR').innerText = formatCurrency(setupCostINR, 'INR');
+            
+            document.getElementById('summaryGST').innerText = formatCurrency(gstUSD);
+            document.getElementById('summaryGSTINR').innerText = formatCurrency(gstINR, 'INR');
+            
+            document.getElementById('firstMonthPrice').innerText = formatCurrency(firstMonthUSD);
+            document.getElementById('firstMonthPriceINR').innerText = formatCurrency(firstMonthINR, 'INR');
+            
+            document.getElementById('monthlyPrice').innerText = formatCurrency(regularMonthlyUSD);
+            document.getElementById('monthlyPriceINR').innerText = formatCurrency(regularMonthlyINR, 'INR');
         };
 
-        const rzp = new Razorpay(options);
-        rzp.open();
+        // Call updatePrices immediately to show initial values
+        updatePrices();
 
-        rzp.on('payment.failed', function (response) {
-            alert(`Payment Failed!\nReason: ${response.error.description}`);
+        // Confirm button logic
+        document.getElementById('confirm').addEventListener('click', async () => {
+            const duration = parseInt(document.getElementById('durationNumber').value) || 1;
+            
+            // Validate inputs
+            const fName = document.getElementById('fName').value.trim();
+            const lName = document.getElementById('lName').value.trim();
+            const email = document.getElementById('email').value.trim();
+
+            if (!fName || !lName || !email || !duration) {
+                alert("Please fill all fields correctly.");
+                return;
+            }
+
+            // Update summary details
+            document.getElementById('summaryDuration').innerText = `${duration} Month(s)`;
+            document.getElementById('summaryFName').innerText = fName;
+            document.getElementById('summaryLName').innerText = lName;
+            document.getElementById('summaryEmail').innerText = email;
+            
+            // Update all prices
+            await updatePrices();
+        });
+
+        // Payment button logic - Update to use first month price
+        document.getElementById('payNow').addEventListener('click', async () => {
+            const firstMonthPriceText = document.getElementById('firstMonthPrice').innerText;
+            const firstMonthPriceUSD = parseFloat(firstMonthPriceText.match(/\$([0-9,]+(\.\d+)?)/)[1].replace(/,/g, '')) || 0;
+            
+            const exchangeRate = await fetchExchangeRate();
+            const firstMonthPriceINR = Math.round(firstMonthPriceUSD * exchangeRate);
+
+            if (firstMonthPriceUSD <= 0) {
+                alert("Please confirm details first.");
+                return;
+            }
+
+            const options = {
+                key: "rzp_test_4J8BcVyfdZbPcT",
+                amount: firstMonthPriceINR * 100,
+                currency: "INR",
+                name: planName,
+                description: "Purchase of plan",
+                handler: function (response) {
+                    alert(`Payment Successful!\nPayment ID: ${response.razorpay_payment_id}`);
+                },
+                prefill: {
+                    name: document.getElementById('summaryFName').innerText + " " + document.getElementById('summaryLName').innerText,
+                    email: document.getElementById('summaryEmail').innerText,
+                },
+                theme: {
+                    color: "#004080",
+                },
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.open();
+
+            rzp.on('payment.failed', function (response) {
+                alert(`Payment Failed!\nReason: ${response.error.description}`);
+            });
         });
     });
-});
     </script>
 
     <footer>
