@@ -660,14 +660,9 @@ footer {
 
     <script>
         function selectPlan(planName) {
-    // Special handling for Flex plan
-    if (planName === 'Flex') {
-        window.location.href = 'Carts_hour.html';
-        return;
-    }
-    
     let price;
     let hours;
+    let targetPage = 'carts.html';
     
     switch(planName) {
         case 'Focus':
@@ -694,17 +689,24 @@ footer {
             price = 200;
             hours = 20;
             break;
+        case 'Flex':
+            price = 15;
+            hours = 1;
+            targetPage = 'Carts_hour.html';  // Different page for Flex plan
+            break;
         default:
             console.error('Invalid plan selected');
             return;
     }
 
+    // Store the plan details regardless of the plan type
     localStorage.setItem('selectedPlanName', planName);
     localStorage.setItem('selectedPlanPrice', price);
     localStorage.setItem('selectedPlanHours', hours);
     localStorage.setItem('currency', 'USD');
 
-    window.location.href = 'carts.html';
+    // Redirect to the appropriate page
+    window.location.href = targetPage;
 }
     </script>
 
