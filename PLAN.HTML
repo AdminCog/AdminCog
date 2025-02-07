@@ -660,50 +660,52 @@ footer {
 
     <script>
         function selectPlan(planName) {
-            let price;
-            let hours;
-            
-            switch(planName) {
-                case 'Focus':
-                    price = 1120;
-                    hours = 160;
-                    break;
-                case 'Prime':
-                    price = 900;
-                    hours = 120;
-                    break;
-                case 'Power':
-                    price = 640;
-                    hours = 80;
-                    break;
-                case 'Boost':
-                    price = 510;
-                    hours = 60;
-                    break;
-                case 'Essentials':
-                    price = 360;
-                    hours = 40;
-                    break;
-                case 'Starter':
-                    price = 200;
-                    hours = 20;
-                    break;
-                case 'Flex':
-                    price = 15;
-                    hours = 1;
-                    break;
-                default:
-                    console.error('Invalid plan selected');
-                    return;
-            }
+    // Special handling for Flex plan
+    if (planName === 'Flex') {
+        window.location.href = 'Carts_hour.html';
+        return;
+    }
+    
+    let price;
+    let hours;
+    
+    switch(planName) {
+        case 'Focus':
+            price = 1120;
+            hours = 160;
+            break;
+        case 'Prime':
+            price = 900;
+            hours = 120;
+            break;
+        case 'Power':
+            price = 640;
+            hours = 80;
+            break;
+        case 'Boost':
+            price = 510;
+            hours = 60;
+            break;
+        case 'Essentials':
+            price = 360;
+            hours = 40;
+            break;
+        case 'Starter':
+            price = 200;
+            hours = 20;
+            break;
+        default:
+            console.error('Invalid plan selected');
+            return;
+    }
 
-            localStorage.setItem('selectedPlanName', planName);
-            localStorage.setItem('selectedPlanPrice', price);
-            localStorage.setItem('selectedPlanHours', hours);
-            localStorage.setItem('currency', 'USD');
+    localStorage.setItem('selectedPlanName', planName);
+    localStorage.setItem('selectedPlanPrice', price);
+    localStorage.setItem('selectedPlanHours', hours);
+    localStorage.setItem('currency', 'USD');
 
-            window.location.href = 'carts.html';
-        }
+    window.location.href = 'carts.html';
+}
     </script>
 
 <footer>
