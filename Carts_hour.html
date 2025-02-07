@@ -817,7 +817,7 @@ select {
             const exchangeRate = await fetchExchangeRate();
             
             // Base monthly price
-            const monthlyPriceUSD = planPrice * summaryDuration;
+            const monthlyPriceUSD = planPrice;
             const monthlyPriceINR = monthlyPriceUSD * exchangeRate;
             
             // Setup cost (10%)
