@@ -609,7 +609,218 @@ footer {
     font-weight: 500;
 }
 
-        
+/* Modernized Contact Form Styles */
+.contact-us {
+    padding: 60px;
+    background-color: #003366;
+    color: white;
+    text-align: center;
+}
+
+.contact-us h2 {
+    font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.contact-us h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: #007bff;
+    border-radius: 2px;
+    animation: widthGrow 0.5s ease forwards;
+}
+
+.contact-form {
+    max-width: 750px;
+    margin: 0 auto;
+    background-color: #003366;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.contact-form .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.contact-form .form-group {
+    flex: 0 0 48%;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-form .form-group.full-width {
+    flex: 0 0 100%;
+}
+
+.contact-form label {
+    display: block;
+    font-size: 0.9rem;
+    color: white;
+    margin-bottom: 8px;
+    transition: transform 0.3s ease;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(249, 249, 249, 0.9);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.contact-form input:focus + label,
+.contact-form textarea:focus + label {
+    transform: translateY(-2px);
+    color: #007bff;
+}
+
+.contact-form textarea {
+    resize: none;
+}
+
+.submit-button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 42%;
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+.submit-button:active {
+    transform: translateY(0);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes widthGrow {
+    from {
+        width: 0;
+    }
+    to {
+        width: 60px;
+    }
+}
+
+/* Form validation styling */
+.contact-form input:invalid:not(:placeholder-shown),
+.contact-form textarea:invalid:not(:placeholder-shown) {
+    border-color: #dc3545;
+}
+
+.contact-form input:valid:not(:placeholder-shown),
+.contact-form textarea:valid:not(:placeholder-shown) {
+    border-color: #28a745;
+}
+
+/* Maintain existing responsive breakpoints */
+@media (max-width: 768px) {
+    .contact-us {
+        padding: 40px;
+    }
+    .contact-us h2 {
+        font-size: 2rem;
+        margin-bottom: 25px;
+    }
+    .contact-form {
+        padding: 30px;
+    }
+    .contact-form .form-group {
+        flex: 0 0 100%;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 425px) {
+    .contact-us {
+        padding: 30px;
+    }
+    .contact-us h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+    .contact-form {
+        padding: 20px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 0.9rem;
+    }
+    .submit-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 375px) {
+    .contact-us {
+        padding: 20px;
+    }
+    .contact-us h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    .contact-form {
+        padding: 15px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 0.85rem;
+    }
+    .submit-button {
+        padding: 8px 18px;
+        font-size: 0.85rem;
+    }
+}        
     </style>
 </head>
 <body>
