@@ -443,6 +443,7 @@ p {
     text-transform: uppercase;
     letter-spacing: 2px;
     position: relative;
+    text-align: center;
 }
 
 .contact-us h2::after {
