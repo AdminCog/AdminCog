@@ -717,6 +717,7 @@ footer {
     font-size: 0.9rem;
     color: #bbb; /* Lighter color for copyright text */
     margin-top: 20px; /* Add space above copyright */
+    text-algin: center;
 }
 
 .footer-copyright p {
