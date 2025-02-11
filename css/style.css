@@ -706,7 +706,6 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     color: #fff;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-left: 40%;
     position: relative;
 }
 
@@ -798,7 +797,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-left: 40%;
+    margin-left: 50%;
     position: relative;
     overflow: hidden;
 }
