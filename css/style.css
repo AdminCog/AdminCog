@@ -627,7 +627,6 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .slides img {
     width: 100%;
     height: auto;
-    border-radius: 10px;
     object-fit: cover; /* Ensures images cover the area properly */
 }
 
@@ -739,6 +738,11 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 /* Media query for very small screens */
 @media (max-width: 480px) {
+    .slides img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Ensures images cover the area properly */
+    }
     .text-box {
         width: 90%;
         padding: 12px;
