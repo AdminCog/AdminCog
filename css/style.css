@@ -719,8 +719,8 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     }
     
     .text-box {
-        width: 85%;
-        padding: 20px;
+        width: 80%;
+        padding: 15px;
         /* Add fallback position for mobile */
         position: absolute;
         top: 50%;
