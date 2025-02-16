@@ -605,28 +605,30 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 }
 
 
+/* Image Slideshow - Improved Mobile Responsiveness */
 .image-slideshow {
     position: relative;
     width: 100%;
-    margin: 0 auto;
-    overflow: hidden; /* Hide overflowing content */
+    margin: 30px auto;
+    overflow: hidden;
 }
 
 .slideshow-container {
     position: relative;
-    width: 100%; /* Ensure the container takes full width */
+    width: 100%;
 }
 
 .slides {
-    display: none; /* Hide slides by default */
+    display: none;
     position: relative;
-    width: 100%; /* Ensure each slide takes full width */
+    width: 100%;
 }
 
 .slides img {
     width: 100%;
     height: auto;
-    border-radius: 10px; /* Rounded corners for images */
+    border-radius: 10px;
+    object-fit: cover; /* Ensures images cover the area properly */
 }
 
 .text-box {
@@ -634,27 +636,27 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 1); /* Slightly transparent background */
-    color: rgb(0, 0, 0);
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #000;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    width: 80%; /* Adjusted width for better fit */
-    max-width: 600px; /* Optional: set a max-width to prevent it from being too wide */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .text-box p {
-    font-size: 20px; /* Increased font size for better visibility */
+    font-size: 20px;
     margin-bottom: 10px;
     font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     color: #003366;
 }
 
 .text-box h3 {
-    font-size: 16px; /* Adjusted font size */
+    font-size: 16px;
     font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
-    color: #333; /* Darker text color for better readability */
+    color: #333;
 }
 
 /* Next and previous buttons */
@@ -665,18 +667,19 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     width: auto;
     padding: 16px;
     margin-top: -22px;
-    color: rgb(0, 0, 0); /* Changed text color for contrast */
+    color: #000;
     font-weight: bold;
     font-size: 35px;
-    transition: background-color 0.6s ease, transform 0.3s ease; /* Smooth transition */
+    transition: background-color 0.6s ease, transform 0.3s ease;
     border-radius: 3px;
     user-select: none;
-    background-color: rgba(255, 255, 255, 0); /* Semi-transparent background */
+    background-color: rgba(255, 255, 255, 0);
+    z-index: 10; /* Ensure buttons are above the content */
 }
 
 .prev:hover, .next:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Darker background on hover */
-    transform: scale(1.1); /* Slightly enlarge button on hover */
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
 }
 
 .next {
@@ -696,38 +699,60 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 }
 
 .active, .dot:hover {
-    background-color: #717171; /* Active dot color */
+    background-color: #717171;
 }
 
 /* Media query for screens smaller than 768px */
 @media (max-width: 768px) {
     .text-box {
-        width: 90%; /* More flexible width for small screens */
+        width: 85%;
         padding: 15px;
+        top: 50%;
     }
 
     .text-box h3 {
-        font-size: 16px; /* Reduced font size for smaller screens */
-        font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+        font-size: 14px;
     }
 
     .text-box p {
-        font-size: 14px; /* Adjusted font size for better readability */
-        font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+        font-size: 18px;
+        margin-bottom: 8px;
     }
 
-    /* Reduce the size of the navigation buttons */
     .prev, .next {
-        font-size: 24px; /* Smaller button size */
-        padding: 10px;
+        font-size: 24px;
+        padding: 8px;
+        background-color: rgba(255, 255, 255, 0.2); /* More visible on mobile */
     }
 
     .dot {
-        height: 10px; /* Smaller dots */
+        height: 10px;
         width: 10px;
+        margin: 0 4px; /* Slightly more spacing for easier tapping */
     }
 }
 
+/* Media query for very small screens */
+@media (max-width: 480px) {
+    .text-box {
+        width: 90%;
+        padding: 12px;
+    }
+
+    .text-box h3 {
+        font-size: 12px;
+    }
+
+    .text-box p {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .prev, .next {
+        font-size: 20px;
+        padding: 6px;
+    }
+}
 
 
 /* Modernized Contact Form Styles */
