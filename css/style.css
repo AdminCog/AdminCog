@@ -605,12 +605,15 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 }
 
 
-/* Image Slideshow - Improved Mobile Responsiveness with Enlarged Height */
+/* Creative Mobile-First Slideshow Redesign */
+
 .image-slideshow {
     position: relative;
     width: 100%;
-    margin: 30px auto;
+    margin: 40px auto;
     overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
 .slideshow-container {
@@ -627,7 +630,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .slides img {
     width: 100%;
     height: auto;
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0;
     object-fit: cover;
 }
 
@@ -636,27 +639,30 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.95);
     color: #000;
-    padding: 20px;
+    padding: 25px;
     border-radius: 10px;
     text-align: center;
-    width: 80%;
+    width: 75%;
     max-width: 600px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
 .text-box p {
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: 22px;
+    margin-bottom: 12px;
     font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     color: #003366;
+    transition: all 0.3s ease;
 }
 
 .text-box h3 {
     font-size: 16px;
     font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
     color: #333;
+    transition: all 0.3s ease;
 }
 
 /* Next and previous buttons */
@@ -670,126 +676,146 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     color: #000;
     font-weight: bold;
     font-size: 35px;
-    transition: background-color 0.6s ease, transform 0.3s ease;
-    border-radius: 3px;
+    transition: all 0.3s ease;
+    border-radius: 50%;
     user-select: none;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0.7);
     z-index: 10;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.prev:hover, .next:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: scale(1.1);
+.prev {
+    left: 20px;
 }
 
 .next {
-    right: 0;
+    right: 20px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.1);
 }
 
 /* The dots/circles */
+.dots-container {
+    text-align: center;
+    padding: 15px 0;
+    background-color: #fff;
+    border-radius: 0 0 10px 10px;
+}
+
 .dot {
     cursor: pointer;
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
+    height: 12px;
+    width: 12px;
+    margin: 0 5px;
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
-    transition: background-color 0.6s ease;
+    transition: all 0.3s ease;
 }
 
 .active, .dot:hover {
-    background-color: #717171;
+    background-color: #003366;
+    transform: scale(1.2);
 }
 
-/* Media query for screens smaller than 768px */
+/* Responsive redesign for mobile - stacked layout */
 @media (max-width: 768px) {
     .image-slideshow {
-        min-height: 450px; /* Set minimum height for the slideshow container */
+        display: flex;
+        flex-direction: column;
+        margin: 30px 15px;
     }
     
     .slideshow-container {
-        min-height: 400px; /* Ensure container has enough height */
-    }
-    
-    .slides {
-        min-height: 400px; /* Ensure slides have enough height */
+        order: 1;
+        height: 300px;
     }
     
     .slides img {
-        min-height: 400px; /* Minimum height for the image */
-        object-position: center; /* Center the image */
+        height: 300px;
+        border-radius: 10px 10px 0 0;
     }
     
     .text-box {
-        width: 85%;
-        padding: 20px 15px;
-        top: 50%;
-        max-height: 80%; /* Limit maximum height */
-        overflow-y: auto; /* Add scroll if needed */
+        position: relative;
+        order: 2;
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 0 0 10px 10px;
+        padding: 25px 20px;
+        background-color: #fff;
+        box-shadow: none;
     }
-
+    
+    .text-box p {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    
     .text-box h3 {
         font-size: 14px;
-        margin-bottom: 5px;
     }
-
-    .text-box p {
-        font-size: 18px;
-        margin-bottom: 8px;
-    }
-
+    
     .prev, .next {
-        font-size: 24px;
-        padding: 8px;
-        background-color: rgba(255, 255, 255, 0.2);
+        top: 150px;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
     }
-
-    .dot {
-        height: 10px;
-        width: 10px;
-        margin: 0 4px;
+    
+    .prev {
+        left: 10px;
+    }
+    
+    .next {
+        right: 10px;
+    }
+    
+    .dots-container {
+        order: 3;
+        padding: 10px 0;
+        background-color: #f9f9f9;
     }
 }
 
-/* Media query for very small screens */
+/* Further optimizations for very small screens */
 @media (max-width: 480px) {
-    .image-slideshow {
-        min-height: 500px; /* Increased minimum height for smaller screens */
-    }
-    
     .slideshow-container {
-        min-height: 450px; /* Increased for smaller screens */
-    }
-    
-    .slides {
-        min-height: 450px; /* Increased for smaller screens */
+        height: 250px;
     }
     
     .slides img {
-        min-height: 450px; /* Increased for smaller screens */
+        height: 250px;
     }
     
     .text-box {
-        width: 90%;
-        padding: 15px 12px;
-        max-height: 85%; /* Slightly larger max height */
+        padding: 20px 15px;
     }
-
-    .text-box h3 {
-        font-size: 12px;
-        line-height: 1.4;
-    }
-
+    
     .text-box p {
-        font-size: 16px;
-        line-height: 1.3;
-        margin-bottom: 5px;
+        font-size: 18px;
     }
-
+    
+    .text-box h3 {
+        font-size: 13px;
+    }
+    
     .prev, .next {
-        font-size: 20px;
-        padding: 6px;
+        top: 125px;
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
     }
 }
 
