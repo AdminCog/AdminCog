@@ -330,7 +330,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     height: 60vh;
     max-height: 60vh; /* Limit image height on mobile */
     object-fit: cover;
-    object-position: 100% 50%;
+    object-position: 50% 50%;
     display: block;
   }
   
