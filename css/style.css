@@ -607,13 +607,12 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 /* Creative Mobile-First Slideshow Redesign */
 
+/* Fixed Slideshow CSS - Ensures content appears properly */
 .image-slideshow {
     position: relative;
     width: 100%;
-    margin: 40px auto;
+    margin: 0 auto;
     overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
 .slideshow-container {
@@ -622,15 +621,21 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 }
 
 .slides {
-    display: none;
+    display: none; /* Will be shown by JavaScript */
     position: relative;
     width: 100%;
+}
+
+/* Make first slide visible by default if JS fails */
+.slides:first-child {
+    display: block;
 }
 
 .slides img {
     width: 100%;
     height: auto;
-    border-radius: 10px 10px 0 0;
+    max-height: 600px; /* Limit maximum height on desktop */
+    border-radius: 10px;
     object-fit: cover;
 }
 
@@ -641,28 +646,25 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     transform: translate(-50%, -50%);
     background-color: rgba(255, 255, 255, 0.95);
     color: #000;
-    padding: 25px;
+    padding: 20px;
     border-radius: 10px;
     text-align: center;
-    width: 75%;
+    width: 80%;
     max-width: 600px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
 }
 
 .text-box p {
-    font-size: 22px;
-    margin-bottom: 12px;
+    font-size: 20px;
+    margin-bottom: 10px;
     font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     color: #003366;
-    transition: all 0.3s ease;
 }
 
 .text-box h3 {
     font-size: 16px;
     font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
     color: #333;
-    transition: all 0.3s ease;
 }
 
 /* Next and previous buttons */
@@ -676,146 +678,101 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     color: #000;
     font-weight: bold;
     font-size: 35px;
-    transition: all 0.3s ease;
-    border-radius: 50%;
+    transition: 0.3s ease;
+    border-radius: 3px;
     user-select: none;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.5);
     z-index: 10;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .prev {
-    left: 20px;
+    left: 10px;
 }
 
 .next {
-    right: 20px;
+    right: 10px;
 }
 
 .prev:hover, .next:hover {
-    background-color: rgba(255, 255, 255, 0.9);
-    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 /* The dots/circles */
-.dots-container {
-    text-align: center;
-    padding: 15px 0;
-    background-color: #fff;
-    border-radius: 0 0 10px 10px;
-}
-
 .dot {
     cursor: pointer;
-    height: 12px;
-    width: 12px;
+    height: 15px;
+    width: 15px;
     margin: 0 5px;
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;
-    transition: all 0.3s ease;
+    transition: 0.3s ease;
 }
 
 .active, .dot:hover {
-    background-color: #003366;
-    transform: scale(1.2);
+    background-color: #717171;
 }
 
-/* Responsive redesign for mobile - stacked layout */
+/* Mobile-specific adjustments */
 @media (max-width: 768px) {
-    .image-slideshow {
-        display: flex;
-        flex-direction: column;
-        margin: 30px 15px;
-    }
-    
-    .slideshow-container {
-        order: 1;
-        height: 300px;
-    }
-    
     .slides img {
-        height: 300px;
-        border-radius: 10px 10px 0 0;
+        min-height: 300px; /* Ensure minimum height on mobile */
+        max-height: none; /* Remove max height constraint on mobile */
     }
     
     .text-box {
-        position: relative;
-        order: 2;
-        top: 0;
-        left: 0;
-        transform: none;
-        width: 100%;
-        max-width: 100%;
-        border-radius: 0 0 10px 10px;
-        padding: 25px 20px;
-        background-color: #fff;
-        box-shadow: none;
+        width: 85%;
+        padding: 15px;
+        /* Add fallback position for mobile */
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
-    
+
     .text-box p {
-        font-size: 20px;
-        margin-bottom: 10px;
+        font-size: 16px;
+        margin-bottom: 5px;
     }
-    
+
     .text-box h3 {
         font-size: 14px;
     }
-    
+
     .prev, .next {
-        top: 150px;
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
+        font-size: 24px;
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.7); /* More visible on mobile */
     }
     
-    .prev {
-        left: 10px;
-    }
-    
-    .next {
-        right: 10px;
-    }
-    
-    .dots-container {
-        order: 3;
-        padding: 10px 0;
-        background-color: #f9f9f9;
+    .dot {
+        height: 12px;
+        width: 12px;
+        margin: 0 4px;
     }
 }
 
-/* Further optimizations for very small screens */
+/* Smallest screens */
 @media (max-width: 480px) {
-    .slideshow-container {
-        height: 250px;
-    }
-    
     .slides img {
-        height: 250px;
+        min-height: 250px;
     }
     
     .text-box {
-        padding: 20px 15px;
+        width: 90%;
+        padding: 12px;
     }
     
     .text-box p {
-        font-size: 18px;
+        font-size: 14px;
     }
     
     .text-box h3 {
-        font-size: 13px;
+        font-size: 12px;
     }
     
     .prev, .next {
-        top: 125px;
-        width: 35px;
-        height: 35px;
-        font-size: 18px;
+        font-size: 20px;
+        padding: 8px;
     }
 }
 
