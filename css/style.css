@@ -720,7 +720,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     
     .text-box {
         width: 85%;
-        padding: 15px;
+        padding: 20px;
         /* Add fallback position for mobile */
         position: absolute;
         top: 50%;
