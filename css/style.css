@@ -705,7 +705,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 @media (max-width: 768px) {
     .slides img {
     width: 100%;
-    height: auto;
+    height: 90vh;
     object-fit: cover; /* Ensures images cover the area properly */
     }
     .text-box {
