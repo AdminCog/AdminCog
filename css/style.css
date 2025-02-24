@@ -329,7 +329,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   border-radius: 0px;
   transition: background-color 0.3s ease;
   margin-top: 0px;
-  align-self: right; /* Align button to the right */
+  align-self: flex-end; /* Align button to the right */
 }
 
 .cta-button:hover {
