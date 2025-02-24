@@ -634,7 +634,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .slides img {
     width: 100%;
     height: auto;
-    max-height: 600px; /* Limit maximum height on desktop */
+    max-height: 800px; /* Limit maximum height on desktop */
     object-fit: cover;
 }
 
@@ -654,7 +654,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 }
 
 .text-box p {
-    font-size: 20px;
+    font-size: 26px;
     margin-bottom: 10px;
     font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     color: #003366;
