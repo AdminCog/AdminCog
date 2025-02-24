@@ -665,7 +665,6 @@ footer {
     font-size: 1rem; /* Adjusted font size */
     color: #ccc; /* Light gray color for the text */
     font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
-    text-align: center;
 }
 
 .footer-info p a {
@@ -715,12 +714,10 @@ footer {
     font-size: 0.9rem;
     color: #bbb; /* Lighter color for copyright text */
     margin-top: 20px; /* Add space above copyright */
-    text-algin: center;
 }
 
 .footer-copyright p {
     margin: 0;
-    text-algin: center;
 }
 
 /* Responsive Styles */
@@ -738,7 +735,6 @@ footer {
         font-size: 0.85rem; /* Slightly smaller copyright text */
     }
 }
-
 
 
 
