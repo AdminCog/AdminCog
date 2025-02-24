@@ -957,7 +957,7 @@ p {
   background-color: #333333;
   color: #ffffff;
   padding: 10px 10px; /* Reduced padding for a smaller button */
-  font-size: 1rem; /* Reduced font size */
+  font-size: 0.75rem; /* Reduced font size */
   border-radius: 6px; /* Slightly rounded corners */
   transition: background-color 0.3s ease, transform 0.2s ease;
   text-transform: uppercase;
