@@ -246,7 +246,6 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 /* Hero Image */
 .hero-image {
-  border-radius: 10px;
   max-width: 965px;
   max-height: 260px;
   opacity: 0;
@@ -257,8 +256,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 /* Text Content Section */
 .content-section {
-  padding: 50px 20px; /* Adjusted padding for top/bottom and sides */
-  max-width: 800px; /* Constrain the width for a centered look */
+  max-width: 965px; /* Constrain the width for a centered look */
   margin: 0 auto; /* Center align the section */
   background-color: #fff;
   font-family: "Oswald", serif;
