@@ -665,7 +665,7 @@ footer {
     font-size: 1rem; /* Adjusted font size */
     color: #ccc; /* Light gray color for the text */
     font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
-    font-align: center;
+    text-align: center;
 }
 
 .footer-info p a {
