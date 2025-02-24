@@ -247,8 +247,8 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 /* Hero Image */
 .hero-image {
   border-radius: 10px;
-  max-width: 100%;
-  height: auto;
+  max-width: 965px;
+  max-height: 260px;
   opacity: 0;
   transform: translateY(50px);
   animation: slideIn 1s forwards ease-out;
