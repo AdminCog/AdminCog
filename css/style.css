@@ -492,7 +492,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 /* Heading Styling */
 .va-services h1 {
-    font-size: 50px;
+    font-size: 55px;
     margin-bottom: 15px;
     font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     font-weight: 500;
@@ -504,7 +504,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 /* Paragraph Styling */
 .va-services p {
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.8;
     max-width: 79%;
     color: #ffffff;
@@ -540,14 +540,14 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 .service-card h3 {
     color: #003366;
-    font-size: 25px;
+    font-size: 28px;
     margin-bottom: 10px;
     font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     font-weight: 500;
 }
 
 .service-card p {
-    font-size: 18px;
+    font-size: 16px;
     color: #333;
     margin-bottom: 15px;
     font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
@@ -628,7 +628,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 }
 
 .cta-box h2 {
-    font-size: 50px;
+    font-size: 55px;
     margin-bottom: 20px;
     color: #000080;
     text-align: left; /* Align text to the left */
@@ -639,7 +639,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 }
 
 .cta-box p {
-    font-size: 18px;
+    font-size: 15px;
     margin-bottom: 60px; /* Add margin to create space above the button */
     color: #333;
     text-align: left; /* Align text to the left */
