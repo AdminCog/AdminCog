@@ -1142,3 +1142,140 @@ footer {
         font-size: 0.85rem; /* Slightly smaller copyright text */
     }
 }
+
+/* Animation for headings and other elements */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero section elements fade in */
+.hero-text h1 {
+  animation: fadeIn 1.2s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.hero-text p {
+  animation: fadeIn 1.2s ease-out 0.6s forwards;
+  opacity: 0;
+}
+
+.hero-text .two-column-layout {
+  animation: fadeIn 1.2s ease-out 1s forwards;
+  opacity: 0;
+}
+
+.hero-text .cta-button {
+  animation: fadeIn 1.2s ease-out 1.4s forwards;
+  opacity: 0;
+}
+
+/* VA Services section fade in */
+.va-services h1 {
+  animation: fadeIn 1.2s ease-out forwards;
+  opacity: 0;
+}
+
+.va-services p {
+  animation: fadeIn 1.2s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+/* Service cards staggered fade in */
+.service-card {
+  opacity: 0;
+}
+
+.service-card:nth-child(1) {
+  animation: fadeIn 0.8s ease-out 0.1s forwards;
+}
+
+.service-card:nth-child(2) {
+  animation: fadeIn 0.8s ease-out 0.2s forwards;
+}
+
+.service-card:nth-child(3) {
+  animation: fadeIn 0.8s ease-out 0.3s forwards;
+}
+
+.service-card:nth-child(4) {
+  animation: fadeIn 0.8s ease-out 0.4s forwards;
+}
+
+.service-card:nth-child(5) {
+  animation: fadeIn 0.8s ease-out 0.5s forwards;
+}
+
+.service-card:nth-child(6) {
+  animation: fadeIn 0.8s ease-out 0.6s forwards;
+}
+
+/* CTA section fade in */
+.cta-box {
+  animation: fadeIn 1.2s ease-out forwards;
+  opacity: 0;
+}
+
+.cta-box h2 {
+  animation: fadeIn 1.2s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.cta-box p {
+  animation: fadeIn 1.2s ease-out 0.6s forwards;
+  opacity: 0;
+}
+
+.cta-box .cta-button {
+  animation: fadeIn 1.2s ease-out 0.9s forwards;
+  opacity: 0;
+}
+
+/* Slideshow smooth transitions */
+.prev, .next {
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+  opacity: 0.7;
+}
+
+.prev:hover, .next:hover {
+  opacity: 1;
+}
+
+/* Smooth slide transitions */
+.slides {
+  transition: opacity 0.8s ease-in-out;
+}
+
+/* Contact section fade in */
+.contact-us {
+  animation: fadeIn 1.2s ease-out forwards;
+  opacity: 0;
+}
+
+.contact-us h2 {
+  animation: fadeIn 1.2s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.contact-form {
+  animation: fadeIn 1.2s ease-out 0.6s forwards;
+  opacity: 0;
+}
+
+/* Intersection Observer for triggered animations */
+.fade-in-element {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
