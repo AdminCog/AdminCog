@@ -250,7 +250,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     top: 60%;
     right: 10%;
     width: 60%;
-    height: 400px;
+    height: auto;
     max-width: 800px;
     background-color: #F2F2F2;
     color: #333;
@@ -321,7 +321,9 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 /* CTA Button positioning below the text container */
 .cta-button {
-  display: inline-block;
+  display: block;
+  width: fit-content;
+  margin-left: auto;
   background-color: red;
   color: white;
   padding: 12px 24px;
@@ -329,7 +331,6 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   border-radius: 0px;
   transition: background-color 0.3s ease;
   margin-top: 0px;
-  align-self: flex-end; /* Align button to the right */
 }
 
 .cta-button:hover {
