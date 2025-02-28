@@ -724,6 +724,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     font-size: 16px;
     font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
     color: #333;
+    font-weight: 100;
 }
 
 /* Next and previous buttons */
