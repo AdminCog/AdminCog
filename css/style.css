@@ -324,7 +324,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   display: block;
   width: fit-content;
   margin-left: auto;
-  background-color: red;
+  background-color: #D41317;
   color: white;
   padding: 12px 24px;
   text-decoration: none;
