@@ -885,13 +885,54 @@ footer {
   animation: fadeIn 1.5s ease forwards;
 }
 
-/* Services list items with staggered delays */
+/* Enhanced Animation Keyframes for Services List */
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(40px);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.05) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Amplified Services List Animations */
+.services-list li {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: popIn 1.2s cubic-bezier(0.17, 0.84, 0.44, 1) forwards;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.services-list li:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+/* More pronounced staggered delays */
 .services-list li:nth-child(1) {
-  animation-delay: 0.7s;
+  animation-delay: 0.5s;
 }
 
 .services-list li:nth-child(2) {
-  animation-delay: 0.9s;
+  animation-delay: 0.8s;
 }
 
 .services-list li:nth-child(3) {
@@ -899,16 +940,77 @@ footer {
 }
 
 .services-list li:nth-child(4) {
-  animation-delay: 1.3s;
+  animation-delay: 1.4s;
 }
 
 .services-list li:nth-child(5) {
-  animation-delay: 1.5s;
+  animation-delay: 1.7s;
 }
 
 .services-list li:nth-child(6) {
-  animation-delay: 1.7s;
+  animation-delay: 2.0s;
 }
+
+/* Service item title animation */
+.services-list li h3 {
+  position: relative;
+  opacity: 0;
+  animation: fadeInSlide 1s ease forwards;
+  animation-delay: calc(0.5s + var(--delay) * 0.3s);
+  padding-left: 0;
+  transition: padding-left 0.3s ease;
+}
+
+.services-list li:nth-child(1) h3 { --delay: 1; }
+.services-list li:nth-child(2) h3 { --delay: 2; }
+.services-list li:nth-child(3) h3 { --delay: 3; }
+.services-list li:nth-child(4) h3 { --delay: 4; }
+.services-list li:nth-child(5) h3 { --delay: 5; }
+.services-list li:nth-child(6) h3 { --delay: 6; }
+
+/* Service item content animation */
+.services-list li p {
+  opacity: 0;
+  animation: fadeInSlide 1s ease forwards;
+  animation-delay: calc(0.7s + var(--delay) * 0.3s);
+}
+
+.services-list li:nth-child(1) p { --delay: 1; }
+.services-list li:nth-child(2) p { --delay: 2; }
+.services-list li:nth-child(3) p { --delay: 3; }
+.services-list li:nth-child(4) p { --delay: 4; }
+.services-list li:nth-child(5) p { --delay: 5; }
+.services-list li:nth-child(6) p { --delay: 6; }
+
+/* Add a colorful left border that animates in */
+.services-list li {
+  position: relative;
+  overflow: hidden;
+}
+
+.services-list li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 5px;
+  background: linear-gradient(to bottom, #2b3db7, #4682B4);
+  transform: translateX(-100%);
+  animation: slideInBorder 0.7s ease forwards;
+  animation-delay: calc(0.9s + var(--delay) * 0.3s);
+}
+
+@keyframes slideInBorder {
+  to { transform: translateX(0); }
+}
+
+.services-list li:nth-child(1)::before { --delay: 1; }
+.services-list li:nth-child(2)::before { --delay: 2; }
+.services-list li:nth-child(3)::before { --delay: 3; }
+.services-list li:nth-child(4)::before { --delay: 4; }
+.services-list li:nth-child(5)::before { --delay: 5; }
+.services-list li:nth-child(6)::before { --delay: 6; }
 
 /* Join Us Section Animations */
 .join-content {
