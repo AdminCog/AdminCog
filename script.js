@@ -95,3 +95,104 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+//BLUB
+document.addEventListener("DOMContentLoaded", function() {
+  // Create Intersection Observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      // Add animation class when element is visible
+      if (entry.isIntersecting) {
+        // Reset the animation by removing and re-adding the element to restart animations
+        const element = entry.target;
+        
+        // Get all animated children
+        const animatedElements = element.querySelectorAll('[class*="fadeIn"]');
+        animatedElements.forEach(el => {
+          // Reset the animation
+          el.style.animation = 'none';
+          el.offsetHeight; // Trigger reflow
+          el.style.animation = null;
+        });
+        
+        // Stop observing after it's been seen
+        observer.unobserve(element);
+      }
+    });
+  }, {
+    root: null, // viewport
+    threshold: 0.1, // trigger when 10% of the element is visible
+    rootMargin: "-50px" // slightly before it comes into view
+  });
+  
+  // Observe main sections
+  const sections = document.querySelectorAll('.hero, .services-section, .join-us, .contact-us');
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+  
+  // Additional animation when scrolling for services list items
+  function checkScroll() {
+    const serviceItems = document.querySelectorAll('.services-list li');
+    const joinSection = document.querySelector('.join-us');
+    const contactSection = document.querySelector('.contact-us');
+    
+    serviceItems.forEach((item, index) => {
+      const itemPosition = item.getBoundingClientRect().top;
+      const screenPosition = window.innerHeight / 1.3;
+      
+      if (itemPosition < screenPosition) {
+        item.style.opacity = "1";
+        item.style.transform = "translateY(0)";
+      }
+    });
+    
+    // Check for Join Us section
+    if (joinSection) {
+      const position = joinSection.getBoundingClientRect().top;
+      const screenPosition = window.innerHeight / 1.2;
+      
+      if (position < screenPosition) {
+        const elements = joinSection.querySelectorAll('h2, p, .join-button');
+        elements.forEach((el, index) => {
+          setTimeout(() => {
+            el.style.opacity = "1";
+            el.style.transform = "translateY(0)";
+          }, 200 * index);
+        });
+      }
+    }
+    
+    // Check for Contact Us section
+    if (contactSection) {
+      const position = contactSection.getBoundingClientRect().top;
+      const screenPosition = window.innerHeight / 1.2;
+      
+      if (position < screenPosition) {
+        const formRows = contactSection.querySelectorAll('.form-row');
+        formRows.forEach((row, index) => {
+          setTimeout(() => {
+            row.style.opacity = "1";
+            row.style.transform = "translateY(0)";
+          }, 200 * index);
+        });
+      }
+    }
+  }
+  
+  // Run on scroll
+  window.addEventListener('scroll', checkScroll);
+  
+  // Run once on page load
+  setTimeout(checkScroll, 500);
+});
+
+// Hamburger menu functionality (keeping this from original)
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('nav ul');
+
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('nav-active');
+    hamburger.classList.toggle('toggle');
+  });
+}
