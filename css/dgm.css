@@ -735,3 +735,95 @@ footer {
     padding: 30px 10px;
   }
 }
+/* Add these animation keyframes to your existing CSS */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add a general fade-in class that can be applied to elements */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.2s ease forwards;
+}
+
+/* Apply animations to specific elements with different delays */
+header {
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.logo {
+  opacity: 0;
+  animation: fadeIn 1s ease 0.2s forwards;
+}
+
+nav ul li {
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+  /* Will be set dynamically with JavaScript */
+}
+
+.digital-marketing-section {
+  opacity: 0;
+  animation: fadeIn 1.2s ease 0.4s forwards;
+}
+
+.left-content h1 {
+  opacity: 0;
+  animation: fadeIn 1s ease 0.6s forwards;
+}
+
+.left-content p {
+  opacity: 0;
+  animation: fadeIn 1s ease 0.8s forwards;
+}
+
+.left-content img {
+  opacity: 0;
+  animation: fadeIn 1.2s ease 1s forwards;
+}
+
+.service-item {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  /* Will be set dynamically with JavaScript */
+}
+
+#get-in-touch {
+  opacity: 0;
+  animation: fadeIn 1.2s ease 0.4s forwards;
+}
+
+.contact-us {
+  opacity: 0;
+  animation: fadeIn 1.2s ease 0.4s forwards;
+}
+
+.contact-form .form-group {
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+  /* Will be set dynamically with JavaScript */
+}
+
+.submit-button {
+  opacity: 0;
+  animation: fadeIn 1s ease 0.4s forwards;
+}
+
+footer {
+  opacity: 0;
+  animation: fadeIn 1.2s ease 0.4s forwards;
+}
+
+.footer-info, .footer-links, .footer-copyright {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  /* Will be set dynamically with JavaScript */
+}
