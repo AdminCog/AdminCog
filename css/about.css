@@ -270,7 +270,7 @@ h2,
 p {
   text-align: left; /* Align text to the left */
   font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
-  
+  font-weight: 100;
 }
 
 h1 {
@@ -302,6 +302,7 @@ p {
   color: #333;
   font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
   color: black;
+  font-weight: 100;
 }
 
 /* Social media icon */
@@ -368,6 +369,7 @@ p {
     line-height: 1.5;
     font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
     color: black;
+    font-weight:100;
   }
 
   .social-media {
@@ -415,6 +417,7 @@ p {
     font-size: 0.85rem;
     font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
     color: black;
+    font-weight: 100;
   }
 
   .social-media {
