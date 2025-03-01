@@ -723,7 +723,7 @@ footer {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(40px); /* Increased distance for more visible effect */
   }
   to {
     opacity: 1;
@@ -731,68 +731,42 @@ footer {
   }
 }
 
-/* Hero Section Animation */
-.hero-content {
-  animation: fadeIn 1.2s ease forwards;
+/* Initial state for elements before animation */
+.fade-element {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
 }
 
-/* Service List Animations */
-.section-title {
-  animation: fadeIn 1.2s ease forwards;
+/* State after animation is triggered */
+.fade-element.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.service-categories > li {
-  animation: fadeIn 1s ease forwards;
+/* Apply longer duration to service elements specifically */
+.service-list .section-title.fade-element,
+.service-categories > li.fade-element {
+  transition: opacity 1.5s ease, transform 1.5s ease; /* Slower for services */
 }
 
-/* Stagger the service categories */
+/* Stagger the service categories with longer delays */
 .service-categories > li:nth-child(1) {
-  animation-delay: 0.1s;
+  transition-delay: 0.1s;
 }
 
 .service-categories > li:nth-child(2) {
-  animation-delay: 0.2s;
+  transition-delay: 0.3s;
 }
 
 .service-categories > li:nth-child(3) {
-  animation-delay: 0.3s;
+  transition-delay: 0.5s;
 }
 
 .service-categories > li:nth-child(4) {
-  animation-delay: 0.4s;
+  transition-delay: 0.7s;
 }
 
 .service-categories > li:nth-child(5) {
-  animation-delay: 0.5s;
-}
-
-/* Contact Section Animation */
-.contact-us h2 {
-  animation: fadeIn 1s ease forwards;
-  animation-delay: 0.1s;
-}
-
-.contact-form {
-  animation: fadeIn 1s ease forwards;
-  animation-delay: 0.3s;
-}
-
-.contact-form .form-row {
-  animation: fadeIn 1s ease forwards;
-}
-
-.contact-form .form-row:nth-child(1) {
-  animation-delay: 0.4s;
-}
-
-.contact-form .form-row:nth-child(2) {
-  animation-delay: 0.5s;
-}
-
-.contact-form .form-row:nth-child(3) {
-  animation-delay: 0.6s;
-}
-
-.contact-form .form-row:nth-child(4) {
-  animation-delay: 0.7s;
+  transition-delay: 0.9s;
 }
