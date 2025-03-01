@@ -29,21 +29,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Apply staggered delays to nav items
-  const navItems = Array.from(document.querySelectorAll('nav ul li'));
-  animateElements(navItems, 0.3, 0.1);
-
   // Apply staggered delays to service items
   const serviceItems = Array.from(document.querySelectorAll('.service-item'));
-  animateElements(serviceItems, 0.8, 0.2);
+  animateElements(serviceItems, 0.6, 0.2);
 
   // Apply staggered delays to form groups
   const formGroups = Array.from(document.querySelectorAll('.form-group'));
-  animateElements(formGroups, 0.6, 0.15);
-
-  // Apply staggered delays to footer elements
-  const footerElements = Array.from(document.querySelectorAll('.footer-info, .footer-links, .footer-copyright'));
-  animateElements(footerElements, 0.3, 0.2);
+  animateElements(formGroups, 0.5, 0.15);
 
   // Create an intersection observer to trigger animations when elements come into view
   const observer = new IntersectionObserver((entries) => {
@@ -57,22 +49,29 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }, { threshold: 0.1 }); // Trigger when at least 10% of the element is visible
 
-  // Add a scroll animation trigger for elements that come into view later
-  const allAnimatedElements = document.querySelectorAll('.fade-in');
-  allAnimatedElements.forEach(element => {
+  // Get main content sections to animate
+  const sectionsToAnimate = [
+    '.digital-marketing-section',
+    '#get-in-touch',
+    '.contact-us',
+    '.left-content h1',
+    '.left-content p',
+    '.left-content img',
+    '.service-item',
+    '.contact-form',
+    '.submit-button'
+  ].map(selector => Array.from(document.querySelectorAll(selector))).flat();
+
+  // Add fade-in class and observe
+  sectionsToAnimate.forEach(element => {
+    if (!element.classList.contains('fade-in')) {
+      element.classList.add('fade-in');
+    }
     element.dataset.animated = 'false';
     observer.observe(element);
   });
 
-  // Apply fade-in class to all major sections on page load
-  const sectionsToAnimate = document.querySelectorAll('section, header, footer, .container');
-  sectionsToAnimate.forEach(section => {
-    if (!section.classList.contains('fade-in')) {
-      section.classList.add('fade-in');
-    }
-  });
-
-  // Handle hamburger menu toggle with animation
+  // Handle hamburger menu toggle - keeping original functionality without animation changes
   const hamburger = document.querySelector('.hamburger');
   const navMenu = document.querySelector('nav ul');
   
@@ -80,15 +79,6 @@ document.addEventListener('DOMContentLoaded', function() {
     hamburger.addEventListener('click', function() {
       this.classList.toggle('toggle');
       navMenu.classList.toggle('nav-active');
-      
-      // Re-animate nav items when menu is opened
-      if (navMenu.classList.contains('nav-active')) {
-        navItems.forEach((item, index) => {
-          item.style.opacity = 0;
-          item.style.animation = 'fadeIn 0.5s ease forwards';
-          item.style.animationDelay = (0.3 + index * 0.1) + 's';
-        });
-      }
     });
   }
 });
