@@ -284,6 +284,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   margin-bottom: 20px;
   margin-right: 40px;
   font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+  font-weight: 100;
 }
 
 .cta-button {
@@ -328,6 +329,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   .hero p {
     font-size: 1rem;
     font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+    font-weight: 100;
   }
 }
 
@@ -432,6 +434,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   color: #5a5a5a; /* Subtle gray for text */
   line-height: 1.6;
   font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+  font-weight: 100;
 }
 
 /* Animation Keyframes */
@@ -494,6 +497,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   margin-bottom: 20px;
   line-height: 1.6;
   font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+  font-weight: 100;
 }
 
 .join-button {
@@ -524,6 +528,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   .join-us p {
     font-size: 1rem;
     font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+    font-weight: 100;
   }
 }
 
