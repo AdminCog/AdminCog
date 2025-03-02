@@ -850,20 +850,22 @@ footer {
 
     <!-- Custom Access Section -->
     <div class="custom-access">
-        <h2>Custom Access - Ad Hoc Project Plans</h2>
-        <div class="custom-form">
-            <form action="book-cal.html" method="POST">
-                <select name="service" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ddd;">
-                    <option value="">Select Service</option>
-                    <option value="virtual-assistant">Virtual Assistant</option>
-                    <option value="web-development">Web Development</option>
-                    <option value="digital-marketing">Digital Marketing</option>
-                </select>
-                <a href="https://www.admincogcorporateservices.com/book-online.html">
-                <button type="submit" class="select-btn">Get Custom Quote</button></a>
-            </form>
-        </div>
+    <h2>Custom Access - Ad Hoc Project Plans</h2>
+    <div class="custom-form">
+        <form action="book-cal.html" method="POST">
+            <select name="service" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ddd;">
+                <option value="">Select Service</option>
+                <option value="virtual-assistant">Virtual Assistant</option>
+                <option value="web-development">Web Development</option>
+                <option value="digital-marketing">Digital Marketing</option>
+            </select>
+            <!-- Updated button to have matching dimensions and link to book-online.html -->
+            <a href="book-online.html" style="display: block; width: 100%; text-decoration: none;">
+                <button type="button" class="select-btn" style="width: 100%; margin: 10px 0; border-radius: 5px;">Get Custom Quote</button>
+            </a>
+        </form>
     </div>
+</div>
 
     <script>
         function selectPlan(planName) {
