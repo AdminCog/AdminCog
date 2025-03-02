@@ -5,14 +5,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// Hamburger menu functionality (keeping this from original)
 const hamburger = document.querySelector('.hamburger');
-const nav = document.querySelector('nav ul');
+const navMenu = document.querySelector('nav ul');
 
-hamburger.addEventListener('click', () => {
-    nav.classList.toggle('nav-active');
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('nav-active');
     hamburger.classList.toggle('toggle');
-});
-
+  });
+}
 // Add this to a new file called animation.js or include in your main.js
 
 document.addEventListener('DOMContentLoaded', function() {
