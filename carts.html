@@ -983,6 +983,16 @@ footer {
       </form>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
+        // Hamburger menu functionality (keeping this from original)
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('nav ul');
+
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('nav-active');
+    hamburger.classList.toggle('toggle');
+  });
+}
         const popup = document.getElementById('popup');
         const showImageButton = document.getElementById('showImageButton');
         const closeButton = document.querySelector('#popup .close-btn');
