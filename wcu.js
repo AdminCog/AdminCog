@@ -1,3 +1,14 @@
+// Hamburger menu functionality (keeping this from original)
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('nav ul');
+
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('nav-active');
+    hamburger.classList.toggle('toggle');
+  });
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     // Create Intersection Observer
     const observer = new IntersectionObserver((entries) => {
@@ -134,18 +145,6 @@ document.addEventListener("DOMContentLoaded", function() {
         item.style.transform = `translateY(${offset * 0.5}px)`;
       });
     });
-    
-    // Hamburger menu functionality (keeping this from original)
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('nav ul');
-  
-    if (hamburger) {
-      hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('nav-active');
-        hamburger.classList.toggle('toggle');
-      });
-    }
-  });
       
       // Check for Join Us section
       if (joinSection) {
@@ -187,13 +186,3 @@ document.addEventListener("DOMContentLoaded", function() {
     setTimeout(checkScroll, 500);
   });
   
-  // Hamburger menu functionality (keeping this from original)
-  const hamburger = document.querySelector('.hamburger');
-  const navMenu = document.querySelector('nav ul');
-  
-  if (hamburger) {
-    hamburger.addEventListener('click', () => {
-      navMenu.classList.toggle('nav-active');
-      hamburger.classList.toggle('toggle');
-    });
-  }
