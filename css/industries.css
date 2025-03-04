@@ -253,7 +253,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   background-position: center;
   background-attachment: fixed;
   opacity: 0; /* Start with opacity 0 */
-  animation: heroImageFade 1.2s ease forwards; /* Apply animation */
+  animation: heroImageFade 1.5s ease forwards; /* Apply animation */
 }
 
 @keyframes heroImageFade {
