@@ -399,35 +399,29 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 }
 
 .services-list li {
-  padding: 15px 0;
   opacity: 0;
   transform: translateY(20px);
-  animation: fadeInUp 0.5s forwards; /* Animation effect */
-  animation-delay: calc(var(--delay) * 0.1s);
+  transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-.services-list li:nth-child(1) {
-  --delay: 1;
+.services-list li.animated {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.services-list li:nth-child(2) {
-  --delay: 2;
-}
-
-.services-list li:nth-child(3) {
-  --delay: 3;
-}
-
-.services-list li:nth-child(4) {
-  --delay: 4;
-}
-
-.services-list li:nth-child(5) {
-  --delay: 5;
-}
-
-.services-list li:nth-child(6) {
-  --delay: 6;
+/* Make sure the Join Us and Contact sections have proper initial states */
+.join-us h2, 
+.join-us p, 
+.join-us .join-button,
+.contact-us .form-row {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .services-list h3 {
@@ -519,7 +513,6 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   font-size: 1.1rem;
   font-weight: bold;
   border-radius: 8px;
-  transition: background-color 0.3s ease;
 }
 
 .join-button:hover {
