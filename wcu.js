@@ -1,13 +1,20 @@
-// Hamburger menu functionality (keeping this from original)
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('nav ul');
+document.addEventListener("DOMContentLoaded", function() {
+  // Hamburger menu functionality
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.querySelector('nav ul');
 
-if (hamburger) {
-  hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('nav-active');
-    hamburger.classList.toggle('toggle');
-  });
-}
+  if (hamburger) {
+    hamburger.addEventListener('click', function() {
+      navMenu.classList.toggle('nav-active');
+      hamburger.classList.toggle('toggle');
+      console.log('Hamburger clicked!'); // For debugging
+    });
+  } else {
+    console.log('Hamburger element not found!'); // For debugging
+  }
+  
+  // Rest of your initialization code...
+});
 
 document.addEventListener("DOMContentLoaded", function() {
     // Create Intersection Observer
