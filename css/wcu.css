@@ -340,7 +340,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   .hero p {
     font-size: 1rem;
     font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
-    font-weight: 100;
+    font-weight: 400;
   }
 }
 
@@ -471,6 +471,10 @@ nav ul li .dropdown-content li:hover .dropdown-content {
       font-weight: 500;
       font-style: normal;
   }
+
+  .services-list p {
+      font-weight: 400;
+  }
 }
 
 /* Join Us Section */
@@ -532,7 +536,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   .join-us p {
     font-size: 1rem;
     font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
-    font-weight: 100;
+    font-weight: 400;
   }
 }
 
