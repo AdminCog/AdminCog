@@ -140,6 +140,10 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+    body {
+    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+}
     nav ul {
         position: fixed;
         left: 0; /* Now positioned on the left */
@@ -278,7 +282,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     margin-bottom: 28px;
     text-align: left;
     font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
-    font-weight: 200;
+    font-weight: 400;
 
 }
 
@@ -795,7 +799,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
     .text-box h3 {
         font-size: 14px;
-        font-weight: 200;
+        font-weight: 500;
     }
 
     .prev, .next {
