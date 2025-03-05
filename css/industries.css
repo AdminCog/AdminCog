@@ -420,6 +420,10 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     font-size: 0.95rem;
     font-weight: 400;
   }
+  
+  .service-categories ul {
+  font-weight: 400;
+}
 }
 
 
