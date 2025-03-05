@@ -795,6 +795,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
     .text-box h3 {
         font-size: 14px;
+        font-weight: 200;
     }
 
     .prev, .next {
