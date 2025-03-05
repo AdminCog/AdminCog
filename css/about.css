@@ -369,7 +369,7 @@ p {
     line-height: 1.5;
     font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
     color: black;
-    font-weight:100;
+    font-weight:400;
   }
 
   .social-media {
@@ -417,7 +417,7 @@ p {
     font-size: 0.85rem;
     font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
     color: black;
-    font-weight: 100;
+    font-weight: 400;
   }
 
   .social-media {
@@ -848,6 +848,7 @@ p {
     font-size: 1.1rem;
     text-align: center;
     font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+    font-weight: 400;
   }
 }
 
@@ -864,6 +865,7 @@ p {
   p {
     font-size: 1rem;
     font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+    font-weight: 400;
   }
 
   .founder-image img,
@@ -879,6 +881,7 @@ p {
     font-size: 1rem;
     padding: 10px;
     text-align: justify;
+    font-weight: 400;
   }
 }
 
