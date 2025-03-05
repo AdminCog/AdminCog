@@ -701,6 +701,7 @@ footer {
   p {
     font-size: 0.9rem;
     font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+    font-weight: 400;
   }
 
   .contact-us {
