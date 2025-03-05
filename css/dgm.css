@@ -835,10 +835,11 @@ footer {
 @media (max-width: 768px) {
 body {
   font-size: 16px; /* Base font size for better readability */
+  font-weight: 400;
 }
 
 p {
-  font-weight: 400 !important; /* Ensure consistent font weight */
+  font-weight: 400; /* Ensure consistent font weight */
   line-height: 1.6;
 }
 
@@ -869,6 +870,7 @@ p {
 .left-content p {
   font-size: 1rem;
   text-align: left;
+  font-weight: 400;
 }
 
 .left-content img {
@@ -891,6 +893,7 @@ p {
 .service-item p {
   font-size: 0.95rem;
   text-align: left;
+  font-weight: 400;
 }
 }
 
@@ -898,6 +901,7 @@ p {
 @media (max-width: 480px) {
   body {
     font-size: 14px;
+    font-weight: 400;
   }
 
   .left-content h1 {
@@ -920,6 +924,7 @@ p {
 @media (max-width: 375px) {
   body {
     font-size: 13px;
+    font-weight: 400;
   }
 
   .left-content h1 {
