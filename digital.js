@@ -71,14 +71,14 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(element);
   });
 
-  // Handle hamburger menu toggle - keeping original functionality without animation changes
-  const hamburger = document.querySelector('.hamburger');
-  const navMenu = document.querySelector('nav ul');
-  
-  if (hamburger) {
-    hamburger.addEventListener('click', function() {
-      this.classList.toggle('toggle');
-      navMenu.classList.toggle('nav-active');
-    });
+  // Hamburger menu functionality (keeping this from original)
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('nav ul');
+
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('nav-active');
+    hamburger.classList.toggle('toggle');
+  });
   }
 });
