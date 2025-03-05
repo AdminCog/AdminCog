@@ -1118,6 +1118,9 @@ p {
   .certificate-image img {
     max-width: 100%; /* Full-width on smaller screens */
   }
+  .founder-content p {
+  font-weight: 400;
+  }
 }
 
 /* Fade-in animation */
