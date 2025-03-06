@@ -246,42 +246,42 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 /* Hero Section */
 .hero {
     position: relative;
-    text-align: center; /* Changed to center-align text for smaller screens */
+    text-align: center;
     color: white;
+    background-color: #003366; /* Dark blue background instead of image */
+    height: 400px; /* Reduced height */
 }
 
+/* Remove the image styling since we're using a background color */
 .hero img {
-    width: 100%;
-    height: 9000%;
+    display: none; /* Hide the image */
 }
 
-/* Hero Text Box Styling */
+/* Centered hero text box with left-aligned content */
 .hero-text {
     position: absolute;
-    top: 60%;
-    right: 10%;
-    width: 60%;
-    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
     max-width: 800px;
     background-color: #F2F2F2;
     color: #333;
-    padding: 20px;
+    padding: 30px;
     border-radius: 5px;
-    animation: slideIn 1s ease-out forwards;
-    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+    opacity: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Text and Button Styling */
+/* Text styling - keep left alignment */
 .hero-text h1 {
-    font-size: 66px;
-    margin-bottom: 10px;
+    font-size: 3rem;
+    margin-bottom: 20px;
     text-align: left;
     font-family: 'Spinnaker', Helvetica, Arial, sans-serif;
     font-weight: 500;
-    font-style: normal;
     color: #003366;
-
-    
 }
 
 .hero-text p {
