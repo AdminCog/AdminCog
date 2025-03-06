@@ -488,7 +488,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     color: white;
     flex: 1;
     padding: 40px 20px;
-    margin-top: 300px;
+    margin-top: 400px;
     border-radius: 0;
     max-width: 100%;
     margin-left: auto;
@@ -583,6 +583,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 @media (max-width: 768px) {
     .va-services {
         padding: 20px 10px; /* Adjust padding for smaller screens */
+        margin-top: 100px;
     }
     
     .va-services h1 {
