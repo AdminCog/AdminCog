@@ -295,13 +295,21 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
 /* Two-column layout styling */
 .two-column-layout {
-    align-items: flex-start; /* Align items to the top instead of center */
-    padding-top: 20px;
+  display: flex;
+  align-items: flex-start; /* Align items to the top instead of center */
+  width: 100%;
+  gap: 20px;
+  margin-bottom: 30px;
+  padding-top: 0; /* Remove extra padding */
 }
 
+/* Left column styling - fix alignment */
 .left-column {
-    align-items: flex-start; /* Align line to the top */
-    padding-top: 10px;
+  width: 15%;
+  display: flex;
+  justify-content: flex-start; /* Align to the left */
+  align-items: flex-start; /* Align to the top */
+  padding-top: 10px;
 }
 
 .vertical-line {
@@ -311,9 +319,10 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   margin: 0;
 }
 
-/* Right column styling */
+/* Right column styling - fix width and alignment */
 .right-column {
   width: 85%;
+  padding-top: 10px;
 }
 
 .hero-description {
@@ -351,16 +360,20 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 
   .left-column {
     width: 100%;
-    margin-bottom: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
   }
 
   .vertical-line {
     width: 30%;
-    margin: 0 auto;
   }
 
   .right-column {
     width: 100%;
+  }
+  .back-container {
+    padding: 0 20px;
+    margin: 20px 0;
   }
 }
 
@@ -455,12 +468,41 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   }
   
   /* Center align button container */
-  .button-container {
-    text-align: center;
-    width: 100%;
-  }
+  .back-container {
+  padding: 0 40px;
+  margin: 30px 0;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  margin-left: 20px;
+/* Back button styling - improved positioning */
+.back-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #003366;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.back-button:hover {
+  background-color: #002255;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.back-button:active {
+  transform: translateY(0);
+}
+
+.back-button i {
+  margin-right: 8px;
+}
 }
 
 /* Additional adjustments for very small screens */
@@ -568,28 +610,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   font-weight: 400;
 }
 }
-/* Back button styling */
-.back-button {
-    display: inline-block;
-    padding: 10px 15px;
-    background-color: #003366;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    margin-left: 40px;
-    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
-    font-weight: 400;
-    transition: background-color 0.3s ease;
-}
 
-.back-button:hover {
-    background-color: #002255;
-}
-
-.back-button i {
-    margin-right: 5px;
-}
 
 /* Contact Us Section */
 /* Modernized Contact Form Styles */
@@ -998,15 +1019,15 @@ footer {
   </div>
         </div></section>
 
-    <section class="service-list py-5">
+    <section class="service-list">
     <div class="paragraph-container">
         <div class="two-column-layout">
-            <!-- Left Column - Vertical line now aligns to top -->
+            <!-- Left Column with vertical line at the top -->
             <div class="left-column">
                 <hr class="vertical-line">
             </div>
             
-            <!-- Right Column -->
+            <!-- Right Column with description text -->
             <div class="right-column">
                 <p class="hero-description">
                     At Admincog, we empower organizations to deliver better and innovate more in their business by rendering experienced VA services. Our team of expert virtual assistants helps our clients' businesses grow by nurturing a client-first mindset. We provide personalized, premium quality, yet affordable corporate services to businesses worldwide. Our virtual assistants can handle various tasks like scheduling appointments, email management, data entry, social media management, and more. By outsourcing these tasks to us, you can focus on growing your business and achieving your goals. Let us help you save time and increase productivity. Contact us today to learn more about our services.
