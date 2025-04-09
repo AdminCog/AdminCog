@@ -23,9 +23,7 @@ if (hamburger) {
   });
 }
 
-// Wait for page to load
-document.addEventListener('DOMContentLoaded', function() {
-  // Add all elements we want to animate, including contact section elements
+// Add all elements we want to animate, including contact section elements
   const elements = document.querySelectorAll(
     '.digital-marketing-section, .left-content h1, .left-content p, .left-content img, ' +
     '.service-item, #get-in-touch, .contact-us, .contact-us h2, .contact-form, ' + 
