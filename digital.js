@@ -100,3 +100,23 @@ if (hamburger) {
   // Initialize mobile navigation
   setupMobileNavigation();
 });
+document.addEventListener('DOMContentLoaded', function() {
+  // Simple IntersectionObserver
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  // Get all elements with animation classes
+  const animElements = document.querySelectorAll('.fade-in, .service-item, .form-group, .digital-marketing-section, #get-in-touch, .contact-us, .left-content h1, .left-content p, .left-content img, .submit-button');
+  
+  // Observe each element
+  animElements.forEach(element => {
+    element.classList.add('anim-ready');
+    observer.observe(element);
+  });
+});
