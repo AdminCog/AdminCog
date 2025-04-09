@@ -23,16 +23,22 @@ if (hamburger) {
   });
 }
 
+// Wait for page to load
 document.addEventListener('DOMContentLoaded', function() {
-  // Simple solution: just add animation classes with delays
-  const elements = document.querySelectorAll('.digital-marketing-section, .left-content h1, .left-content p, .left-content img, .service-item, #get-in-touch, .contact-us, .contact-form .form-group, .submit-button');
+  // Add all elements we want to animate, including contact section elements
+  const elements = document.querySelectorAll(
+    '.digital-marketing-section, .left-content h1, .left-content p, .left-content img, ' +
+    '.service-item, #get-in-touch, .contact-us, .contact-us h2, .contact-form, ' + 
+    '.contact-form .form-group, .submit-button, .footer-container'
+  );
   
-  // Delayed visibility
+  // Delayed visibility with slower animation
   setTimeout(function() {
     elements.forEach(function(el, index) {
       setTimeout(function() {
         el.classList.add('show-element');
-      }, index * 100); // 100ms delay between each element
+      }, index * 180); // 180ms delay between each element (slower)
     });
-  }, 300); // initial delay
+  }, 400); // longer initial delay
 });
+</script>
