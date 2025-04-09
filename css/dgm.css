@@ -935,4 +935,23 @@ p {
     font-size: 0.9rem;
   }
 }
+/* Reset all existing animation styles */
+.fade-in, .digital-marketing-section, .left-content h1, .left-content p, 
+.left-content img, .service-item, #get-in-touch, #get-in-touch h2, 
+#get-in-touch p, .contact-us, .contact-us h2, .contact-form .form-group, 
+.submit-button {
+  animation: none;
+  opacity: 1;
+}
 
+/* Simple animation setup */
+.anim-ready {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
