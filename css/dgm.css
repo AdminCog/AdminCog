@@ -948,16 +948,24 @@ p {
 #get-in-touch p,
 .contact-us,
 .contact-us h2,
+.contact-form,
 .contact-form .form-group,
-.submit-button {
+.submit-button,
+.footer-container {
   animation: none !important;
   opacity: 0; /* Start hidden */
-  transform: translateY(15px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(20px);
+  transition: opacity 0.9s ease-out, transform 0.9s ease-out; /* Slower transition (0.9s) */
 }
 
 /* Simple show class */
 .show-element {
   opacity: 1 !important;
   transform: translateY(0) !important;
+}
+
+/* Ensure contact section is visible regardless of animation */
+.contact-us, .contact-form, .contact-us h2 {
+  display: block !important;
+  visibility: visible !important;
 }
