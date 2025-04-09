@@ -882,3 +882,28 @@ footer {
   transform: translateY(-10px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
 }
+
+/* Service Card Content Animation */
+.service-card h3 {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition-delay: 0.1s; /* Slightly delayed from the card animation */
+}
+
+.service-card .service-content p {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition-delay: 0.2s; /* Further delayed for cascade effect */
+}
+
+.service-card.active h3 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.service-card.active .service-content p {
+  opacity: 1;
+  transform: translateY(0);
+}
