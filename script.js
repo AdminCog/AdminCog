@@ -96,26 +96,68 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// Hamburger menu functionality (modified to close on link click)
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('nav ul');
-
-if (hamburger) {
-  // Toggle menu on hamburger click
-  hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('nav-active');
-    hamburger.classList.toggle('toggle');
-  });
+// First, let's add the JavaScript to handle the mobile dropdown menus
+document.addEventListener('DOMContentLoaded', function() {
+  // Hamburger menu functionality
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.querySelector('nav ul');
   
-  // Close menu when any nav link is clicked
-  const navLinks = document.querySelectorAll('nav ul li a');
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      // Only apply in mobile view (you can adjust the breakpoint as needed)
-      if (window.innerWidth <= 768) {
-        navMenu.classList.remove('nav-active');
-        hamburger.classList.remove('toggle');
-      }
+  if (hamburger) {
+    // Toggle menu on hamburger click
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('nav-active');
+      hamburger.classList.toggle('toggle');
     });
+    
+    // Handle mobile dropdown menus
+    const dropdownItems = document.querySelectorAll('nav ul li.dropdown');
+    
+    // For mobile: add click event to parent menu items with dropdowns
+    if (window.innerWidth <= 768) {
+      dropdownItems.forEach(item => {
+        const link = item.querySelector('a');
+        const dropdown = item.querySelector('.dropdown-content');
+        
+        // Add click listener to toggle dropdown
+        link.addEventListener('click', function(e) {
+          if (window.innerWidth <= 768) {
+            e.preventDefault(); // Prevent navigation
+            
+            // Toggle the display of dropdown content
+            if (dropdown.style.display === 'block') {
+              dropdown.style.display = 'none';
+            } else {
+              // Hide all other dropdowns first
+              document.querySelectorAll('.dropdown-content').forEach(menu => {
+                menu.style.display = 'none';
+              });
+              dropdown.style.display = 'block';
+            }
+          }
+        });
+      });
+    }
+    
+    // Close menu when any non-dropdown nav link is clicked
+    const navLinks = document.querySelectorAll('nav ul li:not(.dropdown) > a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        // Only apply in mobile view
+        if (window.innerWidth <= 768) {
+          navMenu.classList.remove('nav-active');
+          hamburger.classList.remove('toggle');
+        }
+      });
+    });
+  }
+  
+  // Handle window resize
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+      // Reset dropdown styles when switching to desktop
+      document.querySelectorAll('.dropdown-content').forEach(menu => {
+        menu.removeAttribute('style');
+      });
+    }
   });
-}
+});
