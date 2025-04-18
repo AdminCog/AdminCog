@@ -1219,53 +1219,101 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
-/* Mobile menu dropdown fix */
 @media (max-width: 768px) {
-    /* Reset dropdown positioning for mobile */
-    nav ul li .dropdown-content {
-        position: static;
-        width: 100%;
-        background-color: #003366; /* Match the mobile menu background */
-        box-shadow: none;
-        padding: 0;
-        margin: 0;
-    }
-    
-    /* Style the dropdown items */
-    nav ul li .dropdown-content li {
-        width: 100%;
-    }
-    
-    nav ul li .dropdown-content li a {
-        color: white; /* Match mobile menu text color */
-        padding-left: 40px; /* Indent to show hierarchy */
-        font-size: 18px; /* Match mobile menu font size */
-    }
-    
-    /* Handle nested dropdowns the same way */
-    nav ul li .dropdown-content .dropdown .dropdown-content {
-        position: static;
-        left: auto;
-        top: auto;
-    }
-    
-    /* Make sure mobile menu keeps its full appearance */
+    /* Base mobile menu styling */
     nav ul {
         position: fixed;
         left: 0;
         top: 0;
         height: 100vh;
-        width: 250px;
-        background-color: #003366;
+        width: 280px; /* Slightly wider for better readability */
+        background-color: #004080; /* Slightly lighter blue for better contrast */
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        align-items: flex-start; /* Left-align items for better readability */
+        justify-content: flex-start; /* Start from top */
+        padding-top: 80px; /* Space for close button and logo */
         transform: translateX(-100%);
         transition: transform 0.3s ease-in-out;
         z-index: 999;
+        overflow-y: auto; /* Allow scrolling if menu is tall */
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
     }
     
     nav ul.nav-active {
         transform: translateX(0);
+    }
+    
+    /* Main menu items */
+    nav ul li {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    nav ul li a {
+        padding: 15px 20px;
+        width: 100%;
+        display: block;
+        color: white;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separator */
+    }
+    
+    /* Dropdown menus */
+    nav ul li .dropdown-content {
+        position: static;
+        width: 100%;
+        background-color: #003366; /* Slightly darker than parent */
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    
+    /* When dropdown is active */
+    nav ul li.active .dropdown-content {
+        max-height: 500px; /* Arbitrary large value */
+    }
+    
+    /* Dropdown items */
+    nav ul li .dropdown-content li {
+        width: 100%;
+    }
+    
+    nav ul li .dropdown-content li a {
+        color: rgba(255, 255, 255, 0.9);
+        padding: 12px 20px 12px 40px; /* Indent to show hierarchy */
+        font-size: 0.95em; /* Slightly smaller than parent items */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    /* Handle nested dropdowns */
+    nav ul li .dropdown-content .dropdown .dropdown-content {
+        position: static;
+        left: auto;
+        top: auto;
+        background-color: #002b54; /* Even darker for deeper nesting */
+    }
+    
+    /* Nested dropdown items */
+    nav ul li .dropdown-content .dropdown .dropdown-content li a {
+        padding-left: 60px; /* More indent for deeper nesting */
+    }
+    
+    /* Hover states */
+    nav ul li a:hover,
+    nav ul li .dropdown-content li a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Dropdown indicators (if you have any) */
+    .dropdown-indicator {
+        float: right;
+        transition: transform 0.3s ease;
+    }
+    
+    nav ul li.active .dropdown-indicator {
+        transform: rotate(180deg);
     }
 }
