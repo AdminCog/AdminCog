@@ -1219,145 +1219,33 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
+/* Mobile dropdown menu fix - shows nested items below parent */
 @media (max-width: 768px) {
-    /* Reset the position for mobile dropdowns */
+    /* Make dropdown appear below parent instead of sideways */
     nav ul li .dropdown-content {
         position: static;
         width: 100%;
-        background-color: #004080; /* Slightly lighter than parent for contrast */
         box-shadow: none;
-        display: none; /* Hidden by default, shown via JS */
-        opacity: 1;
+        background-color: #004080;
         transform: none;
-        padding: 0;
-        margin-top: 10px;
-        border-radius: 0;
+        left: 0;
+        top: auto;
     }
     
-    /* Style dropdown links in mobile */
-    nav ul li .dropdown-content li {
-        padding: 0;
-        margin: 0;
-    }
-    
+    /* Style dropdown links appropriately */
     nav ul li .dropdown-content li a {
-        color: #ffffff;
-        padding: 10px 20px 10px 40px; /* Add left padding for indentation */
-        font-size: 16px;
-        display: block;
-        text-align: left;
+        padding-left: 40px; /* Indent submenu items */
     }
     
-    /* Style nested dropdowns */
+    /* Handle nested dropdowns the same way */
     nav ul li .dropdown-content .dropdown .dropdown-content {
         position: static;
         left: auto;
         top: auto;
-        margin-left: 15px; /* Additional indent for nested items */
-        width: calc(100% - 15px);
-        background-color: #005299; /* Even lighter for deeper nesting */
     }
     
-    /* Override hover behavior for mobile */
+    /* Override hover effect - use click in mobile (handled by existing JS) */
     nav ul li:hover .dropdown-content {
-        display: none; /* Don't show on hover in mobile, use JS instead */
-    }
-    
-    /* Add visual cue to dropdown parent items */
-    nav ul li.dropdown > a::after {
-        content: ' +';
-        margin-left: 5px;
-    }
-    
-    /* Change + to - when dropdown is open */
-    nav ul li.dropdown.active > a::after {
-        content: ' -';
-    }
-    
-    /* Main nav items styling */
-    nav ul li {
-        width: 100%;
-        text-align: left;
-    }
-    
-    nav ul li a {
-        display: block;
-        padding: 15px 20px;
-    }
-    
-    /* Update the mobile menu background and positioning */
-    nav ul {
-        padding-top: 60px; /* Space for the logo/header */
-    }
-}
-@media (max-width: 425px) {
-    /* Reset the position for mobile dropdowns */
-    nav ul li .dropdown-content {
-        position: static;
-        width: 100%;
-        background-color: #004080; /* Slightly lighter than parent for contrast */
-        box-shadow: none;
-        display: none; /* Hidden by default, shown via JS */
-        opacity: 1;
-        transform: none;
-        padding: 0;
-        margin-top: 10px;
-        border-radius: 0;
-    }
-    
-    /* Style dropdown links in mobile */
-    nav ul li .dropdown-content li {
-        padding: 0;
-        margin: 0;
-    }
-    
-    nav ul li .dropdown-content li a {
-        color: #ffffff;
-        padding: 10px 20px 10px 40px; /* Add left padding for indentation */
-        font-size: 16px;
-        display: block;
-        text-align: left;
-    }
-    
-    /* Style nested dropdowns */
-    nav ul li .dropdown-content .dropdown .dropdown-content {
-        position: static;
-        left: auto;
-        top: auto;
-        margin-left: 15px; /* Additional indent for nested items */
-        width: calc(100% - 15px);
-        background-color: #005299; /* Even lighter for deeper nesting */
-    }
-    
-    /* Override hover behavior for mobile */
-    nav ul li:hover .dropdown-content {
-        display: none; /* Don't show on hover in mobile, use JS instead */
-    }
-    
-    /* Add visual cue to dropdown parent items */
-    nav ul li.dropdown > a::after {
-        content: ' +';
-        margin-left: 5px;
-    }
-    
-    /* Change + to - when dropdown is open */
-    nav ul li.dropdown.active > a::after {
-        content: ' -';
-    }
-    
-    /* Main nav items styling */
-    nav ul li {
-        width: 100%;
-        text-align: left;
-    }
-    
-    nav ul li a {
-        display: block;
-        padding: 15px 20px;
-    }
-    
-    /* Update the mobile menu background and positioning */
-    nav ul {
-        padding-top: 60px; /* Space for the logo/header */
+        display: none;
     }
 }
