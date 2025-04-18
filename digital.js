@@ -1,8 +1,6 @@
-  // Hamburger menu functionality
-  // Hamburger menu functionality (modified to close on link click)
+// Hamburger menu functionality
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('nav ul');
-
 if (hamburger) {
   // Toggle menu on hamburger click
   hamburger.addEventListener('click', () => {
@@ -23,11 +21,14 @@ if (hamburger) {
   });
 }
 
-// Add all elements we want to animate, including contact section elements
+// Add fade-in animation for page elements
+document.addEventListener('DOMContentLoaded', function() {
+  // Add all elements we want to animate, excluding the navigation bar
   const elements = document.querySelectorAll(
     '.digital-marketing-section, .left-content h1, .left-content p, .left-content img, ' +
-    '.service-item, #get-in-touch, .contact-us, .contact-us h2, .contact-form, ' + 
-    '.contact-form .form-group, .submit-button, .footer-container'
+    '.service-item, #get-in-touch, #get-in-touch h2, #get-in-touch p, ' +
+    '.contact-us, .contact-us h2, .contact-form, .form-group, ' + 
+    '.submit-button, .footer-container'
   );
   
   // Delayed visibility with slower animation
@@ -35,8 +36,7 @@ if (hamburger) {
     elements.forEach(function(el, index) {
       setTimeout(function() {
         el.classList.add('show-element');
-      }, index * 180); // 180ms delay between each element (slower)
+      }, index * 180); // 180ms delay between each element
     });
-  }, 400); // longer initial delay
+  }, 400); // Initial delay before animations start
 });
-</script>
