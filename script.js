@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// Mobile menu functionality
+// Update this function to correctly handle mobile dropdowns
 document.addEventListener('DOMContentLoaded', function() {
   // Hamburger menu functionality
   const hamburger = document.querySelector('.hamburger');
@@ -115,33 +115,48 @@ document.addEventListener('DOMContentLoaded', function() {
     // For mobile: add click event to parent menu items with dropdowns
     dropdownItems.forEach(item => {
       const link = item.querySelector('a');
+      const dropdown = item.querySelector('.dropdown-content');
       
-      // Add click listener to toggle dropdown
-      link.addEventListener('click', function(e) {
-        if (window.innerWidth <= 768) {
-          e.preventDefault(); // Prevent navigation
-          
-          // Toggle active class on the parent li
-          item.classList.toggle('active');
-          
-          // Toggle the display of dropdown content
-          const dropdown = item.querySelector('.dropdown-content');
-          
-          // If this dropdown is being opened, close all others first
-          if (!item.classList.contains('active')) {
-            dropdown.style.display = 'none';
-          } else {
-            // Close all other dropdowns
-            dropdownItems.forEach(otherItem => {
-              if (otherItem !== item) {
-                otherItem.classList.remove('active');
-                const otherDropdown = otherItem.querySelector('.dropdown-content');
-                otherDropdown.style.display = 'none';
-              }
-            });
+      if (link && dropdown) {
+        // Add click listener to toggle dropdown
+        link.addEventListener('click', function(e) {
+          if (window.innerWidth <= 768) {
+            e.preventDefault(); // Prevent navigation
             
-            dropdown.style.display = 'block';
+            // Toggle active class on the parent li
+            item.classList.toggle('active');
+            
+            // Toggle the display of dropdown content
+            if (dropdown.style.display === 'block') {
+              dropdown.style.display = 'none';
+            } else {
+              // Close all other dropdowns first
+              dropdownItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                  otherItem.classList.remove('active');
+                  const otherDropdown = otherItem.querySelector('.dropdown-content');
+                  if (otherDropdown) {
+                    otherDropdown.style.display = 'none';
+                  }
+                }
+              });
+              
+              dropdown.style.display = 'block';
+            }
           }
+        });
+      }
+    });
+    
+    // For dropdown items: allow clicking on these links
+    const dropdownLinks = document.querySelectorAll('nav ul li.dropdown .dropdown-content li a');
+    dropdownLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        // Only apply in mobile view
+        if (window.innerWidth <= 768) {
+          // Close the mobile menu when a dropdown item is clicked
+          navMenu.classList.remove('nav-active');
+          hamburger.classList.remove('toggle');
         }
       });
     });
@@ -156,18 +171,6 @@ document.addEventListener('DOMContentLoaded', function() {
           hamburger.classList.remove('toggle');
         }
       });
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      // Only apply in mobile view
-      if (window.innerWidth <= 768) {
-        // Check if the click is outside the nav and hamburger
-        if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-          navMenu.classList.remove('nav-active');
-          hamburger.classList.remove('toggle');
-        }
-      }
     });
   }
   
