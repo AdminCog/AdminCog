@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// First, let's add the JavaScript to handle the mobile dropdown menus
+// Mobile menu functionality
 document.addEventListener('DOMContentLoaded', function() {
   // Hamburger menu functionality
   const hamburger = document.querySelector('.hamburger');
@@ -113,32 +113,40 @@ document.addEventListener('DOMContentLoaded', function() {
     const dropdownItems = document.querySelectorAll('nav ul li.dropdown');
     
     // For mobile: add click event to parent menu items with dropdowns
-    if (window.innerWidth <= 768) {
-      dropdownItems.forEach(item => {
-        const link = item.querySelector('a');
-        const dropdown = item.querySelector('.dropdown-content');
-        
-        // Add click listener to toggle dropdown
-        link.addEventListener('click', function(e) {
-          if (window.innerWidth <= 768) {
-            e.preventDefault(); // Prevent navigation
+    dropdownItems.forEach(item => {
+      const link = item.querySelector('a');
+      
+      // Add click listener to toggle dropdown
+      link.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+          e.preventDefault(); // Prevent navigation
+          
+          // Toggle active class on the parent li
+          item.classList.toggle('active');
+          
+          // Toggle the display of dropdown content
+          const dropdown = item.querySelector('.dropdown-content');
+          
+          // If this dropdown is being opened, close all others first
+          if (!item.classList.contains('active')) {
+            dropdown.style.display = 'none';
+          } else {
+            // Close all other dropdowns
+            dropdownItems.forEach(otherItem => {
+              if (otherItem !== item) {
+                otherItem.classList.remove('active');
+                const otherDropdown = otherItem.querySelector('.dropdown-content');
+                otherDropdown.style.display = 'none';
+              }
+            });
             
-            // Toggle the display of dropdown content
-            if (dropdown.style.display === 'block') {
-              dropdown.style.display = 'none';
-            } else {
-              // Hide all other dropdowns first
-              document.querySelectorAll('.dropdown-content').forEach(menu => {
-                menu.style.display = 'none';
-              });
-              dropdown.style.display = 'block';
-            }
+            dropdown.style.display = 'block';
           }
-        });
+        }
       });
-    }
+    });
     
-    // Close menu when any non-dropdown nav link is clicked
+    // Close menu when clicking on non-dropdown links
     const navLinks = document.querySelectorAll('nav ul li:not(.dropdown) > a');
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
@@ -149,6 +157,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      // Only apply in mobile view
+      if (window.innerWidth <= 768) {
+        // Check if the click is outside the nav and hamburger
+        if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+          navMenu.classList.remove('nav-active');
+          hamburger.classList.remove('toggle');
+        }
+      }
+    });
   }
   
   // Handle window resize
@@ -157,6 +177,11 @@ document.addEventListener('DOMContentLoaded', function() {
       // Reset dropdown styles when switching to desktop
       document.querySelectorAll('.dropdown-content').forEach(menu => {
         menu.removeAttribute('style');
+      });
+      
+      // Remove active classes
+      document.querySelectorAll('nav ul li.dropdown').forEach(item => {
+        item.classList.remove('active');
       });
     }
   });
