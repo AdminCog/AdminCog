@@ -1308,6 +1308,6 @@ footer {
     /* Hover states */
     nav ul li a:hover,
     nav ul li .dropdown-content li a:hover {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: white;
     }
 }
