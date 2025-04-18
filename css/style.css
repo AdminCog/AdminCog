@@ -1219,22 +1219,27 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
-/* Mobile dropdown menu fix - shows nested items below parent */
+/* Mobile menu dropdown fix */
 @media (max-width: 768px) {
-    /* Make dropdown appear below parent instead of sideways */
+    /* Reset dropdown positioning for mobile */
     nav ul li .dropdown-content {
         position: static;
         width: 100%;
+        background-color: #003366; /* Match the mobile menu background */
         box-shadow: none;
-        background-color: #004080;
-        transform: none;
-        left: 0;
-        top: auto;
+        padding: 0;
+        margin: 0;
     }
     
-    /* Style dropdown links appropriately */
+    /* Style the dropdown items */
+    nav ul li .dropdown-content li {
+        width: 100%;
+    }
+    
     nav ul li .dropdown-content li a {
-        padding-left: 40px; /* Indent submenu items */
+        color: white; /* Match mobile menu text color */
+        padding-left: 40px; /* Indent to show hierarchy */
+        font-size: 18px; /* Match mobile menu font size */
     }
     
     /* Handle nested dropdowns the same way */
@@ -1244,8 +1249,23 @@ footer {
         top: auto;
     }
     
-    /* Override hover effect - use click in mobile (handled by existing JS) */
-    nav ul li:hover .dropdown-content {
-        display: none;
+    /* Make sure mobile menu keeps its full appearance */
+    nav ul {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: 250px;
+        background-color: #003366;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 999;
+    }
+    
+    nav ul.nav-active {
+        transform: translateX(0);
     }
 }
