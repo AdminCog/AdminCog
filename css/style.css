@@ -1219,7 +1219,7 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
-/* Mobile Menu Dropdown CSS */
+/* Mobile Menu Dropdown Complete Fix */
 @media (max-width: 768px) {
     /* Base mobile menu styling */
     nav ul {
@@ -1245,22 +1245,50 @@ footer {
     }
     
     /* Main menu items */
-    nav ul > li {
+    nav > ul > li {
         width: 100%;
         margin: 0;
         padding: 0;
     }
     
-    nav ul > li > a {
+    nav > ul > li > a {
         padding: 15px 20px;
         width: 100%;
         display: block;
         color: white;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        font-family: 'Spinnaker', sans-serif; /* Keep the same font */
+        font-family: 'Spinnaker', sans-serif;
     }
     
-    /* Dropdown styling */
+    /* Key fix: Make dropdown-content have proper display */
+    nav ul li.dropdown .dropdown-content {
+        display: none; /* Hidden by default */
+        position: static !important; /* Override any position */
+        width: 100%;
+        background-color: #003366;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+    
+    /* Dropdown items */
+    nav ul li.dropdown .dropdown-content li {
+        width: 100%;
+    }
+    
+    nav ul li.dropdown .dropdown-content li a {
+        color: rgba(255, 255, 255, 0.9);
+        padding: 12px 20px 12px 40px; /* Indent to show hierarchy */
+        font-size: 16px;
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    /* Make the dropdown toggle indicator */
     nav ul li.dropdown > a {
         position: relative;
     }
@@ -1276,47 +1304,9 @@ footer {
         content: '-';
     }
     
-    /* Dropdown menus */
-    nav ul li .dropdown-content {
-        position: static;
-        width: 100%;
-        display: none;
-        background-color: #003366;
-        box-shadow: none;
-        padding: 0;
-        margin: 0;
-    }
-    
-    /* Dropdown items */
-    nav ul li .dropdown-content li {
-        width: 100%;
-    }
-    
-    nav ul li .dropdown-content li a {
-        color: rgba(255, 255, 255, 0.9);
-        padding: 12px 20px 12px 40px; /* Indent to show hierarchy */
-        font-size: 16px;
-        display: block;
-        width: 100%;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    
     /* Hover states */
     nav ul li a:hover,
     nav ul li .dropdown-content li a:hover {
         background-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    /* Handle nested dropdowns the same way */
-    nav ul li .dropdown-content .dropdown .dropdown-content {
-        position: static;
-        left: auto;
-        top: auto;
-        background-color: #002b54;
-    }
-    
-    /* Nested dropdown items */
-    nav ul li .dropdown-content .dropdown .dropdown-content li a {
-        padding-left: 60px;
     }
 }
