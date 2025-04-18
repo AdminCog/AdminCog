@@ -397,6 +397,9 @@ nav ul li .dropdown-content li:hover .dropdown-content {
       max-width: 100%;
       min-height: auto; /* Allow height to adjust on smaller screens */
   }
+  .service-content p {
+  font-weight: 350;
+}
 }
 
 /* Modernized Contact Form Styles */
