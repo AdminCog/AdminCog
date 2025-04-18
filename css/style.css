@@ -1272,6 +1272,7 @@ footer {
         opacity: 1;
         visibility: visible;
         transform: none;
+        height:auto;
     }
     
     /* Dropdown items */
