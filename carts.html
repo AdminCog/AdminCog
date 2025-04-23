@@ -996,9 +996,25 @@ footer {
         }
     });
 
-    // Get plan details from localStorage
-    const planName = localStorage.getItem('selectedPlanName') || 'N/A';
-    const planPrice = parseInt(localStorage.getItem('selectedPlanPrice')) || 0;
+    // Get plan details from localStorage with debug logs
+    console.log('All localStorage items:', { ...localStorage });
+    
+    const planName = localStorage.getItem('selectedPlanName');
+    const planPriceStr = localStorage.getItem('selectedPlanPrice');
+    
+    console.log('Raw planName from localStorage:', planName);
+    console.log('Raw planPrice from localStorage:', planPriceStr);
+    
+    const planPrice = parseFloat(planPriceStr);
+    
+    console.log('Parsed planPrice:', planPrice);
+    
+    // Set default values if missing
+    const finalPlanName = planName || 'Basic Plan';
+    const finalPlanPrice = isNaN(planPrice) ? 99.99 : planPrice;
+    
+    console.log('Final planName:', finalPlanName);
+    console.log('Final planPrice:', finalPlanPrice);
     
     // Currency formatting function
     function formatCurrency(value, currency = 'USD') {
@@ -1015,7 +1031,8 @@ footer {
         try {
             const response = await fetch('https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_z5jA5hIjXCa995n0QW2ThrDKZcQSI1guSKFU0vfA');
             const data = await response.json();
-            return data.data.INR;
+            console.log('Exchange rate data:', data);
+            return data.data.INR || 86.00;
         } catch (error) {
             console.error('Error fetching exchange rate:', error);
             return 86.00; // Fallback exchange rate
@@ -1023,36 +1040,63 @@ footer {
     }
 
     // Set plan name in form and summary
-    document.getElementById('planType').value = planName;
-    document.getElementById('summaryPlan').innerText = planName;
+    document.getElementById('planType').value = finalPlanName;
+    document.getElementById('summaryPlan').innerText = finalPlanName;
 
     const updatePrices = async () => {
         const exchangeRate = await fetchExchangeRate();
+        console.log('Exchange rate:', exchangeRate);
         
         // Base monthly price
-        const monthlyPriceUSD = planPrice;
+        const monthlyPriceUSD = finalPlanPrice;
         const monthlyPriceINR = monthlyPriceUSD * exchangeRate;
+        
+        console.log('Monthly Price USD:', monthlyPriceUSD);
+        console.log('Monthly Price INR:', monthlyPriceINR);
         
         // GST (18%)
         const gstUSD = monthlyPriceUSD * 0.18;
         const gstINR = gstUSD * exchangeRate;
         
+        console.log('GST USD:', gstUSD);
+        console.log('GST INR:', gstINR);
+        
         // Total monthly price (monthly price + GST)
         const totalMonthlyUSD = monthlyPriceUSD + gstUSD;
         const totalMonthlyINR = totalMonthlyUSD * exchangeRate;
         
+        console.log('Total Monthly USD:', totalMonthlyUSD);
+        console.log('Total Monthly INR:', totalMonthlyINR);
+        
+        // Format currencies for display
+        const formattedMonthlyPriceUSD = formatCurrency(monthlyPriceUSD);
+        const formattedMonthlyPriceINR = formatCurrency(monthlyPriceINR, 'INR');
+        const formattedGstUSD = formatCurrency(gstUSD);
+        const formattedGstINR = formatCurrency(gstINR, 'INR');
+        const formattedTotalMonthlyUSD = formatCurrency(totalMonthlyUSD);
+        const formattedTotalMonthlyINR = formatCurrency(totalMonthlyINR, 'INR');
+        
+        console.log('Formatted values:', {
+            formattedMonthlyPriceUSD,
+            formattedMonthlyPriceINR,
+            formattedGstUSD,
+            formattedGstINR,
+            formattedTotalMonthlyUSD,
+            formattedTotalMonthlyINR
+        });
+        
         // Update all display elements
-        document.getElementById('summaryPricePerMonth').innerText = formatCurrency(monthlyPriceUSD);
-        document.getElementById('summaryPricePerMonthINR').innerText = formatCurrency(monthlyPriceINR, 'INR');
+        document.getElementById('summaryPricePerMonth').innerText = formattedMonthlyPriceUSD;
+        document.getElementById('summaryPricePerMonthINR').innerText = formattedMonthlyPriceINR;
         
-        document.getElementById('summaryGST').innerText = formatCurrency(gstUSD);
-        document.getElementById('summaryGSTINR').innerText = formatCurrency(gstINR, 'INR');
+        document.getElementById('summaryGST').innerText = formattedGstUSD;
+        document.getElementById('summaryGSTINR').innerText = formattedGstINR;
         
-        document.getElementById('firstMonthPrice').innerText = formatCurrency(totalMonthlyUSD);
-        document.getElementById('firstMonthPriceINR').innerText = formatCurrency(totalMonthlyINR, 'INR');
+        document.getElementById('firstMonthPrice').innerText = formattedTotalMonthlyUSD;
+        document.getElementById('firstMonthPriceINR').innerText = formattedTotalMonthlyINR;
         
-        document.getElementById('monthlyPrice').innerText = formatCurrency(totalMonthlyUSD);
-        document.getElementById('monthlyPriceINR').innerText = formatCurrency(totalMonthlyINR, 'INR');
+        document.getElementById('monthlyPrice').innerText = formattedTotalMonthlyUSD;
+        document.getElementById('monthlyPriceINR').innerText = formattedTotalMonthlyINR;
     };
 
     // Call updatePrices immediately to show initial values
@@ -1075,24 +1119,27 @@ footer {
         document.getElementById('summaryLName').innerText = lName;
         document.getElementById('summaryEmail').innerText = email;
         
-        // Update all prices
+        // Update all prices again
         await updatePrices();
     });
 
     // Payment button logic - PayPal integration
     document.getElementById('payNow').addEventListener('click', async () => {
-        const totalPriceText = document.getElementById('firstMonthPrice').innerText;
-        const totalPriceUSD = parseFloat(totalPriceText.match(/\$([0-9,]+(\.\d+)?)/)[1].replace(/,/g, '')) || 0;
+        const fName = document.getElementById('summaryFName').innerText;
+        const lName = document.getElementById('summaryLName').innerText;
+        const email = document.getElementById('summaryEmail').innerText;
         
-        if (totalPriceUSD <= 0) {
-            alert("Please confirm details first.");
+        // Get price directly from our calculated value to avoid parsing issues
+        const totalPriceUSD = finalPlanPrice + (finalPlanPrice * 0.18);
+        
+        console.log('Payment amount:', totalPriceUSD);
+        
+        if (fName === 'N/A' || lName === 'N/A' || email === 'N/A') {
+            alert("Please confirm your details first by clicking the Confirm button.");
             return;
         }
 
         // Implement PayPal redirect here
-        // This is a basic implementation. In a production environment, you would use PayPal's JavaScript SDK
-        // or create a backend endpoint to handle the payment securely
-        
         const form = document.createElement('form');
         form.method = 'POST';
         form.action = 'https://www.paypal.com/cgi-bin/webscr';
@@ -1101,12 +1148,12 @@ footer {
         const fields = {
             'cmd': '_xclick',
             'business': 'your-paypal-email@example.com', // Replace with your PayPal business email
-            'item_name': planName,
+            'item_name': finalPlanName,
             'amount': totalPriceUSD.toFixed(2),
             'currency_code': 'USD',
-            'first_name': document.getElementById('summaryFName').innerText,
-            'last_name': document.getElementById('summaryLName').innerText,
-            'email': document.getElementById('summaryEmail').innerText,
+            'first_name': fName,
+            'last_name': lName,
+            'email': email,
             'return': window.location.href,
             'cancel_return': window.location.href
         };
