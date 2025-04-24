@@ -214,52 +214,45 @@ ul {
         font-family: 'Spinnaker', sans-serif;
     }
     
-    /* Key fix: Make dropdown-content properly styled */
+    /* Mobile dropdown menu styling */
     nav ul li.dropdown .dropdown-content {
-        display: none; /* Hidden by default */
-        position: static !important; /* Override any position */
+        display: none;
+        position: static !important;
         width: 100%;
         background-color: #003366;
         box-shadow: none;
         padding: 0;
         margin: 0;
         border-radius: 0;
-        min-width: 0;
     }
     
-    /* Show when active class is present */
-    nav ul li.dropdown.active .dropdown-content {
-        display: block;
-    }
-    
-    /* Override hover behavior on mobile */
+    /* Ensure all dropdowns use JS display management */
     nav ul li:hover .dropdown-content {
-        display: none;
+        display: none; /* Disable hover behavior on mobile */
     }
     
-    nav ul li.active:hover .dropdown-content {
-        display: block;
+    /* Nested dropdown styling */
+    nav ul li.dropdown .dropdown-content li.dropdown .dropdown-content {
+        background-color: #002d59; /* Darker shade for nested dropdowns */
+        padding-left: 10px; /* Increase indent for hierarchy */
     }
     
     /* Dropdown items */
-    nav ul li.dropdown .dropdown-content li {
-        width: 100%;
-    }
-    
     nav ul li.dropdown .dropdown-content li a {
         color: rgba(255, 255, 255, 0.9);
         padding: 12px 20px 12px 40px; /* Indent to show hierarchy */
-        font-size: 16px;
+        font-size: 15px;
         display: block;
         width: 100%;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
     
-    /* Make the dropdown toggle indicator */
-    nav ul li.dropdown > a {
-        position: relative;
+    /* Nested dropdown items */
+    nav ul li.dropdown .dropdown-content li.dropdown .dropdown-content li a {
+        padding-left: 60px; /* Further indent nested items */
     }
     
+    /* Make the dropdown toggle indicator */
     nav ul li.dropdown > a:after {
         content: '+';
         position: absolute;
@@ -276,6 +269,17 @@ ul {
     nav ul li .dropdown-content li a:hover {
         background-color: rgba(255, 255, 255, 0.1);
         color: white;
+    }
+}
+
+/* For larger screens, we keep the hover behavior */
+@media (min-width: 769px) {
+    nav ul li:hover .dropdown-content {
+        display: block;
+    }
+    
+    nav ul li .dropdown-content li:hover .dropdown-content {
+        display: block;
     }
 }
 
