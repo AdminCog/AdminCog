@@ -175,6 +175,7 @@ ul {
         z-index: 999;
         overflow-y: auto;
         box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+        padding-left: 0rem;
     }
     
     nav ul.nav-active {
