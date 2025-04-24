@@ -247,6 +247,23 @@ ul {
     nav ul li .dropdown-content li a:hover {
         background-color: white;
     }
+  .hamburger {
+        display: flex; /* Change from 'none' to 'flex' */
+        z-index: 1000; /* Ensure it stays above the sliding menu */
+    }
+    
+    /* Ensure the hamburger animation works */
+    .hamburger.toggle span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.toggle span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.toggle span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
 }
 
 .hero-section {
