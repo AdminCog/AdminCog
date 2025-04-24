@@ -27,6 +27,15 @@ header {
     z-index: 1000;
 }
 
+header {
+    background-color: white;
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
 /* Navbar Styling */
 nav {
     display: flex;
@@ -111,6 +120,28 @@ nav ul li:hover .dropdown-content {
 }
 nav ul li .dropdown-content li:hover .dropdown-content {
     display: block;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  position: absolute;
+  right: 40px; /* Adjusted to move hamburger to the right */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hamburger span {
+  height: 3px;
+  width: 100%;
+  background-color: #333;
+  border-radius: 2px;
+  transition: all 0.3s ease;
 }
 
 /* Hamburger Menu */
