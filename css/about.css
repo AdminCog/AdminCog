@@ -46,7 +46,7 @@ nav {
 nav ul {
     list-style: none;
     display: flex;
-    gap: 30px;
+    gap: 25px;
 }
 
 nav ul li {
@@ -147,17 +147,6 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     background-color: #333;
     border-radius: 2px;
     transition: all 0.3s ease;
-}
-
-ul {
-  /* display: block; - already overridden in existing styles */
-  /* list-style-type: disc; - already overridden in existing styles */
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-inline-start: 40px;
-  unicode-bidi: isolate;
 }
 
 /* Responsive Styles */
