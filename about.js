@@ -1,24 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Unified function to handle all initializations
-  initNavigation();
-  initAnimations();
+  console.log("DOM fully loaded");
   
-  // Navigation functionality
-  function initNavigation() {
-    // Hamburger menu functionality
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('nav ul');
-    
-    if (!hamburger || !navMenu) {
-      console.error('Navigation elements not found');
-      return;
-    }
-    
-    // Ensure mobile nav has initial state
-    navMenu.classList.remove('nav-active');
-    
+  // Hamburger menu functionality
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.querySelector('nav ul');
+  
+  console.log("Navigation elements:", { 
+    hamburgerExists: !!hamburger, 
+    navMenuExists: !!navMenu
+  });
+  
+  if (hamburger && navMenu) {
     // Toggle menu on hamburger click
-    hamburger.addEventListener('click', () => {
+    hamburger.addEventListener('click', function() {
+      console.log("Hamburger clicked");
       navMenu.classList.toggle('nav-active');
       hamburger.classList.toggle('toggle');
     });
@@ -32,13 +27,11 @@ document.addEventListener('DOMContentLoaded', function() {
       const dropdown = item.querySelector('.dropdown-content');
       
       if (link && dropdown) {
-        // Clear any inline styles that might be present
-        dropdown.removeAttribute('style');
-        
         // Add click listener to toggle dropdown
         link.addEventListener('click', function(e) {
           if (window.innerWidth <= 768) {
             e.preventDefault(); // Prevent navigation
+            console.log("Dropdown clicked:", link.textContent);
             
             // Toggle active class on the parent li
             item.classList.toggle('active');
@@ -89,107 +82,93 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     });
+  }
+  
+  // Handle window resize
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+      // Reset dropdown styles when switching to desktop
+      document.querySelectorAll('.dropdown-content').forEach(menu => {
+        menu.removeAttribute('style');
+      });
+      
+      // Remove active classes
+      document.querySelectorAll('nav ul li.dropdown').forEach(item => {
+        item.classList.remove('active');
+      });
+    }
+  });
+  
+  // Initialize animations after navigation setup
+  initAnimations();
+});
+
+// Animation functionality
+function initAnimations() {
+  // Initial animations for elements visible on load
+  setTimeout(function() {
+    animateElementsInView();
+  }, 300);
+  
+  // Set up the Intersection Observer for elements that come into view on scroll
+  setupIntersectionObserver();
+}
+
+// Function to animate all elements that are initially in the viewport
+function animateElementsInView() {
+  const elements = document.querySelectorAll('header, section, .founder-box, .mission-left, .mission-right, .service-item, h1, h2, p, .hero-image, .founder-image, .certificate-image, .contact-form, footer');
+  
+  elements.forEach(function(element) {
+    // Add the fade-in class if it doesn't already have it
+    if (!element.classList.contains('fade-in')) {
+      element.classList.add('fade-in');
+    }
     
-    // Handle window resize
-    window.addEventListener('resize', function() {
-      if (window.innerWidth > 768) {
-        // Reset dropdown styles when switching to desktop
-        document.querySelectorAll('.dropdown-content').forEach(menu => {
-          menu.removeAttribute('style');
-        });
+    // Check if the element is in the viewport
+    const rect = element.getBoundingClientRect();
+    const isInViewport = (
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.bottom >= 0
+    );
+    
+    if (isInViewport) {
+      // Add a slight delay for each element to create a cascading effect
+      setTimeout(function() {
+        element.classList.add('appear');
+      }, 100);
+    }
+  });
+}
+
+// Set up Intersection Observer to handle animations as elements come into view
+function setupIntersectionObserver() {
+  const options = {
+    root: null, // Use viewport as root
+    rootMargin: '0px',
+    threshold: 0.1 // Trigger when 10% of the element is visible
+  };
+  
+  const observer = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        const element = entry.target;
         
-        // Remove active classes
-        document.querySelectorAll('nav ul li.dropdown').forEach(item => {
-          item.classList.remove('active');
-        });
-      }
-    });
-  }
-  
-  // Animation functionality
-  function initAnimations() {
-    // Initial animations for elements visible on load
-    setTimeout(function() {
-      animateElementsInView();
-    }, 300);
-    
-    // Set up the Intersection Observer for elements that come into view on scroll
-    setupIntersectionObserver();
-  }
-  
-  // Function to animate all elements that are initially in the viewport
-  function animateElementsInView() {
-    const elements = document.querySelectorAll('header, section, .founder-box, .mission-left, .mission-right, .service-item, h1, h2, p, .hero-image, .founder-image, .certificate-image, .contact-form, footer');
-    
-    elements.forEach(function(element) {
-      // Add the fade-in class if it doesn't already have it
-      if (!element.classList.contains('fade-in')) {
-        element.classList.add('fade-in');
-      }
-      
-      // Check if the element is in the viewport
-      const rect = element.getBoundingClientRect();
-      const isInViewport = (
-        rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.bottom >= 0
-      );
-      
-      if (isInViewport) {
-        // Add a slight delay for each element to create a cascading effect
+        // Add a slight delay before starting the animation
         setTimeout(function() {
           element.classList.add('appear');
-        }, 100);
+        }, 150);
+        
+        // Once the element has been animated, we don't need to observe it anymore
+        observer.unobserve(element);
       }
     });
-  }
+  }, options);
   
-  // Set up Intersection Observer to handle animations as elements come into view
-  function setupIntersectionObserver() {
-    const options = {
-      root: null, // Use viewport as root
-      rootMargin: '0px',
-      threshold: 0.1 // Trigger when 10% of the element is visible
-    };
-    
-    const observer = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          const element = entry.target;
-          
-          // Add a slight delay before starting the animation
-          setTimeout(function() {
-            element.classList.add('appear');
-          }, 150);
-          
-          // Once the element has been animated, we don't need to observe it anymore
-          observer.unobserve(element);
-        }
-      });
-    }, options);
-    
-    // Find all elements to observe
-    const elementsToAnimate = document.querySelectorAll('header, section, .founder-box, .mission-left, .mission-right, .service-item, h1, h2, p, .hero-image, .founder-image, .certificate-image, .contact-form, footer');
-    
-    elementsToAnimate.forEach(function(element) {
-      element.classList.add('fade-in'); // Add the fade-in class
-      observer.observe(element); // Start observing the element
-    });
-  }
+  // Find all elements to observe
+  const elementsToAnimate = document.querySelectorAll('header, section, .founder-box, .mission-left, .mission-right, .service-item, h1, h2, p, .hero-image, .founder-image, .certificate-image, .contact-form, footer');
   
-  // Recheck animations on scroll (fallback for older browsers)
-  window.addEventListener('scroll', function() {
-    const elements = document.querySelectorAll('.fade-in:not(.appear)');
-    
-    elements.forEach(function(element) {
-      const rect = element.getBoundingClientRect();
-      const isInViewport = (
-        rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.bottom >= 0
-      );
-      
-      if (isInViewport) {
-        element.classList.add('appear');
-      }
-    });
+  elementsToAnimate.forEach(function(element) {
+    element.classList.add('fade-in'); // Add the fade-in class
+    observer.observe(element); // Start observing the element
   });
-});
+}
