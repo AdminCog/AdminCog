@@ -134,6 +134,11 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   transition: all 0.3s ease;
 }
 
+ul {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   nav ul {
