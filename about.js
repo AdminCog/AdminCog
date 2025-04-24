@@ -32,16 +32,11 @@ document.addEventListener('DOMContentLoaded', function() {
           dropdownItems.forEach(otherItem => {
             if (otherItem !== item && otherItem.classList.contains('active')) {
               otherItem.classList.remove('active');
-              const otherDropdown = otherItem.querySelector('.dropdown-content');
-              if (otherDropdown) {
-                otherDropdown.style.display = 'none';
-              }
             }
           });
           
-          // Toggle active class and dropdown display
-          const isActive = item.classList.toggle('active');
-          dropdown.style.display = isActive ? 'block' : 'none';
+          // Toggle active class
+          item.classList.toggle('active');
         }
       });
     }
@@ -62,10 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
           // Also close any open dropdowns
           dropdownItems.forEach(item => {
             item.classList.remove('active');
-            const dropdown = item.querySelector('.dropdown-content');
-            if (dropdown) {
-              dropdown.style.display = 'none';
-            }
           });
         }
       });
@@ -77,7 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Only in mobile view
     if (window.innerWidth <= 768) {
       // Check if click is outside nav menu and hamburger
-      if (!event.target.closest('nav') && !event.target.closest('.hamburger')) {
+      if (!event.target.closest('nav') && !event.target.closest('.hamburger') && 
+          navMenu.classList.contains('nav-active')) {
         // Close the mobile menu
         navMenu.classList.remove('nav-active');
         hamburger.classList.remove('toggle');
@@ -85,10 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Close all dropdowns
         dropdownItems.forEach(item => {
           item.classList.remove('active');
-          const dropdown = item.querySelector('.dropdown-content');
-          if (dropdown) {
-            dropdown.style.display = 'none';
-          }
         });
       }
     }
@@ -97,11 +85,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Handle window resize
   window.addEventListener('resize', function() {
     if (window.innerWidth > 768) {
-      // Reset dropdown styles when switching to desktop
-      document.querySelectorAll('.dropdown-content').forEach(menu => {
-        menu.removeAttribute('style');
-      });
-      
       // Remove active classes
       document.querySelectorAll('nav ul li.dropdown').forEach(item => {
         item.classList.remove('active');
