@@ -1,126 +1,80 @@
+// Update this function to correctly handle mobile dropdowns
 document.addEventListener('DOMContentLoaded', function() {
   // Hamburger menu functionality
   const hamburger = document.querySelector('.hamburger');
   const navMenu = document.querySelector('nav ul');
   
-  if (!hamburger || !navMenu) {
-    console.error('Navigation elements not found');
-    return;
-  }
-  
-  // Toggle menu on hamburger click
-  hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('nav-active');
-    hamburger.classList.toggle('toggle');
-  });
-  
-  // Handle mobile dropdown menus
-  const dropdownItems = document.querySelectorAll('nav ul li.dropdown');
-  
-  // For mobile: add click event to parent menu items with dropdowns
-  dropdownItems.forEach(item => {
-    const link = item.querySelector('a');
-    const dropdown = item.querySelector('.dropdown-content');
+  if (hamburger) {
+    // Toggle menu on hamburger click
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('nav-active');
+      hamburger.classList.toggle('toggle');
+    });
     
-    if (link && dropdown) {
-      // Add click listener to toggle dropdown
-      link.addEventListener('click', function(e) {
-        if (window.innerWidth <= 768) {
-          e.preventDefault(); // Prevent navigation on mobile
-          
-          // Close all other dropdowns first
-          dropdownItems.forEach(otherItem => {
-            if (otherItem !== item && otherItem.classList.contains('active')) {
-              otherItem.classList.remove('active');
-              const otherDropdown = otherItem.querySelector('.dropdown-content');
-              if (otherDropdown) {
-                otherDropdown.style.display = 'none';
-              }
+    // Handle mobile dropdown menus
+    const dropdownItems = document.querySelectorAll('nav ul li.dropdown');
+    
+    // For mobile: add click event to parent menu items with dropdowns
+    dropdownItems.forEach(item => {
+      const link = item.querySelector('a');
+      const dropdown = item.querySelector('.dropdown-content');
+      
+      if (link && dropdown) {
+        // Add click listener to toggle dropdown
+        link.addEventListener('click', function(e) {
+          if (window.innerWidth <= 768) {
+            e.preventDefault(); // Prevent navigation
+            
+            // Toggle active class on the parent li
+            item.classList.toggle('active');
+            
+            // Toggle the display of dropdown content
+            if (dropdown.style.display === 'block') {
+              dropdown.style.display = 'none';
+            } else {
+              // Close all other dropdowns first
+              dropdownItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                  otherItem.classList.remove('active');
+                  const otherDropdown = otherItem.querySelector('.dropdown-content');
+                  if (otherDropdown) {
+                    otherDropdown.style.display = 'none';
+                  }
+                }
+              });
+              
+              dropdown.style.display = 'block';
             }
-          });
-          
-          // Toggle active class and explicitly set display style
-          const isActive = item.classList.toggle('active');
-          dropdown.style.display = isActive ? 'block' : 'none';
-        }
-      });
-    }
-  });
-  
-  // For nested dropdowns - make sure they work with direct click events
-  const nestedDropdowns = document.querySelectorAll('nav ul li.dropdown .dropdown-content li.dropdown');
-  nestedDropdowns.forEach(item => {
-    const link = item.querySelector('a');
-    const nestedDropdown = item.querySelector('.dropdown-content');
+          }
+        });
+      }
+    });
     
-    if (link && nestedDropdown) {
-      link.addEventListener('click', function(e) {
+    // For dropdown items: allow clicking on these links
+    const dropdownLinks = document.querySelectorAll('nav ul li.dropdown .dropdown-content li a');
+    dropdownLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        // Only apply in mobile view
         if (window.innerWidth <= 768) {
-          e.preventDefault();
-          e.stopPropagation(); // Prevent bubbling up to parent dropdown handlers
-          
-          // Toggle active class and explicitly set display style
-          const isActive = item.classList.toggle('active');
-          nestedDropdown.style.display = isActive ? 'block' : 'none';
+          // Close the mobile menu when a dropdown item is clicked
+          navMenu.classList.remove('nav-active');
+          hamburger.classList.remove('toggle');
         }
       });
-    }
-  });
-  
-  // Close mobile menu when clicking dropdown menu items (but not dropdown parents)
-  const dropdownLinks = document.querySelectorAll('nav ul li.dropdown .dropdown-content li:not(.dropdown) a');
-  dropdownLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      if (window.innerWidth <= 768) {
-        // Close the mobile menu
-        navMenu.classList.remove('nav-active');
-        hamburger.classList.remove('toggle');
-        
-        // Reset all dropdowns
-        dropdownItems.forEach(item => {
-          item.classList.remove('active');
-          const dropdown = item.querySelector('.dropdown-content');
-          if (dropdown) {
-            dropdown.style.display = 'none';
-          }
-        });
-      }
     });
-  });
-  
-  // Close mobile menu when clicking non-dropdown links
-  const regularLinks = document.querySelectorAll('nav ul li:not(.dropdown) > a');
-  regularLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      if (window.innerWidth <= 768) {
-        navMenu.classList.remove('nav-active');
-        hamburger.classList.remove('toggle');
-      }
+    
+    // Close menu when clicking on non-dropdown links
+    const navLinks = document.querySelectorAll('nav ul li:not(.dropdown) > a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        // Only apply in mobile view
+        if (window.innerWidth <= 768) {
+          navMenu.classList.remove('nav-active');
+          hamburger.classList.remove('toggle');
+        }
+      });
     });
-  });
-  
-  // Close the menu when clicking outside
-  document.addEventListener('click', function(event) {
-    // Only in mobile view
-    if (window.innerWidth <= 768) {
-      // Check if click is outside nav menu and hamburger
-      if (!event.target.closest('nav') && !event.target.closest('.hamburger') && 
-          navMenu.classList.contains('nav-active')) {
-        // Close the mobile menu
-        navMenu.classList.remove('nav-active');
-        hamburger.classList.remove('toggle');
-        
-        // Close all dropdowns
-        dropdownItems.forEach(item => {
-          item.classList.remove('active');
-          const dropdown = item.querySelector('.dropdown-content');
-          if (dropdown) {
-            dropdown.style.display = 'none';
-          }
-        });
-      }
-    }
-  });
+  }
   
   // Handle window resize
   window.addEventListener('resize', function() {
@@ -137,6 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
   // Initial animations for elements visible on load
