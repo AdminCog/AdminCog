@@ -32,35 +32,71 @@ document.addEventListener('DOMContentLoaded', function() {
           dropdownItems.forEach(otherItem => {
             if (otherItem !== item && otherItem.classList.contains('active')) {
               otherItem.classList.remove('active');
+              const otherDropdown = otherItem.querySelector('.dropdown-content');
+              if (otherDropdown) {
+                otherDropdown.style.display = 'none';
+              }
             }
           });
           
-          // Toggle active class
-          item.classList.toggle('active');
+          // Toggle active class and explicitly set display style
+          const isActive = item.classList.toggle('active');
+          dropdown.style.display = isActive ? 'block' : 'none';
         }
       });
     }
   });
   
-  // Close mobile menu when clicking any menu item (dropdown or not)
-  const allNavLinks = document.querySelectorAll('nav ul a');
-  allNavLinks.forEach(link => {
-    // Skip the dropdown parent links as they're handled separately
-    if (!link.parentElement.classList.contains('dropdown') || 
-        link.closest('.dropdown-content')) {
-      link.addEventListener('click', () => {
+  // For nested dropdowns - make sure they work with direct click events
+  const nestedDropdowns = document.querySelectorAll('nav ul li.dropdown .dropdown-content li.dropdown');
+  nestedDropdowns.forEach(item => {
+    const link = item.querySelector('a');
+    const nestedDropdown = item.querySelector('.dropdown-content');
+    
+    if (link && nestedDropdown) {
+      link.addEventListener('click', function(e) {
         if (window.innerWidth <= 768) {
-          // Close the mobile menu
-          navMenu.classList.remove('nav-active');
-          hamburger.classList.remove('toggle');
+          e.preventDefault();
+          e.stopPropagation(); // Prevent bubbling up to parent dropdown handlers
           
-          // Also close any open dropdowns
-          dropdownItems.forEach(item => {
-            item.classList.remove('active');
-          });
+          // Toggle active class and explicitly set display style
+          const isActive = item.classList.toggle('active');
+          nestedDropdown.style.display = isActive ? 'block' : 'none';
         }
       });
     }
+  });
+  
+  // Close mobile menu when clicking dropdown menu items (but not dropdown parents)
+  const dropdownLinks = document.querySelectorAll('nav ul li.dropdown .dropdown-content li:not(.dropdown) a');
+  dropdownLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        // Close the mobile menu
+        navMenu.classList.remove('nav-active');
+        hamburger.classList.remove('toggle');
+        
+        // Reset all dropdowns
+        dropdownItems.forEach(item => {
+          item.classList.remove('active');
+          const dropdown = item.querySelector('.dropdown-content');
+          if (dropdown) {
+            dropdown.style.display = 'none';
+          }
+        });
+      }
+    });
+  });
+  
+  // Close mobile menu when clicking non-dropdown links
+  const regularLinks = document.querySelectorAll('nav ul li:not(.dropdown) > a');
+  regularLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        navMenu.classList.remove('nav-active');
+        hamburger.classList.remove('toggle');
+      }
+    });
   });
   
   // Close the menu when clicking outside
@@ -77,6 +113,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Close all dropdowns
         dropdownItems.forEach(item => {
           item.classList.remove('active');
+          const dropdown = item.querySelector('.dropdown-content');
+          if (dropdown) {
+            dropdown.style.display = 'none';
+          }
         });
       }
     }
@@ -85,6 +125,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // Handle window resize
   window.addEventListener('resize', function() {
     if (window.innerWidth > 768) {
+      // Reset dropdown styles when switching to desktop
+      document.querySelectorAll('.dropdown-content').forEach(menu => {
+        menu.removeAttribute('style');
+      });
+      
       // Remove active classes
       document.querySelectorAll('nav ul li.dropdown').forEach(item => {
         item.classList.remove('active');
