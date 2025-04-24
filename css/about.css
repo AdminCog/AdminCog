@@ -265,7 +265,7 @@ ul {
         transform: rotate(-45deg) translate(5px, -5px);
     }
     .logo img {
-        max-width: 220px; /* Smaller logo on mobile */
+        max-width: 200px; /* Smaller logo on mobile */
     }
 }
 
