@@ -167,6 +167,9 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     .hamburger.toggle span:nth-child(3) {
         transform: rotate(45deg) translate(-5px, -6px);
     }
+  .logo img {
+        max-width: 200px; /* Smaller logo on mobile */
+    }
 }
 
 /* Main Hero Section */
