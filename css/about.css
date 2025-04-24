@@ -127,6 +127,11 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     display: block;
 }
 
+ul {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
 /* Hamburger Menu */
 .hamburger {
     display: none;
