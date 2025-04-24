@@ -141,9 +141,10 @@ ul {
     height: 20px;
     cursor: pointer;
     position: absolute;
-    right: 40px; /* Adjusted to move hamburger to the right */
+    right: 40px;
     top: 50%;
     transform: translateY(-50%);
+    z-index: 1001; /* Ensure hamburger is above the menu */
 }
 
 .hamburger span {
@@ -154,9 +155,26 @@ ul {
     transition: all 0.3s ease;
 }
 
+/* Toggle state for hamburger */
+.hamburger.toggle span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.toggle span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.toggle span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
 /* Responsive Styles */
-/* Mobile Menu Dropdown Complete Fix */
 @media (max-width: 768px) {
+    /* Make hamburger visible */
+    .hamburger {
+        display: flex;
+    }
+    
     /* Base mobile menu styling */
     nav ul {
         position: fixed;
@@ -171,7 +189,7 @@ ul {
         padding-top: 70px;
         transform: translateX(-100%);
         transition: transform 0.3s ease-in-out;
-        z-index: 999;
+        z-index: 1000;
         overflow-y: auto;
         box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
     }
@@ -196,7 +214,7 @@ ul {
         font-family: 'Spinnaker', sans-serif;
     }
     
-    /* Key fix: Make dropdown-content have proper display */
+    /* Key fix: Make dropdown-content properly styled */
     nav ul li.dropdown .dropdown-content {
         display: none; /* Hidden by default */
         position: static !important; /* Override any position */
@@ -205,10 +223,22 @@ ul {
         box-shadow: none;
         padding: 0;
         margin: 0;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        height:auto;
+        border-radius: 0;
+        min-width: 0;
+    }
+    
+    /* Show when active class is present */
+    nav ul li.dropdown.active .dropdown-content {
+        display: block;
+    }
+    
+    /* Override hover behavior on mobile */
+    nav ul li:hover .dropdown-content {
+        display: none;
+    }
+    
+    nav ul li.active:hover .dropdown-content {
+        display: block;
     }
     
     /* Dropdown items */
@@ -244,7 +274,8 @@ ul {
     /* Hover states */
     nav ul li a:hover,
     nav ul li .dropdown-content li a:hover {
-        background-color: white;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
     }
 }
 
