@@ -149,6 +149,17 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     transition: all 0.3s ease;
 }
 
+ul {
+  /* display: block; - already overridden in existing styles */
+  /* list-style-type: disc; - already overridden in existing styles */
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+  unicode-bidi: isolate;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     nav ul {
