@@ -1,80 +1,98 @@
-// Update this function to correctly handle mobile dropdowns
 document.addEventListener('DOMContentLoaded', function() {
   // Hamburger menu functionality
   const hamburger = document.querySelector('.hamburger');
   const navMenu = document.querySelector('nav ul');
   
-  if (hamburger) {
-    // Toggle menu on hamburger click
-    hamburger.addEventListener('click', () => {
-      navMenu.classList.toggle('nav-active');
-      hamburger.classList.toggle('toggle');
-    });
+  if (!hamburger || !navMenu) {
+    console.error('Navigation elements not found');
+    return;
+  }
+  
+  // Toggle menu on hamburger click
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('nav-active');
+    hamburger.classList.toggle('toggle');
+  });
+  
+  // Handle mobile dropdown menus
+  const dropdownItems = document.querySelectorAll('nav ul li.dropdown');
+  
+  // For mobile: add click event to parent menu items with dropdowns
+  dropdownItems.forEach(item => {
+    const link = item.querySelector('a');
+    const dropdown = item.querySelector('.dropdown-content');
     
-    // Handle mobile dropdown menus
-    const dropdownItems = document.querySelectorAll('nav ul li.dropdown');
-    
-    // For mobile: add click event to parent menu items with dropdowns
-    dropdownItems.forEach(item => {
-      const link = item.querySelector('a');
-      const dropdown = item.querySelector('.dropdown-content');
-      
-      if (link && dropdown) {
-        // Add click listener to toggle dropdown
-        link.addEventListener('click', function(e) {
-          if (window.innerWidth <= 768) {
-            e.preventDefault(); // Prevent navigation
-            
-            // Toggle active class on the parent li
-            item.classList.toggle('active');
-            
-            // Toggle the display of dropdown content
-            if (dropdown.style.display === 'block') {
-              dropdown.style.display = 'none';
-            } else {
-              // Close all other dropdowns first
-              dropdownItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                  otherItem.classList.remove('active');
-                  const otherDropdown = otherItem.querySelector('.dropdown-content');
-                  if (otherDropdown) {
-                    otherDropdown.style.display = 'none';
-                  }
-                }
-              });
-              
-              dropdown.style.display = 'block';
+    if (link && dropdown) {
+      // Add click listener to toggle dropdown
+      link.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+          e.preventDefault(); // Prevent navigation on mobile
+          
+          // Close all other dropdowns first
+          dropdownItems.forEach(otherItem => {
+            if (otherItem !== item && otherItem.classList.contains('active')) {
+              otherItem.classList.remove('active');
+              const otherDropdown = otherItem.querySelector('.dropdown-content');
+              if (otherDropdown) {
+                otherDropdown.style.display = 'none';
+              }
             }
+          });
+          
+          // Toggle active class and dropdown display
+          const isActive = item.classList.toggle('active');
+          dropdown.style.display = isActive ? 'block' : 'none';
+        }
+      });
+    }
+  });
+  
+  // Close mobile menu when clicking any menu item (dropdown or not)
+  const allNavLinks = document.querySelectorAll('nav ul a');
+  allNavLinks.forEach(link => {
+    // Skip the dropdown parent links as they're handled separately
+    if (!link.parentElement.classList.contains('dropdown') || 
+        link.closest('.dropdown-content')) {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          // Close the mobile menu
+          navMenu.classList.remove('nav-active');
+          hamburger.classList.remove('toggle');
+          
+          // Also close any open dropdowns
+          dropdownItems.forEach(item => {
+            item.classList.remove('active');
+            const dropdown = item.querySelector('.dropdown-content');
+            if (dropdown) {
+              dropdown.style.display = 'none';
+            }
+          });
+        }
+      });
+    }
+  });
+  
+  // Close the menu when clicking outside
+  document.addEventListener('click', function(event) {
+    // Only in mobile view
+    if (window.innerWidth <= 768) {
+      // Check if click is outside nav menu and hamburger
+      if (!event.target.closest('nav') && !event.target.closest('.hamburger')) {
+        // Close the mobile menu
+        navMenu.classList.remove('nav-active');
+        hamburger.classList.remove('toggle');
+        
+        // Close all dropdowns
+        dropdownItems.forEach(item => {
+          item.classList.remove('active');
+          const dropdown = item.querySelector('.dropdown-content');
+          if (dropdown) {
+            dropdown.style.display = 'none';
           }
         });
       }
-    });
-    
-    // For dropdown items: allow clicking on these links
-    const dropdownLinks = document.querySelectorAll('nav ul li.dropdown .dropdown-content li a');
-    dropdownLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        // Only apply in mobile view
-        if (window.innerWidth <= 768) {
-          // Close the mobile menu when a dropdown item is clicked
-          navMenu.classList.remove('nav-active');
-          hamburger.classList.remove('toggle');
-        }
-      });
-    });
-    
-    // Close menu when clicking on non-dropdown links
-    const navLinks = document.querySelectorAll('nav ul li:not(.dropdown) > a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        // Only apply in mobile view
-        if (window.innerWidth <= 768) {
-          navMenu.classList.remove('nav-active');
-          hamburger.classList.remove('toggle');
-        }
-      });
-    });
-  }
+    }
+  });
   
   // Handle window resize
   window.addEventListener('resize', function() {
