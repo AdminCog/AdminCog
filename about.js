@@ -1,10 +1,22 @@
-// Update this function to correctly handle mobile dropdowns
 document.addEventListener('DOMContentLoaded', function() {
-  // Hamburger menu functionality
-  const hamburger = document.querySelector('.hamburger');
-  const navMenu = document.querySelector('nav ul');
+  // Unified function to handle all initializations
+  initNavigation();
+  initAnimations();
   
-  if (hamburger) {
+  // Navigation functionality
+  function initNavigation() {
+    // Hamburger menu functionality
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('nav ul');
+    
+    if (!hamburger || !navMenu) {
+      console.error('Navigation elements not found');
+      return;
+    }
+    
+    // Ensure mobile nav has initial state
+    navMenu.classList.remove('nav-active');
+    
     // Toggle menu on hamburger click
     hamburger.addEventListener('click', () => {
       navMenu.classList.toggle('nav-active');
@@ -20,6 +32,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const dropdown = item.querySelector('.dropdown-content');
       
       if (link && dropdown) {
+        // Clear any inline styles that might be present
+        dropdown.removeAttribute('style');
+        
         // Add click listener to toggle dropdown
         link.addEventListener('click', function(e) {
           if (window.innerWidth <= 768) {
@@ -74,33 +89,33 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     });
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        // Reset dropdown styles when switching to desktop
+        document.querySelectorAll('.dropdown-content').forEach(menu => {
+          menu.removeAttribute('style');
+        });
+        
+        // Remove active classes
+        document.querySelectorAll('nav ul li.dropdown').forEach(item => {
+          item.classList.remove('active');
+        });
+      }
+    });
   }
   
-  // Handle window resize
-  window.addEventListener('resize', function() {
-    if (window.innerWidth > 768) {
-      // Reset dropdown styles when switching to desktop
-      document.querySelectorAll('.dropdown-content').forEach(menu => {
-        menu.removeAttribute('style');
-      });
-      
-      // Remove active classes
-      document.querySelectorAll('nav ul li.dropdown').forEach(item => {
-        item.classList.remove('active');
-      });
-    }
-  });
-});
-
-// Wait for the DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-  // Initial animations for elements visible on load
-  setTimeout(function() {
-    animateElementsInView();
-  }, 300);
-  
-  // Set up the Intersection Observer for elements that come into view on scroll
-  setupIntersectionObserver();
+  // Animation functionality
+  function initAnimations() {
+    // Initial animations for elements visible on load
+    setTimeout(function() {
+      animateElementsInView();
+    }, 300);
+    
+    // Set up the Intersection Observer for elements that come into view on scroll
+    setupIntersectionObserver();
+  }
   
   // Function to animate all elements that are initially in the viewport
   function animateElementsInView() {
