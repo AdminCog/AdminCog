@@ -170,116 +170,31 @@ ul {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    /* Make hamburger visible */
+    body {
+    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+}
+
     .hamburger {
         display: flex;
     }
-    
-    /* Base mobile menu styling */
-    nav ul {
-        position: fixed;
-        left: 0;
-        top: 0;
-        height: 100vh;
-        width: 280px;
-        background-color: #004080;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        padding-top: 70px;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
-        z-index: 1000;
-        overflow-y: auto;
-        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-    }
-    
-    nav ul.nav-active {
-        transform: translateX(0);
-    }
-    
-    /* Main menu items */
-    nav > ul > li {
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
-    
-    nav > ul > li > a {
-        padding: 15px 20px;
-        width: 100%;
-        display: block;
-        color: white;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        font-family: 'Spinnaker', sans-serif;
-    }
-    
-    /* Mobile dropdown menu styling */
-    nav ul li.dropdown .dropdown-content {
-        display: none;
-        position: static !important;
-        width: 100%;
-        background-color: #003366;
-        box-shadow: none;
-        padding: 0;
-        margin: 0;
-        border-radius: 0;
-    }
-    
-    /* Ensure all dropdowns use JS display management */
-    nav ul li:hover .dropdown-content {
-        display: none; /* Disable hover behavior on mobile */
-    }
-    
-    /* Nested dropdown styling */
-    nav ul li.dropdown .dropdown-content li.dropdown .dropdown-content {
-        background-color: #002d59; /* Darker shade for nested dropdowns */
-        padding-left: 10px; /* Increase indent for hierarchy */
-    }
-    
-    /* Dropdown items */
-    nav ul li.dropdown .dropdown-content li a {
-        color: rgba(255, 255, 255, 0.9);
-        padding: 12px 20px 12px 40px; /* Indent to show hierarchy */
-        font-size: 15px;
-        display: block;
-        width: 100%;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    
-    /* Nested dropdown items */
-    nav ul li.dropdown .dropdown-content li.dropdown .dropdown-content li a {
-        padding-left: 60px; /* Further indent nested items */
-    }
-    
-    /* Make the dropdown toggle indicator */
-    nav ul li.dropdown > a:after {
-        content: '+';
-        position: absolute;
-        right: 20px;
-        transition: transform 0.3s ease;
-    }
-    
-    nav ul li.dropdown.active > a:after {
-        content: '-';
-    }
-    
-    /* Hover states */
-    nav ul li a:hover,
-    nav ul li .dropdown-content li a:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-        color: white;
-    }
-}
 
-/* For larger screens, we keep the hover behavior */
-@media (min-width: 769px) {
-    nav ul li:hover .dropdown-content {
-        display: block;
+    /* Menu active state: slide in from left */
+    .nav-active {
+        transform: translateX(0); /* Slides the menu in from the left */
     }
-    
-    nav ul li .dropdown-content li:hover .dropdown-content {
-        display: block;
+
+    /* Change the hamburger icon to an "X" when active */
+    .hamburger.toggle span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger.toggle span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.toggle span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
     }
 }
 
