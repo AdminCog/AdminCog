@@ -141,10 +141,9 @@ ul {
     height: 20px;
     cursor: pointer;
     position: absolute;
-    right: 40px;
+    right: 40px; /* Adjusted to move hamburger to the right */
     top: 50%;
     transform: translateY(-50%);
-    z-index: 1001; /* Ensure hamburger is above the menu */
 }
 
 .hamburger span {
@@ -155,18 +154,6 @@ ul {
     transition: all 0.3s ease;
 }
 
-/* Toggle state for hamburger */
-.hamburger.toggle span:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-.hamburger.toggle span:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.toggle span:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
-}
 
 /* Responsive Styles */
 /* Mobile Menu Dropdown Complete Fix */
