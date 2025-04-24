@@ -148,98 +148,119 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     transition: all 0.3s ease;
 }
 
+
 /* Responsive Styles */
+/* Mobile Menu Dropdown Complete Fix */
 @media (max-width: 768px) {
+    /* Base mobile menu styling */
     nav ul {
         position: fixed;
-        left: 0; /* Now positioned on the left */
+        left: 0;
         top: 0;
         height: 100vh;
-        width: 250px;
-        background-color: #003366;
+        width: 280px;
+        background-color: #004080;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        transform: translateX(-100%); /* Hidden off-screen to the left */
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding-top: 70px;
+        transform: translateX(-100%);
         transition: transform 0.3s ease-in-out;
         z-index: 999;
+        overflow-y: auto;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+        padding-left: 0rem;
     }
-
-    nav ul li .dropdown-content {
-        display: none; /* Initially hidden */
-        position: absolute; /* Position it absolutely */
-        top: 100%; /* Position it directly below the parent */
-        left: 50%; /* Center it horizontally */
-        transform: translateX(-50%); /* Adjust to center */
-        background-color: #fff; /* Background color */
-        border-radius: 8px; /* Round corners */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-        z-index: 999; /* Ensure visibility above other elements */
-        padding: 0; /* Remove any extra padding */
-        margin: 0; /* Remove any extra margin */
-        width: 220px; /* Set a specific width for uniformity */
+    
+    nav ul.nav-active {
+        transform: translateX(0);
     }
-
-    /* Show dropdowns on hover */
-    nav ul li:hover .dropdown-content {
-        display: block; /* Show the dropdown */
-        transform: translateY(0); /* Reset vertical transform for positioning */
-        opacity: 1; /* Ensure it is fully visible */
-        transition: opacity 0.3s ease; /* Optional smooth transition */
+    
+    /* Main menu items */
+    nav > ul > li {
+        width: 100%;
+        margin: 0;
+        padding: 0;
     }
-
-    /* Dropdown Items Styling */
-    nav ul li .dropdown-content li {
-        width: 100%; /* Full width for each dropdown item */
-        padding: 8px 10px; /* Small padding for tighter spacing */
-        margin: 0; /* Remove margin for compactness */
-    }
-
-    /* Style for links in dropdown */
-    nav ul li .dropdown-content li a {
-        color: #333; /* Text color */
-        text-align: left; /* Align text to the left */
-        display: block; /* Full block display */
-        font-weight: 600; /* Font weight */
-        text-decoration: none; /* No underline */
-        transition: background-color 0.3s; /* Transition for hover effect */
-    }
-
-    /* Hover effect for links - Choose one style */
-    nav ul li .dropdown-content li a:hover {
-        background-color: #ffffff; /* White background on hover - from second snippet */
-        color: rgb(255, 0, 0); /* Red text on hover - from second snippet */
-    }
-
-    nav ul li {
-        margin: 20px 0;
-    }
-
-    nav ul li a {
+    
+    nav > ul > li > a {
+        padding: 15px 20px;
+        width: 100%;
+        display: block;
         color: white;
-        font-size: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        font-family: 'Spinnaker', sans-serif;
     }
-
-    .hamburger {
-        display: flex;
+    
+    /* Key fix: Make dropdown-content have proper display */
+    nav ul li.dropdown .dropdown-content {
+        display: none; /* Hidden by default */
+        position: static !important; /* Override any position */
+        width: 100%;
+        background-color: #003366;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        height:auto;
     }
-
-    /* Menu active state: slide in from left */
-    .nav-active {
-        transform: translateX(0); /* Slides the menu in from the left */
+    
+    /* Dropdown items */
+    nav ul li.dropdown .dropdown-content li {
+        width: 100%;
     }
-
-    /* Change the hamburger icon to an "X" when active */
+    
+    nav ul li.dropdown .dropdown-content li a {
+        color: rgba(255, 255, 255, 0.9);
+        padding: 12px 20px 12px 40px; /* Indent to show hierarchy */
+        font-size: 16px;
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    /* Make the dropdown toggle indicator */
+    nav ul li.dropdown > a {
+        position: relative;
+    }
+    
+    nav ul li.dropdown > a:after {
+        content: '+';
+        position: absolute;
+        right: 20px;
+        transition: transform 0.3s ease;
+    }
+    
+    nav ul li.dropdown.active > a:after {
+        content: '-';
+    }
+    
+    /* Hover states */
+    nav ul li a:hover,
+    nav ul li .dropdown-content li a:hover {
+        background-color: white;
+    }
+  .hamburger {
+        display: flex; /* Change from 'none' to 'flex' */
+        z-index: 1000; /* Ensure it stays above the sliding menu */
+    }
+    
+    /* Ensure the hamburger animation works */
     .hamburger.toggle span:nth-child(1) {
-        transform: rotate(-45deg) translate(-5px, 6px);
+        transform: rotate(45deg) translate(5px, 5px);
     }
-
+    
     .hamburger.toggle span:nth-child(2) {
         opacity: 0;
     }
-
+    
     .hamburger.toggle span:nth-child(3) {
-        transform: rotate(45deg) translate(-5px, -6px);
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+    .logo img {
+        max-width: 200px; /* Smaller logo on mobile */
     }
 }
 
