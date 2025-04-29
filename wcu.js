@@ -1,10 +1,9 @@
-// Update this function to correctly handle mobile dropdowns
 document.addEventListener('DOMContentLoaded', function() {
   // Hamburger menu functionality
   const hamburger = document.querySelector('.hamburger');
   const navMenu = document.querySelector('nav ul');
   
-  if (hamburger) {
+  if (hamburger && navMenu) {  // Added null check for navMenu
     // Toggle menu on hamburger click
     hamburger.addEventListener('click', () => {
       navMenu.classList.toggle('nav-active');
@@ -51,14 +50,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // For dropdown items: allow clicking on these links
-    const dropdownLinks = document.querySelectorAll('nav ul li.dropdown .dropdown-content li a');
+    const dropdownLinks = document.querySelectorAll('.dropdown-content li a');  // Fixed selector
     dropdownLinks.forEach(link => {
-      link.addEventListener('click', () => {
+      link.addEventListener('click', (e) => {  // Added event parameter
         // Only apply in mobile view
         if (window.innerWidth <= 768) {
           // Close the mobile menu when a dropdown item is clicked
           navMenu.classList.remove('nav-active');
           hamburger.classList.remove('toggle');
+          
+          // Don't prevent default here to allow navigation
+          // Find parent dropdown and close it
+          const parentDropdown = link.closest('.dropdown-content');
+          if (parentDropdown) {
+            parentDropdown.style.display = 'none';
+            const parentItem = parentDropdown.closest('.dropdown');
+            if (parentItem) {
+              parentItem.classList.remove('active');
+            }
+          }
         }
       });
     });
@@ -73,6 +83,23 @@ document.addEventListener('DOMContentLoaded', function() {
           hamburger.classList.remove('toggle');
         }
       });
+    });
+    
+    // Close dropdown menus when clicking outside
+    document.addEventListener('click', function(e) {
+      if (window.innerWidth <= 768) {
+        // Check if click is outside dropdown
+        if (!e.target.closest('.dropdown')) {
+          // Close all dropdowns
+          dropdownItems.forEach(item => {
+            item.classList.remove('active');
+            const dropdown = item.querySelector('.dropdown-content');
+            if (dropdown) {
+              dropdown.style.display = 'none';
+            }
+          });
+        }
+      }
     });
   }
   
@@ -90,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
   });
-});
   
   // Join and Contact sections
   const joinSection = document.querySelector('.join-us');
@@ -130,6 +156,9 @@ document.addEventListener('DOMContentLoaded', function() {
       if (entry.isIntersecting) {
         const item = entry.target;
         
+        // Get the index from dataset or use a fallback
+        const index = parseInt(item.dataset.index || 0);
+        
         // Apply smooth fade in effect
         item.style.opacity = "0";
         item.style.transform = "translateY(20px)";
@@ -144,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
           setTimeout(() => {
             item.classList.add('animated');
           }, 400);
-        }, 150 * item.dataset.index);
+        }, 150 * index);
         
         serviceObserver.unobserve(item);
       }
@@ -157,6 +186,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // Function to animate service items
   function animateServiceItems() {
     const serviceItems = document.querySelectorAll('.services-list li');
+    
+    if (serviceItems.length === 0) return;  // Guard clause if no items exist
     
     serviceItems.forEach((item, index) => {
       // Add data index for animation timing
@@ -206,6 +237,13 @@ document.addEventListener('DOMContentLoaded', function() {
       if (position < screenPosition) {
         const elements = joinSection.querySelectorAll('h2, p, .join-button');
         elements.forEach((el, index) => {
+          // Set initial styles
+          if (!el.style.opacity) {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(20px)";
+            el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+          }
+          
           setTimeout(() => {
             el.style.opacity = "1";
             el.style.transform = "translateY(0)";
@@ -222,6 +260,13 @@ document.addEventListener('DOMContentLoaded', function() {
       if (position < screenPosition) {
         const formRows = contactSection.querySelectorAll('.form-row');
         formRows.forEach((row, index) => {
+          // Set initial styles
+          if (!row.style.opacity) {
+            row.style.opacity = "0";
+            row.style.transform = "translateY(20px)";
+            row.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+          }
+          
           setTimeout(() => {
             row.style.opacity = "1";
             row.style.transform = "translateY(0)";
@@ -233,8 +278,18 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Add scroll event listener
   window.addEventListener('scroll', function() {
-    // Check scroll position
-    checkScrollPosition();
+    // Add throttling to prevent performance issues
+    if (!window.requestAnimationFrame) {
+      checkScrollPosition();
+      return;
+    }
+    
+    if (!window.scrollTimeout) {
+      window.scrollTimeout = window.requestAnimationFrame(() => {
+        checkScrollPosition();
+        window.scrollTimeout = null;
+      });
+    }
   });
   
   // Run once on page load
