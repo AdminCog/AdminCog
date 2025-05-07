@@ -123,55 +123,51 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     display: block;
 }
 
-/* Hamburger Menu */
 .hamburger {
-    display: none;
+    display: none; /* Default hidden on desktop */
     flex-direction: column;
     justify-content: space-between;
     width: 30px;
     height: 20px;
     cursor: pointer;
-    position: absolute;
-    right: 40px; /* Adjusted to move hamburger to the right */
+    position: absolute; /* Change to absolute */
+    right: 20px; /* Adjust this value */
     top: 50%;
     transform: translateY(-50%);
+    z-index: 1001; /* Make sure it's above other elements */
 }
 
-.hamburger span {
-    height: 3px;
-    width: 100%;
-    background-color: #333;
-    border-radius: 2px;
-    transition: all 0.3s ease;
+/* Show hamburger on mobile */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex; /* Make it visible on mobile */
+    }
 }
 
-
-/* Responsive Styles */
 /* Mobile Menu Dropdown Complete Fix */
 @media (max-width: 768px) {
     /* Base mobile menu styling */
+    .logo img {
+    max-width: 250px;
+}
     nav ul {
         position: fixed;
-        left: 0;
+        left: -100%; /* Start off-screen */
         top: 0;
         height: 100vh;
         width: 280px;
         background-color: #004080;
         flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
         padding-top: 70px;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
+        transition: left 0.3s ease; /* Change transform to left */
         z-index: 999;
-        overflow-y: auto;
-        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-        padding-left: 0rem;
     }
     
     nav ul.nav-active {
-        transform: translateX(0);
+        left: 0; /* Slide in from left */
+      transform: translateX(0);
     }
+    
     
     /* Main menu items */
     nav > ul > li {
@@ -239,26 +235,14 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     nav ul li .dropdown-content li a:hover {
         background-color: white;
     }
-  .hamburger {
-        display: flex; /* Change from 'none' to 'flex' */
-        z-index: 1000; /* Ensure it stays above the sliding menu */
-    }
-    
-    /* Ensure the hamburger animation works */
-    .hamburger.toggle span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-    
-    .hamburger.toggle span:nth-child(2) {
-        opacity: 0;
-    }
-    
-    .hamburger.toggle span:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
-    }
-    .logo img {
-        max-width: 200px; /* Smaller logo on mobile */
-    }
+
+  .hamburger span {
+    height: 3px;
+    width: 100%;
+    background-color: #333; /* Make sure color is visible */
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
 }
 
 /* Hero Section */
@@ -490,6 +474,8 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   font-weight: 400;
   transition: background-color 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-left: 18%;
+  margin-top: 2%;
 }
 
 .back-button:hover {
@@ -531,7 +517,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 .service-list {
     padding: 60px 40px; /* Increased top padding */
     max-width: 1200px;
-    margin: 120px auto 0; /* Added top margin */
+    margin: 60px auto 0; /* Added top margin */
 }
 
 .section-title {
@@ -1022,6 +1008,9 @@ footer {
 
     <section class="service-list">
     <div class="paragraph-container">
+       <div class="back-container">
+    <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Services</a>
+</div>
         <div class="two-column-layout">
             <!-- Left Column with vertical line at the top -->
             <div class="left-column">
@@ -1031,17 +1020,8 @@ footer {
             <!-- Right Column with description text -->
             <div class="right-column">
                 <p class="hero-description">
-                    At Admincog, we provide comprehensive research services to help businesses make
-informed decisions with accurate and reliable data. Our skilled virtual assistants conduct
-market research, competitor analysis, industry trends monitoring, and data gathering
-tailored to your specific needs. By outsourcing research to us, you save valuable time and
-gain actionable insights to drive business growth. Let us handle the research while you focus
-on strategy and execution. Contact Admincog today to power your decisions with expert
-research!
+                    At Admincog, we provide comprehensive research services to help businesses make informed decisions with accurate and reliable data. Our skilled virtual assistants conduct market research, competitor analysis, industry trends monitoring, and data gathering tailored to your specific needs. By outsourcing research to us, you save valuable time and gain actionable insights to drive business growth. Let us handle the research while you focus on strategy and execution. Contact Admincog today to power your decisions with expert research!
                 </p><br><br>
-              <div class="back-container">
-    <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Services</a>
-</div>
             </div>
         </div>
     </div>
@@ -1104,7 +1084,7 @@ research!
 
       <script>
 
-       // Update this function to correctly handle mobile dropdowns
+// Update this function to correctly handle mobile dropdowns
 document.addEventListener('DOMContentLoaded', function() {
   // Hamburger menu functionality
   const hamburger = document.querySelector('.hamburger');
@@ -1159,9 +1139,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // For dropdown items: allow clicking on these links
     const dropdownLinks = document.querySelectorAll('nav ul li.dropdown .dropdown-content li a');
     dropdownLinks.forEach(link => {
-      link.addEventListener('click', () => {
+      link.addEventListener('click', (e) => {
         // Only apply in mobile view
         if (window.innerWidth <= 768) {
+          e.stopPropagation(); // Prevent event bubbling
           // Close the mobile menu when a dropdown item is clicked
           navMenu.classList.remove('nav-active');
           hamburger.classList.remove('toggle');
@@ -1180,6 +1161,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (window.innerWidth <= 768) {
+        const isClickInsideNav = navMenu.contains(e.target);
+        const isClickOnHamburger = hamburger.contains(e.target);
+        
+        if (!isClickInsideNav && !isClickOnHamburger) {
+          navMenu.classList.remove('nav-active');
+          hamburger.classList.remove('toggle');
+        }
+      }
+    });
   }
   
   // Handle window resize
@@ -1197,9 +1191,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
-    
-    // Add scroll animation functionality
-    
+
+// Add scroll animation functionality
+document.addEventListener('DOMContentLoaded', function() {
     // First, add fade-element class to all elements we want to animate
     const elementsToAnimate = [
         '.hero-content',
