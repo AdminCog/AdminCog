@@ -123,26 +123,25 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     display: block;
 }
 
-/* Hamburger Menu */
 .hamburger {
-    display: none;
+    display: none; /* Default hidden on desktop */
     flex-direction: column;
     justify-content: space-between;
     width: 30px;
     height: 20px;
     cursor: pointer;
-    position: absolute;
-    right: 40px; /* Adjusted to move hamburger to the right */
+    position: absolute; /* Change to absolute */
+    right: 20px; /* Adjust this value */
     top: 50%;
     transform: translateY(-50%);
+    z-index: 1001; /* Make sure it's above other elements */
 }
 
-.hamburger span {
-    height: 3px;
-    width: 100%;
-    background-color: #333;
-    border-radius: 2px;
-    transition: all 0.3s ease;
+/* Show hamburger on mobile */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex; /* Make it visible on mobile */
+    }
 }
 
 /* Mobile Menu Dropdown Complete Fix */
@@ -153,25 +152,22 @@ nav ul li .dropdown-content li:hover .dropdown-content {
 }
     nav ul {
         position: fixed;
-        left: 0;
+        left: -100%; /* Start off-screen */
         top: 0;
         height: 100vh;
         width: 280px;
         background-color: #004080;
         flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
         padding-top: 70px;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
+        transition: left 0.3s ease; /* Change transform to left */
         z-index: 999;
-        overflow-y: auto;
-        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
     }
     
     nav ul.nav-active {
-        transform: translateX(0);
+        left: 0; /* Slide in from left */
+      transform: translateX(0);
     }
+    
     
     /* Main menu items */
     nav > ul > li {
@@ -239,6 +235,14 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     nav ul li .dropdown-content li a:hover {
         background-color: white;
     }
+
+  .hamburger span {
+    height: 3px;
+    width: 100%;
+    background-color: #333; /* Make sure color is visible */
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
 }
 
 /* Hero Section */
