@@ -145,119 +145,101 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     transition: all 0.3s ease;
 }
 
-
 /* Responsive Styles */
-/* Mobile Menu Dropdown Complete Fix */
 @media (max-width: 768px) {
-    /* Base mobile menu styling */
+    body {
+    font-family: 'Helvetica Now Display', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+}
     nav ul {
         position: fixed;
-        left: 0;
+        left: 0; /* Now positioned on the left */
         top: 0;
         height: 100vh;
-        width: 280px;
-        background-color: #004080;
+        width: 250px;
+        background-color: #003366;
         flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        padding-top: 70px;
-        transform: translateX(-100%);
+        align-items: center;
+        justify-content: center;
+        transform: translateX(-100%); /* Hidden off-screen to the left */
         transition: transform 0.3s ease-in-out;
         z-index: 999;
-        overflow-y: auto;
-        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-        padding-left: 0rem;
     }
-    
-    nav ul.nav-active {
-        transform: translateX(0);
+    nav ul li .dropdown-content {
+        display: none; /* Initially hidden */
+        position: absolute; /* Position it absolutely */
+        top: 100%; /* Position it directly below the parent */
+        left: 50%; /* Center it horizontally */
+        transform: translateX(-50%); /* Adjust to center */
+        background-color: #fff; /* Background color */
+        border-radius: 8px; /* Round corners */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        z-index: 999; /* Ensure visibility above other elements */
+        padding: 0; /* Remove any extra padding */
+        margin: 0; /* Remove any extra margin */
+        width: 220px; /* Set a specific width for uniformity */
     }
-    
-    /* Main menu items */
-    nav > ul > li {
-        width: 100%;
-        margin: 0;
-        padding: 0;
+
+    /* Show dropdowns on hover */
+    nav ul li:hover .dropdown-content {
+        display: block; /* Show the dropdown */
+        transform: translateY(0); /* Reset vertical transform for positioning */
+        opacity: 1; /* Ensure it is fully visible */
+        transition: opacity 0.3s ease; /* Optional smooth transition */
     }
-    
-    nav > ul > li > a {
-        padding: 15px 20px;
-        width: 100%;
-        display: block;
-        color: white;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        font-family: 'Spinnaker', sans-serif;
+
+    /* Dropdown Items Styling */
+    nav ul li .dropdown-content li {
+        width: 100%; /* Full width for each dropdown item */
+        padding: 8px 10px; /* Small padding for tighter spacing */
+        margin: 0; /* Remove margin for compactness */
     }
-    
-    /* Key fix: Make dropdown-content have proper display */
-    nav ul li.dropdown .dropdown-content {
-        display: none; /* Hidden by default */
-        position: static !important; /* Override any position */
-        width: 100%;
-        background-color: #003366;
-        box-shadow: none;
-        padding: 0;
-        margin: 0;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        height:auto;
+
+    /* Style for links in dropdown */
+    nav ul li .dropdown-content li a {
+        color: #333; /* Text color */
+        text-align: left; /* Align text to the left */
+        display: block; /* Full block display */
+        font-weight: 600; /* Font weight */
+        text-decoration: none; /* No underline */
+        transition: background-color 0.3s; /* Transition for hover effect */
     }
-    
-    /* Dropdown items */
-    nav ul li.dropdown .dropdown-content li {
-        width: 100%;
-    }
-    
-    nav ul li.dropdown .dropdown-content li a {
-        color: rgba(255, 255, 255, 0.9);
-        padding: 12px 20px 12px 40px; /* Indent to show hierarchy */
-        font-size: 16px;
-        display: block;
-        width: 100%;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    
-    /* Make the dropdown toggle indicator */
-    nav ul li.dropdown > a {
-        position: relative;
-    }
-    
-    nav ul li.dropdown > a:after {
-        content: '+';
-        position: absolute;
-        right: 20px;
-        transition: transform 0.3s ease;
-    }
-    
-    nav ul li.dropdown.active > a:after {
-        content: '-';
-    }
-    
-    /* Hover states */
-    nav ul li a:hover,
+
+    /* Hover effect for links */
     nav ul li .dropdown-content li a:hover {
-        background-color: white;
+        background-color: #ffffff; /* Background color on hover */
+        color: #D41317; /* Text color on hover */
     }
-  .hamburger {
-        display: flex; /* Change from 'none' to 'flex' */
-        z-index: 1000; /* Ensure it stays above the sliding menu */
+
+    nav ul li {
+        margin: 20px 0;
     }
-    
-    /* Ensure the hamburger animation works */
+
+    nav ul li a {
+        color: white;
+        font-size: 20px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    /* Menu active state: slide in from left */
+    .nav-active {
+        transform: translateX(0); /* Slides the menu in from the left */
+    }
+
+    /* Change the hamburger icon to an "X" when active */
     .hamburger.toggle span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
+        transform: rotate(-45deg) translate(-5px, 6px);
     }
-    
+
     .hamburger.toggle span:nth-child(2) {
         opacity: 0;
     }
-    
+
     .hamburger.toggle span:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
-    }
-    .logo img {
-        max-width: 200px; /* Smaller logo on mobile */
+        transform: rotate(45deg) translate(-5px, -6px);
     }
 }
 
@@ -490,6 +472,8 @@ nav ul li .dropdown-content li:hover .dropdown-content {
   font-weight: 400;
   transition: background-color 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-left: 18%;
+  margin-top: 2%;
 }
 
 .back-button:hover {
@@ -1022,6 +1006,9 @@ footer {
 
     <section class="service-list">
     <div class="paragraph-container">
+       <div class="back-container">
+    <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Services</a>
+</div>
         <div class="two-column-layout">
             <!-- Left Column with vertical line at the top -->
             <div class="left-column">
@@ -1031,17 +1018,7 @@ footer {
             <!-- Right Column with description text -->
             <div class="right-column">
                 <p class="hero-description">
-                    At Admincog, we help businesses establish a strong online presence with our expert social
-media management services. Our team of skilled professionals creates engaging content,
-manages interactions, and optimizes social media strategies to enhance brand visibility. We
-handle everything from content scheduling and audience engagement to analytics and
-performance tracking. By outsourcing your social media management to us, you can focus
-on growing your business while we take care of your digital presence. Let us help you build a
-powerful brand online—contact us today!
-                </p><br><br>
-              <div class="back-container">
-    <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Services</a>
-</div>
+                    At Admincog, we help businesses establish a strong online presence with our expert social media management services. Our team of skilled professionals creates engaging content, manages interactions, and optimizes social media strategies to enhance brand visibility. We handle everything from content scheduling and audience engagement to analytics and performance tracking. By outsourcing your social media management to us, you can focus on growing your business while we take care of your digital presence. Let us help you build a powerful brand online—contact us today!</p><br><br>
             </div>
         </div>
     </div>
@@ -1103,8 +1080,6 @@ powerful brand online—contact us today!
 
 
       <script>
-
-        // Add this to your industries.js file or create it if it doesn't exist
 
 // Update this function to correctly handle mobile dropdowns
 document.addEventListener('DOMContentLoaded', function() {
