@@ -923,6 +923,8 @@ footer {
     </div>
     
     <button id="payNow">Pay with PayPal</button>
+<div id="paypal-button-container" style="margin-top: 20px;"></div>
+<button id="showImageButton">Show UPI QR Code</button>
     <button id="showImageButton">Show UPI QR Code</button>
 
     <!-- Popup container -->
@@ -963,7 +965,7 @@ footer {
               <button type="submit" class="submit-button">Submit</button>
           </div>
       </form>
-    <script src="https://www.paypal.com/sdk/js?client-id=test"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=Aa_C-f5gT6UBXwpzwjL6xL_KWcP3qDo_NalXArMo_jOqKGAtYw0o1VZBgZLZ5UFOtl764HgStonjTLO8&currency=USD"></script>
     <script>
      document.addEventListener('DOMContentLoaded', () => {
     // Hamburger menu functionality
@@ -1123,53 +1125,67 @@ footer {
         await updatePrices();
     });
 
-    // Payment button logic - PayPal integration
-    document.getElementById('payNow').addEventListener('click', async () => {
+    // Initialize PayPal buttons
+paypal.Buttons({
+    // Set up the transaction
+    createOrder: function(data, actions) {
+        // Validate details first
         const fName = document.getElementById('summaryFName').innerText;
         const lName = document.getElementById('summaryLName').innerText;
         const email = document.getElementById('summaryEmail').innerText;
-        
-        // Get price directly from our calculated value to avoid parsing issues
-        const totalPriceUSD = finalPlanPrice + (finalPlanPrice * 0.18);
-        
-        console.log('Payment amount:', totalPriceUSD);
         
         if (fName === 'N/A' || lName === 'N/A' || email === 'N/A') {
             alert("Please confirm your details first by clicking the Confirm button.");
             return;
         }
+        
+        // Get price directly from our calculated value to avoid parsing issues
+        const totalPriceUSD = finalPlanPrice + (finalPlanPrice * 0.18);
+        
+        return actions.order.create({
+            purchase_units: [{
+                description: finalPlanName,
+                amount: {
+                    currency_code: 'USD',
+                    value: totalPriceUSD.toFixed(2)
+                }
+            }],
+            application_context: {
+                shipping_preference: 'NO_SHIPPING'
+            }
+        });
+    },
+    // Finalize the transaction
+    onApprove: function(data, actions) {
+        return actions.order.capture().then(function(orderData) {
+            // Successful capture
+            console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+            const transaction = orderData.purchase_units[0].payments.captures[0];
+            alert(`Transaction ${transaction.status}: ${transaction.id}\n\nThank you for your purchase!`);
+            
+            // Here you could redirect to a success page or perform other actions
+            // window.location.href = 'success.html';
+        });
+    },
+    onError: function(err) {
+        console.error('PayPal error:', err);
+        alert('There was an error processing your payment. Please try again.');
+    }
+}).render('#paypal-button-container');
 
-        // Implement PayPal redirect here
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = 'https://www.paypal.com/cgi-bin/webscr';
-        form.target = '_blank';
-        
-        const fields = {
-            'cmd': '_xclick',
-            'business': 'your-paypal-email@example.com', // Replace with your PayPal business email
-            'item_name': finalPlanName,
-            'amount': totalPriceUSD.toFixed(2),
-            'currency_code': 'USD',
-            'first_name': fName,
-            'last_name': lName,
-            'email': email,
-            'return': window.location.href,
-            'cancel_return': window.location.href
-        };
-        
-        for (const key in fields) {
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = key;
-            input.value = fields[key];
-            form.appendChild(input);
-        }
-        
-        document.body.appendChild(form);
-        form.submit();
-        document.body.removeChild(form);
-    });
+// Keep the existing Pay with PayPal button as a trigger
+document.getElementById('payNow').addEventListener('click', () => {
+    const fName = document.getElementById('summaryFName').innerText;
+    const lName = document.getElementById('summaryLName').innerText;
+    const email = document.getElementById('summaryEmail').innerText;
+    
+    if (fName === 'N/A' || lName === 'N/A' || email === 'N/A') {
+        alert("Please confirm your details first by clicking the Confirm button.");
+        return;
+    }
+    
+    // Scroll to PayPal buttons
+    document.getElementById('paypal-button-container').scrollIntoView({ behavior: 'smooth' });
 });
       </script>
   
