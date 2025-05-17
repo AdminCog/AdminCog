@@ -1140,43 +1140,61 @@ footer {
 
     // Confirm button logic
     const confirmBtn = document.getElementById('confirm');
-    if (confirmBtn) {
-        confirmBtn.addEventListener('click', async () => {
-            const duration = parseInt(document.getElementById('durationNumber').value) || 0;
-            
-            // Validate inputs
-            const fName = document.getElementById('fName').value.trim();
-            const lName = document.getElementById('lName').value.trim();
-            const email = document.getElementById('email').value.trim();
+if (confirmBtn) {
+    confirmBtn.addEventListener('click', async () => {
+        const duration = parseInt(document.getElementById('durationNumber').value) || 0;
+        
+        // Validate inputs
+        const fName = document.getElementById('fName').value.trim();
+        const lName = document.getElementById('lName').value.trim();
+        const email = document.getElementById('email').value.trim();
 
-            if (!fName || !lName || !email || !duration) {
-                alert("Please fill all fields correctly.");
-                return;
-            }
+        if (!fName || !lName || !email || !duration) {
+            alert("Please fill all fields correctly.");
+            return;
+        }
 
-            // Update summary details
-            if (document.getElementById('summaryDuration')) {
-                document.getElementById('summaryDuration').innerText = `${duration} Hour(s)`;
+        // Change button color to indicate success
+        confirmBtn.style.backgroundColor = "#28a745";  // Green color
+        confirmBtn.innerText = "Confirmed!";
+        
+        // Revert back after 2 seconds
+        setTimeout(() => {
+            confirmBtn.style.backgroundColor = "#2563eb";  // Original color
+            confirmBtn.innerText = "Confirm";
+        }, 2000);
+
+        // Update summary details
+        if (document.getElementById('summaryDuration')) {
+            document.getElementById('summaryDuration').innerText = `${duration} Hour(s)`;
+        }
+        if (document.getElementById('summaryFName')) {
+            document.getElementById('summaryFName').innerText = fName;
+        }
+        if (document.getElementById('summaryLName')) {
+            document.getElementById('summaryLName').innerText = lName;
+        }
+        if (document.getElementById('summaryEmail')) {
+            document.getElementById('summaryEmail').innerText = email;
+        }
+        
+        // Update all prices
+        await updatePrices();
+        
+        // Render PayPal buttons if not already rendered
+        if (!document.querySelector('.paypal-buttons')) {
+            renderPayPalButtons();
+        }
+        
+        // Scroll to summary section on mobile devices
+        if (window.innerWidth <= 768) {
+            const summarySection = document.querySelector('.summary-section');
+            if (summarySection) {
+                summarySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-            if (document.getElementById('summaryFName')) {
-                document.getElementById('summaryFName').innerText = fName;
-            }
-            if (document.getElementById('summaryLName')) {
-                document.getElementById('summaryLName').innerText = lName;
-            }
-            if (document.getElementById('summaryEmail')) {
-                document.getElementById('summaryEmail').innerText = email;
-            }
-            
-            // Update all prices
-            await updatePrices();
-            
-            // Render PayPal buttons if not already rendered
-            if (!document.querySelector('.paypal-buttons')) {
-                renderPayPalButtons();
-            }
-        });
-    }
+        }
+    });
+}
 
     // Function to render PayPal buttons
     function renderPayPalButtons() {
