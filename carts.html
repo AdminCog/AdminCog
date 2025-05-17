@@ -1123,6 +1123,12 @@ document.getElementById('confirm').addEventListener('click', async () => {
     confirmBtn.style.backgroundColor = "#28a745";
     confirmBtn.innerText = "Confirmed!";
 
+    // Revert back after 2 seconds
+        setTimeout(() => {
+            confirmBtn.style.backgroundColor = "#2563eb";  // Original color
+            confirmBtn.innerText = "Confirm";
+        }, 5000);
+
     // Update summary details
     document.getElementById('summaryFName').innerText = fName;
     document.getElementById('summaryLName').innerText = lName;
