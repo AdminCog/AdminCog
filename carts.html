@@ -1106,25 +1106,35 @@ document.addEventListener('DOMContentLoaded', () => {
     // Call updatePrices immediately to show initial values
     updatePrices();
 
-    // Confirm button logic
-    document.getElementById('confirm').addEventListener('click', async () => {
-        // Validate inputs
-        const fName = document.getElementById('fName').value.trim();
-        const lName = document.getElementById('lName').value.trim();
-        const email = document.getElementById('email').value.trim();
+  // Confirm button logic
+document.getElementById('confirm').addEventListener('click', async () => {
+    // Validate inputs
+    const fName = document.getElementById('fName').value.trim();
+    const lName = document.getElementById('lName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const confirmBtn = document.getElementById('confirm');
 
-        if (!fName || !lName || !email) {
-            alert("Please fill all fields correctly.");
-            return;
-        }
+    if (!fName || !lName || !email) {
+        alert("Please fill all fields correctly.");
+        return;
+    }
 
-        // Update summary details
-        document.getElementById('summaryFName').innerText = fName;
-        document.getElementById('summaryLName').innerText = lName;
-        document.getElementById('summaryEmail').innerText = email;
-        
-        // Update all prices again
-        await updatePrices();
+    // Change button color and text when clicked
+    confirmBtn.style.backgroundColor = "#28a745";
+    confirmBtn.innerText = "Confirmed!";
+
+    // Update summary details
+    document.getElementById('summaryFName').innerText = fName;
+    document.getElementById('summaryLName').innerText = lName;
+    document.getElementById('summaryEmail').innerText = email;
+    
+    // Scroll to summary section on mobile devices
+    if (window.innerWidth <= 768) {
+        document.querySelector('.summary-section').scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Update all prices again
+    await updatePrices();
         
         // Force a refresh of the PayPal button to update with the new price
         if (document.querySelector('.paypal-buttons')) {
