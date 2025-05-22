@@ -1157,7 +1157,7 @@ footer {
       </form>
     <script src="https://www.paypal.com/sdk/js?client-id=Aa_C-f5gT6UBXwpzwjL6xL_KWcP3qDo_NalXArMo_jOqKGAtYw0o1VZBgZLZ5UFOtl764HgStonjTLO8&currency=USD"></script>
 <script>
-    // Complete Script Section - Replace your existing script section with this
+// Complete Script Section - Replace your existing script section with this
 document.addEventListener('DOMContentLoaded', () => {
     const popup = document.getElementById('popup');
     const showImageButton = document.getElementById('showImageButton');
@@ -1183,14 +1183,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Get plan details from localStorage
     const planName = localStorage.getItem('selectedPlanName') || 'N/A';
     const planPrice = parseFloat(localStorage.getItem('selectedPlanPrice')) || 0;
-    
-    // PhonePe Configuration
-    const PHONEPE_CONFIG = {
-        clientId: 'TEST-M23GKKR1JJT1E_25052',
-        clientSecret: 'NzhjNzQyY2ItZGQyMi00ZTMxLTliNGQtOGZhYWE5MTE2Yjlh',
-        environment: 'TEST', // Use 'PROD' for production
-        callbackUrl: window.location.origin + '/payment-callback.html'
-    };
     
     // Currency formatting function
     function formatCurrency(value, currency = 'USD') {
@@ -1284,21 +1276,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // PhonePe Payment Functions
-    function generateTransactionId() {
-        return 'TXN_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-    }
-
-    function generateChecksum(payload, endpoint) {
-        // In a real implementation, this should be done on your server
-        // This is a simplified version for testing
-        const saltKey = 'YOUR_SALT_KEY'; // You'll get this from PhonePe
-        const saltIndex = 1;
-        const stringToHash = btoa(JSON.stringify(payload)) + endpoint + saltKey;
-        return btoa(stringToHash) + '###' + saltIndex;
-    }
-
-    async function initiatePhonePePayment() {
+    // PhonePe Payment - Simple redirect to backend
+    function initiatePhonePePayment() {
         const fName = document.getElementById('summaryFName')?.innerText;
         const lName = document.getElementById('summaryLName')?.innerText;
         const email = document.getElementById('summaryEmail')?.innerText;
@@ -1309,80 +1288,14 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const transactionId = generateTransactionId();
-        const amountInPaise = Math.round(totalCostINR * 100); // PhonePe expects amount in paise
-        
-        const payload = {
-            merchantId: PHONEPE_CONFIG.clientId,
-            merchantTransactionId: transactionId,
-            merchantUserId: email.replace('@', '_').replace('.', '_'),
-            amount: amountInPaise,
-            redirectUrl: PHONEPE_CONFIG.callbackUrl,
-            redirectMode: "REDIRECT",
-            callbackUrl: PHONEPE_CONFIG.callbackUrl,
-            paymentInstrument: {
-                type: "PAY_PAGE"
-            }
-        };
-
-        try {
-            // Show loading modal
-            showPhonePeModal();
-            
-            // In a real implementation, this API call should be made from your server
-            const response = await fetch('https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-VERIFY': generateChecksum(payload, '/pg/v1/pay'),
-                    'accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    request: btoa(JSON.stringify(payload))
-                })
-            });
-
-            const data = await response.json();
-            
-            if (data.success && data.data.instrumentResponse.redirectInfo.url) {
-                // Redirect to PhonePe payment page
-                window.location.href = data.data.instrumentResponse.redirectInfo.url;
-            } else {
-                hidePhonePeModal();
-                alert('Failed to initiate PhonePe payment. Please try again.');
-                console.error('PhonePe Error:', data);
-            }
-        } catch (error) {
-            hidePhonePeModal();
-            console.error('PhonePe Payment Error:', error);
-            alert('Error initiating PhonePe payment. Please try again or use PayPal.');
-        }
+        // Just redirect to your backend with the amount
+        window.location.href = `http://localhost:3002/pay?amount=${totalCostINR.toFixed(0)}`;
     }
 
-    function showPhonePeModal() {
-        const modal = document.getElementById('phonePeModal');
-        if (modal) {
-            modal.style.display = 'flex';
-        }
-    }
-
-    function hidePhonePeModal() {
-        const modal = document.getElementById('phonePeModal');
-        if (modal) {
-            modal.style.display = 'none';
-        }
-    }
-
-    // PhonePe Modal Event Listeners
+    // PhonePe button click
     const phonePeButton = document.getElementById('phonePeButton');
-    const closePhonePeModal = document.getElementById('closePhonePeModal');
-    
     if (phonePeButton) {
         phonePeButton.addEventListener('click', initiatePhonePePayment);
-    }
-    
-    if (closePhonePeModal) {
-        closePhonePeModal.addEventListener('click', hidePhonePeModal);
     }
 
     // Confirm button logic
@@ -1489,33 +1402,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial render of PayPal buttons
     renderPayPalButtons();
-
-    // Update the Pay Now button to work with both payment methods
-    const payNowBtn = document.getElementById('payNow');
-    if (payNowBtn) {
-        payNowBtn.addEventListener('click', () => {
-            const fName = document.getElementById('summaryFName')?.innerText;
-            const lName = document.getElementById('summaryLName')?.innerText;
-            const email = document.getElementById('summaryEmail')?.innerText;
-            const duration = document.getElementById('summaryDuration')?.innerText;
-            
-            if (!fName || fName === 'N/A' || !lName || lName === 'N/A' || !email || email === 'N/A' || !duration || duration === 'N/A') {
-                alert("Please confirm your details first by clicking the Confirm button.");
-                return;
-            }
-            
-            const paypalContainer = document.getElementById('paypal-button-container');
-            if (paypalContainer) {
-                paypalContainer.style.marginTop = '15px';
-                paypalContainer.style.border = '2px solid #0070ba';
-                paypalContainer.style.padding = '10px';
-                paypalContainer.style.borderRadius = '8px';
-                
-                paypalContainer.scrollIntoView({ behavior: 'smooth' });
-                alert("Please proceed with payment using PayPal or PhonePe button below.");
-            }
-        });
-    }
 });
 </script>
 
