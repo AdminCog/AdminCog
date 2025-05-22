@@ -859,78 +859,6 @@ footer {
         font-size: 0.85rem;
     }
 }
-        /* Add these styles to your existing CSS */
-
-/* PhonePe Button Hover Effect */
-#phonePeButton:hover {
-    background: linear-gradient(135deg, #6a2f92, #52b3b1);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(95, 44, 130, 0.3);
-}
-
-#phonePeButton:active {
-    transform: translateY(0);
-}
-
-#phonePeButton:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-}
-
-/* Spinner Animation */
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Payment Options Container */
-.payment-options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-/* Payment Method Separator */
-.payment-separator {
-    text-align: center;
-    margin: 15px 0;
-    position: relative;
-    color: #6b7280;
-    font-size: 14px;
-}
-
-.payment-separator::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: #e5e7eb;
-    z-index: 1;
-}
-
-.payment-separator span {
-    background: white;
-    padding: 0 15px;
-    position: relative;
-    z-index: 2;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    #phonePeModal > div {
-        margin: 20px;
-        padding: 20px;
-    }
-    
-    #phonePeButton {
-        font-size: 14px;
-        padding: 10px 16px;
-    }
-}
     </style>
 </head>
 <body>
@@ -1048,73 +976,7 @@ footer {
                 <div>Email:</div>
                 <span id="summaryEmail">N/A</span>
             </div>
-            <!-- Add this button after the PayPal container in your summary section -->
-<button id="phonePeButton" style="
-    width: 100%;
-    background: linear-gradient(135deg, #5f2c82, #49a09d);
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-">
-    <span>💳</span> Pay with PhonePe
-</button>
-
-<!-- PhonePe Loading Modal -->
-<div id="phonePeModal" style="
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 10000;
-    justify-content: center;
-    align-items: center;
-">
-    <div style="
-        background: white;
-        padding: 30px;
-        border-radius: 12px;
-        text-align: center;
-        max-width: 400px;
-        width: 90%;
-    ">
-        <div id="phonePeContent">
-            <div class="spinner" style="
-                border: 4px solid #f3f3f3;
-                border-top: 4px solid #5f2c82;
-                border-radius: 50%;
-                width: 50px;
-                height: 50px;
-                animation: spin 1s linear infinite;
-                margin: 0 auto 20px;
-            "></div>
-            <h3>Processing Payment...</h3>
-            <p>Please wait while we redirect you to PhonePe</p>
-        </div>
-        <button id="closePhonePeModal" style="
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #666;
-        ">&times;</button>
-    </div>
-</div>
+            
             <div id="paypal-button-container" style="margin-top: 20px;"></div>
             <button id="showImageButton">Show UPI QR Code</button>
     <!-- Popup container -->
@@ -1157,8 +1019,7 @@ footer {
       </form>
     <script src="https://www.paypal.com/sdk/js?client-id=Aa_C-f5gT6UBXwpzwjL6xL_KWcP3qDo_NalXArMo_jOqKGAtYw0o1VZBgZLZ5UFOtl764HgStonjTLO8&currency=USD"></script>
 <script>
-// Complete Script Section - Replace your existing script section with this
-document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
     const popup = document.getElementById('popup');
     const showImageButton = document.getElementById('showImageButton');
     const closeButton = document.querySelector('#popup .close-btn');
@@ -1166,13 +1027,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Show the popup when the button is clicked
     if (showImageButton && popup && closeButton) {
         showImageButton.addEventListener('click', () => {
-            popup.style.display = 'flex';
+            popup.style.display = 'flex'; // Show the popup as a flexbox
         });
 
+        // Hide the popup when the close button is clicked
         closeButton.addEventListener('click', () => {
-            popup.style.display = 'none';
+            popup.style.display = 'none'; // Hide the popup
         });
 
+        // Hide the popup when clicking outside the image
         popup.addEventListener('click', (e) => {
             if (e.target === popup) {
                 popup.style.display = 'none';
@@ -1202,7 +1065,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return data.data.INR;
         } catch (error) {
             console.error('Error fetching exchange rate:', error);
-            return 86.00;
+            return 86.00; // Fallback exchange rate
         }
     }
 
@@ -1215,7 +1078,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let totalCostUSD = 0;
-    let totalCostINR = 0;
     
     const updatePrices = async () => {
         const duration = parseInt(document.getElementById('durationNumber').value) || 0;
@@ -1238,7 +1100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Total cost
         totalCostUSD = subtotalUSD + gstUSD;
-        totalCostINR = totalCostUSD * exchangeRate;
+        const totalCostINR = totalCostUSD * exchangeRate;
         
         // Update all display elements
         if (document.getElementById('summaryBaseCost')) {
@@ -1276,85 +1138,63 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // PhonePe Payment - Simple redirect to backend
-    function initiatePhonePePayment() {
-        const fName = document.getElementById('summaryFName')?.innerText;
-        const lName = document.getElementById('summaryLName')?.innerText;
-        const email = document.getElementById('summaryEmail')?.innerText;
-        const duration = document.getElementById('summaryDuration')?.innerText;
+    // Confirm button logic
+    const confirmBtn = document.getElementById('confirm');
+if (confirmBtn) {
+    confirmBtn.addEventListener('click', async () => {
+        const duration = parseInt(document.getElementById('durationNumber').value) || 0;
         
-        if (!fName || fName === 'N/A' || !lName || lName === 'N/A' || !email || email === 'N/A' || !duration || duration === 'N/A') {
-            alert("Please confirm your details first by clicking the Confirm button.");
+        // Validate inputs
+        const fName = document.getElementById('fName').value.trim();
+        const lName = document.getElementById('lName').value.trim();
+        const email = document.getElementById('email').value.trim();
+
+        if (!fName || !lName || !email || !duration) {
+            alert("Please fill all fields correctly.");
             return;
         }
 
-        // Just redirect to your backend with the amount
-        window.location.href = `http://localhost:3002/pay?amount=${totalCostINR.toFixed(0)}`;
-    }
+        // Change button color to indicate success
+        confirmBtn.style.backgroundColor = "#28a745";  // Green color
+        confirmBtn.innerText = "Confirmed!";
+        
+        // Revert back after 2 seconds
+        setTimeout(() => {
+            confirmBtn.style.backgroundColor = "#2563eb";  // Original color
+            confirmBtn.innerText = "Confirm";
+        }, 5000);
 
-    // PhonePe button click
-    const phonePeButton = document.getElementById('phonePeButton');
-    if (phonePeButton) {
-        phonePeButton.addEventListener('click', initiatePhonePePayment);
-    }
-
-    // Confirm button logic
-    const confirmBtn = document.getElementById('confirm');
-    if (confirmBtn) {
-        confirmBtn.addEventListener('click', async () => {
-            const duration = parseInt(document.getElementById('durationNumber').value) || 0;
-            
-            // Validate inputs
-            const fName = document.getElementById('fName').value.trim();
-            const lName = document.getElementById('lName').value.trim();
-            const email = document.getElementById('email').value.trim();
-
-            if (!fName || !lName || !email || !duration) {
-                alert("Please fill all fields correctly.");
-                return;
+        // Update summary details
+        if (document.getElementById('summaryDuration')) {
+            document.getElementById('summaryDuration').innerText = `${duration} Hour(s)`;
+        }
+        if (document.getElementById('summaryFName')) {
+            document.getElementById('summaryFName').innerText = fName;
+        }
+        if (document.getElementById('summaryLName')) {
+            document.getElementById('summaryLName').innerText = lName;
+        }
+        if (document.getElementById('summaryEmail')) {
+            document.getElementById('summaryEmail').innerText = email;
+        }
+        
+        // Update all prices
+        await updatePrices();
+        
+        // Render PayPal buttons if not already rendered
+        if (!document.querySelector('.paypal-buttons')) {
+            renderPayPalButtons();
+        }
+        
+        // Scroll to summary section on mobile devices
+        if (window.innerWidth <= 768) {
+            const summarySection = document.querySelector('.summary-section');
+            if (summarySection) {
+                summarySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-
-            // Change button color to indicate success
-            confirmBtn.style.backgroundColor = "#28a745";
-            confirmBtn.innerText = "Confirmed!";
-            
-            // Revert back after 5 seconds
-            setTimeout(() => {
-                confirmBtn.style.backgroundColor = "#2563eb";
-                confirmBtn.innerText = "Confirm";
-            }, 5000);
-
-            // Update summary details
-            if (document.getElementById('summaryDuration')) {
-                document.getElementById('summaryDuration').innerText = `${duration} Hour(s)`;
-            }
-            if (document.getElementById('summaryFName')) {
-                document.getElementById('summaryFName').innerText = fName;
-            }
-            if (document.getElementById('summaryLName')) {
-                document.getElementById('summaryLName').innerText = lName;
-            }
-            if (document.getElementById('summaryEmail')) {
-                document.getElementById('summaryEmail').innerText = email;
-            }
-            
-            // Update all prices
-            await updatePrices();
-            
-            // Render PayPal buttons if not already rendered
-            if (!document.querySelector('.paypal-buttons')) {
-                renderPayPalButtons();
-            }
-            
-            // Scroll to summary section on mobile devices
-            if (window.innerWidth <= 768) {
-                const summarySection = document.querySelector('.summary-section');
-                if (summarySection) {
-                    summarySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }
-        });
-    }
+        }
+    });
+}
 
     // Function to render PayPal buttons
     function renderPayPalButtons() {
@@ -1362,7 +1202,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!paypalContainer) return;
         
         paypal.Buttons({
+            // Set up the transaction
             createOrder: function(data, actions) {
+                // Validate details
                 const fName = document.getElementById('summaryFName')?.innerText;
                 const lName = document.getElementById('summaryLName')?.innerText;
                 const email = document.getElementById('summaryEmail')?.innerText;
@@ -1386,22 +1228,57 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             },
+            // Finalize the transaction
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(orderData) {
                     console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
                     const transaction = orderData.purchase_units[0].payments.captures[0];
                     alert(`Transaction ${transaction.status}: ${transaction.id}\n\nThank you for your purchase!`);
+                    
+                    // Here you could redirect to a success page
+                    // window.location.href = 'success.html';
                 });
             },
             onError: function(err) {
                 console.error('PayPal error:', err);
-                alert('There was an error processing your PayPal payment. Please try again.');
+                alert('There was an error processing your payment. Please try again.');
             }
         }).render('#paypal-button-container');
     }
 
     // Initial render of PayPal buttons
     renderPayPalButtons();
+
+    // Update the Pay Now button to work with PayPal
+    const payNowBtn = document.getElementById('payNow');
+    if (payNowBtn) {
+        payNowBtn.addEventListener('click', () => {
+            const fName = document.getElementById('summaryFName')?.innerText;
+            const lName = document.getElementById('summaryLName')?.innerText;
+            const email = document.getElementById('summaryEmail')?.innerText;
+            const duration = document.getElementById('summaryDuration')?.innerText;
+            
+            if (!fName || fName === 'N/A' || !lName || lName === 'N/A' || !email || email === 'N/A' || !duration || duration === 'N/A') {
+                alert("Please confirm your details first by clicking the Confirm button.");
+                return;
+            }
+            
+            // Make PayPal button more visible
+            const paypalContainer = document.getElementById('paypal-button-container');
+            if (paypalContainer) {
+                paypalContainer.style.marginTop = '15px';
+                paypalContainer.style.border = '2px solid #0070ba';
+                paypalContainer.style.padding = '10px';
+                paypalContainer.style.borderRadius = '8px';
+                
+                // Scroll to PayPal buttons
+                paypalContainer.scrollIntoView({ behavior: 'smooth' });
+                
+                // Add a helpful message
+                alert("Please proceed with payment using the PayPal button below.");
+            }
+        });
+    }
 });
 </script>
 
