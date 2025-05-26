@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Spinnaker&display=swap');
 
@@ -14,39 +15,6 @@
     box-sizing: border-box;
 }
 
-        /* Style for the popup background */
-        #popup {
-            display: none; /* Hidden initially */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        /* Style for the image inside the popup */
-        #popup img {
-            max-width: 90%;
-            max-height: 90%;
-            border: 2px solid white;
-            border-radius: 10px;
-        }
-
-        /* Close button */
-        #popup .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 24px;
-            color: white;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
 
 body {
     background-color: #f3f4f6;
@@ -976,28 +944,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Popup functionality for UPI QR code
-    const popup = document.getElementById('popup');
-    const showImageButton = document.getElementById('showImageButton');
-    const closeButton = document.querySelector('#popup .close-btn');
-
-    // Show the popup when the button is clicked
-    showImageButton.addEventListener('click', () => {
-        popup.style.display = 'flex'; // Show the popup as a flexbox
-    });
-
-    // Hide the popup when the close button is clicked
-    closeButton.addEventListener('click', () => {
-        popup.style.display = 'none'; // Hide the popup
-    });
-
-    // Hide the popup when clicking outside the image
-    popup.addEventListener('click', (e) => {
-        if (e.target === popup) {
-            popup.style.display = 'none';
-        }
-    });
-
     // Get plan details from localStorage with debug logs
     console.log('All localStorage items:', { ...localStorage });
     
@@ -1050,8 +996,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('planType').value = finalPlanName;
     document.getElementById('summaryPlan').innerText = finalPlanName;
 
+    let currentExchangeRate = 86.00;
+    let currentTotalINR = 0;
+
     const updatePrices = async () => {
         const exchangeRate = await fetchExchangeRate();
+        currentExchangeRate = exchangeRate;
         console.log('Exchange rate:', exchangeRate);
         
         // Base monthly price
@@ -1071,6 +1021,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Total monthly price (monthly price + GST)
         const totalMonthlyUSD = monthlyPriceUSD + gstUSD;
         const totalMonthlyINR = totalMonthlyUSD * exchangeRate;
+        currentTotalINR = totalMonthlyINR;
         
         console.log('Total Monthly USD:', totalMonthlyUSD);
         console.log('Total Monthly INR:', totalMonthlyINR);
@@ -1105,6 +1056,69 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Call updatePrices immediately to show initial values
     updatePrices();
+
+    // Razorpay payment function
+    function initiateRazorpayPayment() {
+        const fName = document.getElementById('summaryFName').innerText;
+        const lName = document.getElementById('summaryLName').innerText;
+        const email = document.getElementById('summaryEmail').innerText;
+        
+        if (fName === 'N/A' || lName === 'N/A' || email === 'N/A') {
+            alert("Please confirm your details first by clicking the Confirm button.");
+            return;
+        }
+
+        // Convert INR to paise (Razorpay requires amount in paise)
+        const amountInPaise = Math.round(currentTotalINR * 100);
+        
+        const options = {
+            "key": "rzp_live_4WoNcjebBer1vG", // Your Razorpay key_id
+            "amount": amountInPaise, // Amount in paise
+            "currency": "INR",
+            "name": "Admincog Corporate Services",
+            "description": finalPlanName + " - Monthly Subscription",
+            "image": "Acog_NewLogo.png", // Your logo URL
+            "order_id": "", // This should be generated from your backend
+            "handler": function (response) {
+                // Payment success callback
+                console.log('Razorpay Payment Success:', response);
+                alert(`Payment Successful!\nPayment ID: ${response.razorpay_payment_id}\nThank you for your purchase!`);
+                
+                // Here you would typically send the payment details to your backend for verification
+                // You can redirect to a success page or perform other actions
+                // window.location.href = 'success.html';
+            },
+            "prefill": {
+                "name": fName + " " + lName,
+                "email": email,
+                "contact": "" // You can add a phone field to the form if needed
+            },
+            "notes": {
+                "plan_name": finalPlanName,
+                "plan_price_usd": finalPlanPrice
+            },
+            "theme": {
+                "color": "#003366"
+            },
+            "modal": {
+                "ondismiss": function() {
+                    console.log('Razorpay payment modal closed');
+                }
+            }
+        };
+
+        const rzp = new Razorpay(options);
+        
+        rzp.on('payment.failed', function (response) {
+            console.error('Razorpay Payment Failed:', response.error);
+            alert(`Payment Failed!\nError Code: ${response.error.code}\nDescription: ${response.error.description}\nReason: ${response.error.reason}`);
+        });
+
+        rzp.open();
+    }
+
+    // Add event listener for Razorpay button
+    document.getElementById('razorpayButton').addEventListener('click', initiateRazorpayPayment);
 
   // Confirm button logic
 document.getElementById('confirm').addEventListener('click', async () => {
