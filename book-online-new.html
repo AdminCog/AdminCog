@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Online</title>
+    <link rel="stylesheet" href="css/book.css">
+  </head>
+  <body>
+    <header>
+        
+      <nav>
+    <div class="logo">
+        <a href="index.html"> <img src="Acog_NewLogo.png" alt="Admincog Corporate Services"> </a>
+    </div>
+    <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li class="dropdown">
+            <a href="#">Services</a>
+            <ul class="dropdown-content">
+                <li><a href="index.html#va-services">Virtual Assistant Services</a></li>
+                <li><a href="webd.html">Web Development Services</a></li>
+                <li><a href="digital.html">Digital Marketing Services</a></li>
+            </ul>
+        </li>
+        <li><a href="Industries.html">Industries</a></li>
+        <li><a href="why-choose-US.html">Why Choose Us</a></li>
+        <li><a href="PLAN.HTML">Plans & Pricing</a></li>
+        <li><a href="#contact-us">Contact Us</a></li>
+        <li><a href="book-online.html">Book Online</a></li>
+    </ul>
+</nav>
+      <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+      </div>
+  </header>
+  
+
+    <section class="services">
+        <h2>Let's have a quick chat and get you a Custom Quote</h2>
+        <div class="service-card">
+          <img src="images/book.png" alt="Service Image">
+          <div class="service-details">
+            <h3>Discovery Call</h3>
+            <p>30 min</p>
+            <p>Free</p>
+            <a href="https://calendly.com/acogcorp" class="btn-book">Book Now</a>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="contact-us" id="contact-us">
+        <h2>Contact Us</h2>
+        <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+            <input type="hidden" name="access_key" value="748fc9c5-6c43-4e14-b8f7-1f8d3bc92fea">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name*</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name*</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label for="email">Email*</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label for="message">Message*</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+            </div>
+            <div class="form-row">
+                <button type="submit" class="submit-button">Submit</button>
+            </div>
+        </form>
+
+    </section>
+      
+      <footer>
+      <div class="footer-container">
+        <div class="footer-info">
+          <p>
+            Tel: +91-9535409798 |
+            <a href="mailto:sales@admincog.com">sales@admincog.com</a>
+          </p>
+        </div>
+        <div class="footer-links">
+          <ul>
+            <li><a href="privacy_and_policy.html">Privacy Policy</a></li>
+            <li><a href="Terms-Conditions.html">Terms & Conditions</a></li>
+            <li><a href="Cancellation-Refund-Policy.html">Cancellation/Refund Policies</a></li>
+          </ul>
+        </div>
+        <div class="footer-copyright">
+          <p>© 2025 Admincog Corporate Services</p>
+        </div>
+      </div>
+    </footer>
+
+
+      <script src="book-online.js"></script>
+  </body>
+</html>
