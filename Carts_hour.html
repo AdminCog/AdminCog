@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <title>Checkout</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Spinnaker&display=swap');
@@ -13,40 +14,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-        /* Style for the popup background */
-        #popup {
-            display: none; /* Hidden initially */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        /* Style for the image inside the popup */
-        #popup img {
-            max-width: 90%;
-            max-height: 90%;
-            border: 2px solid white;
-            border-radius: 10px;
-        }
-
-        /* Close button */
-        #popup .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 24px;
-            color: white;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
 
 body {
     background-color: #f3f4f6;
@@ -980,10 +947,7 @@ footer {
             <div id="paypal-button-container" style="margin-top: 20px;"></div>
             <button id="showImageButton">Show UPI QR Code</button>
     <!-- Popup container -->
-    <div id="popup">
-        <button class="close-btn">&times;</button>
-        <img src="images/QR-ADMINCOG.jpg" alt="UPI QR Code">
-    </div>
+   <button id="razorpayButton" style="background-color: #528ff0; color: white; border: none; padding: 0.875rem 1.5rem; border-radius: 0.5rem; font-weight: 600; font-size: 1rem; cursor: pointer; width: 100%; margin-top: 1rem; transition: all 0.2s ease;">Pay with Razorpay</button>
         </div>
     </div>
     <!-- Contact Us Section -->
@@ -1020,29 +984,6 @@ footer {
     <script src="https://www.paypal.com/sdk/js?client-id=Aa_C-f5gT6UBXwpzwjL6xL_KWcP3qDo_NalXArMo_jOqKGAtYw0o1VZBgZLZ5UFOtl764HgStonjTLO8&currency=USD"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-    const popup = document.getElementById('popup');
-    const showImageButton = document.getElementById('showImageButton');
-    const closeButton = document.querySelector('#popup .close-btn');
-
-    // Show the popup when the button is clicked
-    if (showImageButton && popup && closeButton) {
-        showImageButton.addEventListener('click', () => {
-            popup.style.display = 'flex'; // Show the popup as a flexbox
-        });
-
-        // Hide the popup when the close button is clicked
-        closeButton.addEventListener('click', () => {
-            popup.style.display = 'none'; // Hide the popup
-        });
-
-        // Hide the popup when clicking outside the image
-        popup.addEventListener('click', (e) => {
-            if (e.target === popup) {
-                popup.style.display = 'none';
-            }
-        });
-    }
-    
     // Get plan details from localStorage
     const planName = localStorage.getItem('selectedPlanName') || 'N/A';
     const planPrice = parseFloat(localStorage.getItem('selectedPlanPrice')) || 0;
@@ -1078,10 +1019,12 @@ footer {
     }
 
     let totalCostUSD = 0;
+    let totalCostINR = 0;
+    let exchangeRate = 86.00;
     
     const updatePrices = async () => {
         const duration = parseInt(document.getElementById('durationNumber').value) || 0;
-        const exchangeRate = await fetchExchangeRate();
+        exchangeRate = await fetchExchangeRate();
         
         // Base cost (hourly rate * duration)
         const baseCostUSD = planPrice * duration;
@@ -1100,7 +1043,7 @@ footer {
         
         // Total cost
         totalCostUSD = subtotalUSD + gstUSD;
-        const totalCostINR = totalCostUSD * exchangeRate;
+        totalCostINR = totalCostUSD * exchangeRate;
         
         // Update all display elements
         if (document.getElementById('summaryBaseCost')) {
@@ -1140,61 +1083,61 @@ footer {
 
     // Confirm button logic
     const confirmBtn = document.getElementById('confirm');
-if (confirmBtn) {
-    confirmBtn.addEventListener('click', async () => {
-        const duration = parseInt(document.getElementById('durationNumber').value) || 0;
-        
-        // Validate inputs
-        const fName = document.getElementById('fName').value.trim();
-        const lName = document.getElementById('lName').value.trim();
-        const email = document.getElementById('email').value.trim();
+    if (confirmBtn) {
+        confirmBtn.addEventListener('click', async () => {
+            const duration = parseInt(document.getElementById('durationNumber').value) || 0;
+            
+            // Validate inputs
+            const fName = document.getElementById('fName').value.trim();
+            const lName = document.getElementById('lName').value.trim();
+            const email = document.getElementById('email').value.trim();
 
-        if (!fName || !lName || !email || !duration) {
-            alert("Please fill all fields correctly.");
-            return;
-        }
-
-        // Change button color to indicate success
-        confirmBtn.style.backgroundColor = "#28a745";  // Green color
-        confirmBtn.innerText = "Confirmed!";
-        
-        // Revert back after 2 seconds
-        setTimeout(() => {
-            confirmBtn.style.backgroundColor = "#2563eb";  // Original color
-            confirmBtn.innerText = "Confirm";
-        }, 5000);
-
-        // Update summary details
-        if (document.getElementById('summaryDuration')) {
-            document.getElementById('summaryDuration').innerText = `${duration} Hour(s)`;
-        }
-        if (document.getElementById('summaryFName')) {
-            document.getElementById('summaryFName').innerText = fName;
-        }
-        if (document.getElementById('summaryLName')) {
-            document.getElementById('summaryLName').innerText = lName;
-        }
-        if (document.getElementById('summaryEmail')) {
-            document.getElementById('summaryEmail').innerText = email;
-        }
-        
-        // Update all prices
-        await updatePrices();
-        
-        // Render PayPal buttons if not already rendered
-        if (!document.querySelector('.paypal-buttons')) {
-            renderPayPalButtons();
-        }
-        
-        // Scroll to summary section on mobile devices
-        if (window.innerWidth <= 768) {
-            const summarySection = document.querySelector('.summary-section');
-            if (summarySection) {
-                summarySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (!fName || !lName || !email || !duration) {
+                alert("Please fill all fields correctly.");
+                return;
             }
-        }
-    });
-}
+
+            // Change button color to indicate success
+            confirmBtn.style.backgroundColor = "#28a745";  // Green color
+            confirmBtn.innerText = "Confirmed!";
+            
+            // Revert back after 2 seconds
+            setTimeout(() => {
+                confirmBtn.style.backgroundColor = "#2563eb";  // Original color
+                confirmBtn.innerText = "Confirm";
+            }, 5000);
+
+            // Update summary details
+            if (document.getElementById('summaryDuration')) {
+                document.getElementById('summaryDuration').innerText = `${duration} Hour(s)`;
+            }
+            if (document.getElementById('summaryFName')) {
+                document.getElementById('summaryFName').innerText = fName;
+            }
+            if (document.getElementById('summaryLName')) {
+                document.getElementById('summaryLName').innerText = lName;
+            }
+            if (document.getElementById('summaryEmail')) {
+                document.getElementById('summaryEmail').innerText = email;
+            }
+            
+            // Update all prices
+            await updatePrices();
+            
+            // Render PayPal buttons if not already rendered
+            if (!document.querySelector('.paypal-buttons')) {
+                renderPayPalButtons();
+            }
+            
+            // Scroll to summary section on mobile devices
+            if (window.innerWidth <= 768) {
+                const summarySection = document.querySelector('.summary-section');
+                if (summarySection) {
+                    summarySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    }
 
     // Function to render PayPal buttons
     function renderPayPalButtons() {
@@ -1244,6 +1187,74 @@ if (confirmBtn) {
                 alert('There was an error processing your payment. Please try again.');
             }
         }).render('#paypal-button-container');
+    }
+
+    // Razorpay Integration
+    const razorpayButton = document.getElementById('razorpayButton');
+    if (razorpayButton) {
+        razorpayButton.addEventListener('click', () => {
+            // Validate details
+            const fName = document.getElementById('summaryFName')?.innerText;
+            const lName = document.getElementById('summaryLName')?.innerText;
+            const email = document.getElementById('summaryEmail')?.innerText;
+            const duration = document.getElementById('summaryDuration')?.innerText;
+            
+            if (!fName || fName === 'N/A' || !lName || lName === 'N/A' || !email || email === 'N/A' || !duration || duration === 'N/A') {
+                alert("Please confirm your details first by clicking the Confirm button.");
+                return;
+            }
+
+            // Convert amount to paise (smallest currency unit for INR)
+            const amountInPaise = Math.round(totalCostINR * 100);
+
+            const options = {
+                "key": "rzp_live_4WoNcjebBer1vG", // Enter the Key ID generated from the Dashboard
+                "amount": amountInPaise, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                "currency": "INR",
+                "name": "Admincog Corporate Services",
+                "description": `${planName} - ${duration}`,
+                "image": "Acog_NewLogo.png", // Your company logo
+                "order_id": "", // This should be generated from your backend for production
+                "handler": function (response) {
+                    // Handle successful payment
+                    console.log('Payment successful:', response);
+                    alert(`Payment successful!\nPayment ID: ${response.razorpay_payment_id}\nThank you for your purchase!`);
+                    
+                    // You can send this data to your server for verification
+                    // and order fulfillment
+                    
+                    // Optional: Redirect to success page
+                    // window.location.href = 'success.html';
+                },
+                "prefill": {
+                    "name": `${fName} ${lName}`,
+                    "email": email,
+                    "contact": "" // You can add phone number field if needed
+                },
+                "notes": {
+                    "plan_type": planName,
+                    "duration": duration,
+                    "customer_name": `${fName} ${lName}`
+                },
+                "theme": {
+                    "color": "#528ff0"
+                },
+                "modal": {
+                    "ondismiss": function() {
+                        console.log('Payment modal closed');
+                    }
+                }
+            };
+
+            const rzp1 = new Razorpay(options);
+            
+            rzp1.on('payment.failed', function (response) {
+                console.error('Payment failed:', response.error);
+                alert(`Payment failed!\nError: ${response.error.description}\nPlease try again.`);
+            });
+
+            rzp1.open();
+        });
     }
 
     // Initial render of PayPal buttons
