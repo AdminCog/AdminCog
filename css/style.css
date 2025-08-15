@@ -1322,7 +1322,7 @@ footer {
 }
 
 .news-feature {
-    background-color: #f8f9fa;
+    background-color: white;
     padding: 80px 20px;
     margin: 0;
 }
@@ -1429,3 +1429,4 @@ footer {
         justify-content: center;
     }
 }
+
