@@ -797,33 +797,6 @@ footer {
         let currentRole = 'executive';
         let currentHours = 80;
 
-        // Calculate the actual final price (same logic as in calculatePrice function)
-const planData = basePlans[currentHours];
-let basePrice = planData.price;
-
-// Apply timezone multiplier
-const timezone = document.querySelector('input[name="timezone"]:checked').value;
-if (timezone === 'india-us' || timezone === 'india-eu') {
-    basePrice *= 1.2;
-}
-
-// Apply addon multipliers
-const addons = document.querySelectorAll('.addon-option input:checked');
-let multiplier = 1;
-
-addons.forEach(addon => {
-    switch(addon.value) {
-        case 'research': multiplier *= 1.15; break;
-        case 'backup': multiplier *= 1.10; break;
-        case 'ai': multiplier *= 1.12; break;
-    }
-});
-
-const finalPrice = Math.round(basePrice * multiplier);
-
-// Store the calculated final price
-localStorage.setItem('selectedPlanPrice', finalPrice);
-
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             setupEventListeners();
@@ -1054,9 +1027,37 @@ localStorage.setItem('selectedPlanPrice', finalPrice);
 
         // Initialize slider background on page load
         setTimeout(updateSliderBackground, 100);
+
+ // Calculate the actual final price (same logic as in calculatePrice function)
+const planData = basePlans[currentHours];
+let basePrice = planData.price;
+
+// Apply timezone multiplier
+const timezone = document.querySelector('input[name="timezone"]:checked').value;
+if (timezone === 'india-us' || timezone === 'india-eu') {
+    basePrice *= 1.2;
+}
+
+// Apply addon multipliers
+const addons = document.querySelectorAll('.addon-option input:checked');
+let multiplier = 1;
+
+addons.forEach(addon => {
+    switch(addon.value) {
+        case 'research': multiplier *= 1.15; break;
+        case 'backup': multiplier *= 1.10; break;
+        case 'ai': multiplier *= 1.12; break;
+    }
+});
+
+const finalPrice = Math.round(basePrice * multiplier);
+
+// Store the calculated final price
+localStorage.setItem('selectedPlanPrice', finalPrice);
     </script>
 </body>
 </html>
+
 
 
 
