@@ -892,30 +892,25 @@ footer {
         }
 
         function getStarted() {
-            // Store calculation data
-            const timezone = document.querySelector('input[name="timezone"]:checked').value;
-            const addons = Array.from(document.querySelectorAll('.addon-option input:checked')).map(cb => cb.value);
-            
-            const planData = {
-                role: currentRole,
-                hours: currentHours,
-                timezone: timezone,
-                addons: addons,
-                price: document.getElementById('monthlyPrice').textContent,
-                rate: document.getElementById('hourlyRate').textContent
-            };
+    // Button animation
+    const btn = document.querySelector('.get-started-btn');
+    btn.style.transform = 'scale(0.98)';
+    setTimeout(() => {
+        btn.style.transform = 'scale(1)';
+    }, 100);
 
-            // Button animation
-            const btn = document.querySelector('.get-started-btn');
-            btn.style.transform = 'scale(0.98)';
-            setTimeout(() => {
-                btn.style.transform = 'scale(1)';
-            }, 100);
+    // Get the selected assistant type name
+    const selectedRole = document.querySelector('.role-option.selected').textContent;
 
-            // Store data and redirect
-            sessionStorage.setItem('calculatorPlan', JSON.stringify(planData));
-            window.location.href = 'carts.html';
-        }
+    // Store individual values in localStorage
+    localStorage.setItem('selectedPlanName', selectedRole);
+    localStorage.setItem('selectedPlanPrice', document.getElementById('monthlyPrice').textContent.replace('$', ''));
+    localStorage.setItem('selectedPlanHours', currentHours);
+    localStorage.setItem('currency', 'USD');
+
+    // Redirect to next page
+    window.location.href = 'carts.html';
+}
 
         function setupClickableOptions() {
             // Fixed: Make timezone options fully clickable
@@ -1036,4 +1031,5 @@ footer {
     </script>
 </body>
 </html>
+
 
