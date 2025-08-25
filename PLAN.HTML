@@ -648,6 +648,29 @@ footer {
         html {
             scrollbar-width: none;
         }
+
+.competitor-comparison {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 24px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 10px rgba(40, 167, 69, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.competitor-comparison .admincog-rate {
+    color: #fff;
+    font-weight: 700;
+}
+
+.competitor-comparison .competitor-rate {
+    color: #ffeb3b;
+    font-weight: 700;
+}
     </style>
 </head>
 <body>
@@ -756,8 +779,11 @@ footer {
                     🚀 Get 2 hours back/day by Day 7 or your first week is FREE!
                 </div>
 
-                <button class="get-started-btn" onclick="getStarted()">Get Started Now</button>
+                <button class="get-started-btn" onclick="getStarted()">Get My Assistant</button>
             </div>
+<div class="competitor-comparison">
+    Admincog = <span class="admincog-rate" id="admincogRate">$10/hr</span> vs Competitors' <span class="competitor-rate">$16–35/hr</span>
+</div>
         </div>
     </div>
 
@@ -879,6 +905,7 @@ footer {
             animateNumberChange('monthlyPrice', '$' + finalPrice.toLocaleString());
             animateNumberChange('hourlyRate', `Effective Rate: $${finalRate}/hour`);
             document.getElementById('planName').textContent = `${planName} Plan (${currentHours} hours)`;
+            document.getElementById('admincogRate').textContent = `$${finalRate}/hr`;
         }
 
         function animateNumberChange(elementId, newValue) {
@@ -1057,6 +1084,7 @@ footer {
     </script>
 </body>
 </html>
+
 
 
 
