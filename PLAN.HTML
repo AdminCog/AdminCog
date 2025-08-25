@@ -650,26 +650,53 @@ footer {
         }
 
 .competitor-comparison {
-    background: linear-gradient(135deg, #28a745, #20c997);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
-    padding: 20px;
-    border-radius: 8px;
+    padding: 18px 20px;
+    border-radius: 10px;
     text-align: center;
     margin-top: 24px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    box-shadow: 0 2px 10px rgba(40, 167, 69, 0.2);
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.95rem;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.competitor-comparison::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
 }
 
 .competitor-comparison .admincog-rate {
-    color: #fff;
+    color: #4ade80;
     font-weight: 700;
+    font-size: 1.1rem;
 }
 
 .competitor-comparison .competitor-rate {
-    color: #ffeb3b;
-    font-weight: 700;
+    color: #fbbf24;
+    font-weight: 600;
+    text-decoration: line-through;
+    opacity: 0.8;
+}
+
+.vs-text {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
+    margin: 0 8px;
 }
     </style>
 </head>
@@ -781,7 +808,7 @@ footer {
 
                 <button class="get-started-btn" onclick="getStarted()">Get My Assistant</button>
 <div class="competitor-comparison">
-    Admincog = <span class="admincog-rate" id="admincogRate">$10/hr</span> vs Competitors' <span class="competitor-rate">$16–35/hr</span>
+    Admincog = <span class="admincog-rate" id="admincogRate">$10/hr</span> <span class="vs-text">vs</span> Competitors' <span class="competitor-rate">$16–35/hr</span>
 </div>
             </div>
         </div>
@@ -1084,6 +1111,7 @@ footer {
     </script>
 </body>
 </html>
+
 
 
 
