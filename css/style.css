@@ -193,7 +193,7 @@ nav ul li .dropdown-content li:hover .dropdown-content {
     right: 10%;
     width: 60%;
     height: auto;
-    max-width: 800px;
+    max-width: 1000px;
     background-color: #F2F2F2;
     color: #333;
     padding: 20px;
@@ -1406,4 +1406,5 @@ footer {
         gap: 10px;
     }
 }
+
 
