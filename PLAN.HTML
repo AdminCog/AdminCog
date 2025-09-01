@@ -837,16 +837,44 @@ footer {
 
     <script>
         // Pricing data
-        const basePlans = {
-            40: { price: 480, rate: 12, name: "Starter" },
-            60: { price: 720, rate: 12, name: "Starter Plus" },
-            80: { price: 880, rate: 11, name: "Growth" },
-            100: { price: 1050, rate: 10.5, name: "Growth Plus" },
-            120: { price: 1260, rate: 10.5, name: "Pro" },
-            140: { price: 1400, rate: 10, name: "Pro Plus" },
-            160: { price: 1600, rate: 10, name: "Scale" }
-        };
-
+        const rolePricing = {
+    executive: {
+        40: { price: 400, rate: 10, name: "Starter" },
+        60: { price: 570, rate: 9.5, name: "Starter Plus" },
+        80: { price: 720, rate: 9, name: "Growth" },
+        100: { price: 850, rate: 8.5, name: "Growth Plus" },
+        120: { price: 960, rate: 8, name: "Pro" },
+        140: { price: 1050, rate: 7.5, name: "Pro Plus" },
+        160: { price: 1120, rate: 7, name: "Scale" }
+    },
+    research: {
+        40: { price: 480, rate: 12, name: "Starter" },
+        60: { price: 684, rate: 11.4, name: "Starter Plus" },
+        80: { price: 864, rate: 10.8, name: "Growth" },
+        100: { price: 1020, rate: 10.2, name: "Growth Plus" },
+        120: { price: 1152, rate: 9.6, name: "Pro" },
+        140: { price: 1260, rate: 9, name: "Pro Plus" },
+        160: { price: 1344, rate: 8.4, name: "Scale" }
+    },
+    operations: {
+        40: { price: 560, rate: 14, name: "Starter" },
+        60: { price: 798, rate: 13.3, name: "Starter Plus" },
+        80: { price: 1008, rate: 12.6, name: "Growth" },
+        100: { price: 1190, rate: 11.9, name: "Growth Plus" },
+        120: { price: 1344, rate: 11.2, name: "Pro" },
+        140: { price: 1470, rate: 10.5, name: "Pro Plus" },
+        160: { price: 1568, rate: 9.8, name: "Scale" }
+    },
+    marketing: {
+        40: { price: 640, rate: 16, name: "Starter" },
+        60: { price: 912, rate: 15.2, name: "Starter Plus" },
+        80: { price: 1152, rate: 14.4, name: "Growth" },
+        100: { price: 1360, rate: 13.6, name: "Growth Plus" },
+        120: { price: 1536, rate: 12.8, name: "Pro" },
+        140: { price: 1680, rate: 12, name: "Pro Plus" },
+        160: { price: 1792, rate: 11.2, name: "Scale" }
+    }
+};
         let currentRole = 'executive';
         let currentHours = 80;
 
@@ -896,7 +924,7 @@ footer {
 
         function calculatePrice() {
             // Fixed: Handle NaN issue by ensuring we have valid plan data
-            const planData = basePlans[currentHours];
+            const planData = rolePricing[currentRole][currentHours];
             if (!planData) {
                 console.error('Invalid hours value:', currentHours);
                 return;
@@ -1111,6 +1139,7 @@ footer {
     </script>
 </body>
 </html>
+
 
 
 
