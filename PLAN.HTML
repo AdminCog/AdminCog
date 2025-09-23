@@ -878,14 +878,14 @@ footer {
         let currentRole = 'executive';
         let currentHours = 80;
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            setupEventListeners();
-            calculatePrice();
-            setupMobileMenu();
-            updateSliderBackground();
-            setupClickableOptions();
-        });
+    resetToDefaults(); // Add this line first
+    setupEventListeners();
+    calculatePrice();
+    setupMobileMenu();
+    updateSliderBackground();
+    setupClickableOptions();
+});
 
         function setupEventListeners() {
             // Role selector
@@ -1144,9 +1144,32 @@ basePrice = Math.round(basePrice * roleMultipliers[currentRole]);
         // Initialize slider background on page load
         setTimeout(updateSliderBackground, 100);
 
+function resetToDefaults() {
+    // Reset role selection
+    document.querySelectorAll('.role-option').forEach(opt => opt.classList.remove('selected'));
+    document.querySelector('.role-option[data-role="executive"]').classList.add('selected');
+    currentRole = 'executive';
+    
+    // Reset hours slider
+    document.getElementById('hoursSlider').value = 80;
+    currentHours = 80;
+    document.getElementById('hoursDisplay').textContent = '80 hours';
+    
+    // Reset timezone
+    document.querySelectorAll('.timezone-option').forEach(opt => opt.classList.remove('selected'));
+    document.querySelectorAll('input[name="timezone"]').forEach(input => input.checked = false);
+    document.querySelector('input[name="timezone"][value="india"]').checked = true;
+    document.querySelector('input[name="timezone"][value="india"]').closest('.timezone-option').classList.add('selected');
+    
+    // Reset addons
+    document.querySelectorAll('.addon-option').forEach(opt => opt.classList.remove('selected'));
+    document.querySelectorAll('.addon-option input').forEach(input => input.checked = false);
+}
+
     </script>
 </body>
 </html>
+
 
 
 
