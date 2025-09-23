@@ -982,7 +982,7 @@ footer {
     }, 100);
 
     // ADD THIS BLOCK HERE - Calculate the actual final price
-    const planData = basePlans[currentHours];
+    const planData = rolePricing[currentRole][currentHours];
     let basePrice = planData.price;
 
     // Apply timezone multiplier
@@ -1139,6 +1139,7 @@ footer {
     </script>
 </body>
 </html>
+
 
 
 
