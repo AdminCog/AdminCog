@@ -982,8 +982,16 @@ footer {
     }, 100);
 
     // ADD THIS BLOCK HERE - Calculate the actual final price
-    const planData = basePlans[currentHours];
+    const planData = rolePricing[currentRole][currentHours];
     let basePrice = planData.price;
+// Apply role-specific pricing
+const roleMultipliers = {
+    executive: 1,
+    research: 1.17,
+    operations: 1.33,
+    marketing: 1.5
+};
+basePrice = Math.round(basePrice * roleMultipliers[currentRole]);
 
     // Apply timezone multiplier
     const timezone = document.querySelector('input[name="timezone"]:checked').value;
@@ -1139,6 +1147,7 @@ footer {
     </script>
 </body>
 </html>
+
 
 
 
