@@ -974,24 +974,15 @@ footer {
         }
 
         function getStarted() {
-    // Button animation
     const btn = document.querySelector('.get-started-btn');
     btn.style.transform = 'scale(0.98)';
     setTimeout(() => {
         btn.style.transform = 'scale(1)';
     }, 100);
 
-    // ADD THIS BLOCK HERE - Calculate the actual final price
+    // Get base price from the pricing data (already role-specific)
     const planData = rolePricing[currentRole][currentHours];
     let basePrice = planData.price;
-// Apply role-specific pricing
-const roleMultipliers = {
-    executive: 1,
-    research: 1.17,
-    operations: 1.33,
-    marketing: 1.5
-};
-basePrice = Math.round(basePrice * roleMultipliers[currentRole]);
 
     // Apply timezone multiplier
     const timezone = document.querySelector('input[name="timezone"]:checked').value;
@@ -1010,6 +1001,21 @@ basePrice = Math.round(basePrice * roleMultipliers[currentRole]);
             case 'ai': multiplier *= 1.12; break;
         }
     });
+
+    const finalPrice = Math.round(basePrice * multiplier);
+
+    // Get the selected assistant type name
+    const selectedRole = document.querySelector('.role-option.selected').textContent;
+
+    // Store values in localStorage
+    localStorage.setItem('selectedPlanName', selectedRole);
+    localStorage.setItem('selectedPlanPrice', finalPrice);
+    localStorage.setItem('selectedPlanHours', currentHours);
+    localStorage.setItem('currency', 'USD');
+
+    // Redirect to next page
+    window.location.href = 'carts.html';
+}
 
     const finalPrice = Math.round(basePrice * multiplier);
     // END OF ADDED BLOCK
@@ -1169,6 +1175,7 @@ function resetToDefaults() {
     </script>
 </body>
 </html>
+
 
 
 
